@@ -1,31 +1,71 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
 
-    <!-- Page Title -->
-    <title><?php echo $page_title; ?></title>
+        <!-- For Mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
 
-    <!-- Google please read this -->
-    <meta name="description" content="">
+        <!-- Page Title -->
+        <title>Small World</title>
 
-    <!-- For Mobile -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+        <!-- Google please read this -->
+        <meta name="description" content="Small World">
 
-    <!-- Thumbnail -->
-    <meta property="og:image" content="<?=base_url()?>resources/img/placeholder.jpg" />
+        <!-- Link to Favicon -->
+        <link rel="icon" href="<?=base_url()?>resources/icon.ico">
 
-    <!-- Link to Favicon -->
-    <link rel="icon" href="<?=base_url()?>resources/img/favicon.ico">
+        <!-- Bootstrap -->
+        <link href="<?=base_url()?>resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap -->
-    <link href="<?=base_url()?>resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <!-- jQuery -->
+        <script src="<?=base_url()?>resources/jquery/jquery-3.1.1.min.js"></script>
 
-    <!-- Local Style -->
-    <link href="<?=base_url()?>resources/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
+        <!-- Bootstrap -->
+        <script src="<?=base_url()?>resources/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Thumbnail -->
-    <meta property="og:image" content="<?=base_url()?>resources/img/placeholder.png" />
+        <!-- JSColor -->
+        <script src="<?=base_url()?>resources/jscolor/jscolor.min.js"></script>
 
-  </head>
-  <body>
+        <!-- Local Script -->
+        <script src="<?=base_url()?>resources/script.js?<?php echo time(); ?>"></script>
+
+        <!-- Define as share image -->
+        <!-- <link rel="image_src" href="<?=base_url()?>resources/logos/hero.jpg" / > -->
+        <!-- <meta property='og:image' content='<?=base_url()?>resources/logos/hero.jpg'/> -->
+
+        <!-- Thumbnail -->
+        <!-- <meta property="og:image" content="<?=base_url()?>resources/img/original_small.jpg" /> -->
+
+        <!-- Local Style -->
+        <link href="<?=base_url()?>resources/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
+
+    </head>
+    <body>
+        <!-- Facebook share -->
+        <?php $use_facebook = false; ?>
+        <?php if ($use_facebook) { ?>
+        <div id="fb-root"></div>
+        <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '523758294469574',
+                xfbml      : true,
+                version    : 'v2.5'
+            });
+        };
+
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=523758294469574";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
+
+        <div class="facebook_block">
+            <div class="fb-like" data-href="https://smallworld.xyz/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="true"></div>
+        </div>
+        <?php } ?>

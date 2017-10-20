@@ -1,8 +1,46 @@
 /* Global */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-body {
-    background-color: #222;
-    color: #fff;
+/* Map */
+#map {
+  height: 100%;
+}
+
+/* Overlay */
+#overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #000;
+    opacity: 0.9;
+}
+#overlay p {
+  font-size: 2em;
+  color: #222;
+  position: absolute;
+  text-align: center;
+  top: 30vh;
+  left: 40%;
+  width: 20%;
+  background: #fff;
+  padding: 0.5em;
+}
+#loading {
+    width: 50px;
+}
+
+/* Facebook */
+.facebook_block {
+  position: absolute;
+  top: 0.5em;
+  left: 8em;
+  z-index: 5;
 }
 
 /* Orange Action Bootstrap-Styled Button */

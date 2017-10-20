@@ -38,6 +38,7 @@ class Main extends CI_Controller {
         $data['page_title'] = site_name();
         $this->load->view('templates/header', $data);
         $this->load->view('main', $data);
+        $this->load->view('map_script', $data);
         $this->load->view('templates/footer', $data);
     }
 }

@@ -2,6 +2,6 @@
     "hostname" : "localhost",
     "username" : "root",
     "password" : "",
-    "database" : "gooseigniter",
+    "database" : "smallworld",
     "token" : "1234"
 }
