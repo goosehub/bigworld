@@ -78,16 +78,7 @@ class User extends CI_Controller {
             return false;
         }
         
-        // Optional password (For /r/WebGames)
         $matches = 'matches[confirm]|';
-        if (PASSWORD_OPTIONAL) {
-            if (!isset($_POST['password']) || $_POST['password'] === '') {
-                $random_password = mt_rand(10000000,99999999); ;
-                $_POST['password'] = $random_password;
-                $_POST['confirm'] = $random_password;
-                $matches = '';
-            }
-        }
 
         // Validation
         $this->form_validation->set_rules('username', 'Username', 'trim|required');

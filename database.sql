@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 29, 2017 at 03:53 PM
+-- Generation Time: Oct 20, 2017 at 01:51 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -17,8 +17,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `gooseigniter`
+-- Database: `smallworld`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_key` int(10) UNSIGNED NOT NULL,
+  `room_key` int(10) UNSIGNED NOT NULL,
+  `username` varchar(64) NOT NULL,
+  `color` varchar(8) NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -42,6 +58,22 @@ CREATE TABLE `request` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `user_key` int(10) UNSIGNED NOT NULL,
+  `lng` int(4) NOT NULL,
+  `lat` int(4) NOT NULL,
+  `last_message_time` timestamp NOT NULL,
+  `created` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -51,6 +83,7 @@ CREATE TABLE `user` (
   `last_load` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ab_test` varchar(100) NOT NULL,
   `email` varchar(250) NOT NULL,
+  `color` varchar(8) NOT NULL,
   `ip` varchar(100) NOT NULL,
   `api_key` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
@@ -63,9 +96,21 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `request`
 --
 ALTER TABLE `request`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -79,15 +124,25 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+--
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -43,6 +43,40 @@ html, body {
   z-index: 5;
 }
 
+/* Top right block*/
+#top_right_block {
+  position: absolute;
+  top: 0.5em;
+  right: 6em;
+  opacity: 0.95;
+  z-index: 5;
+}
+
+/* Center Block */
+.center_block {
+  display: none;
+  position: absolute;
+  top: 15vh;
+  max-height: 75vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  left: 30%;
+  width: 40%;
+  background: #fff;
+  padding: 1em;
+  border-radius: 1em;
+  z-index: 10;
+}
+@media only screen and (max-device-width: 600px) {
+  .center_block {
+    left: 5%;
+    width: 90%;   
+  }
+}
+.exit_center_block {
+  float: right;
+}
+
 /* Orange Action Bootstrap-Styled Button */
 .btn-action {   
     background-color: hsl(44, 100%, 56%) !important; 
