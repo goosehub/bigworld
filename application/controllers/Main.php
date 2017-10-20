@@ -8,6 +8,7 @@ class Main extends CI_Controller {
         parent::__construct();
         $this->load->model('main_model', '', TRUE);
         $this->load->model('user_model', '', TRUE);
+        $this->load->model('room_model', '', TRUE);
 
         $this->main_model->record_request();
     }
@@ -22,6 +23,8 @@ class Main extends CI_Controller {
             $user_auth = $this->user_model->get_user_auth_by_id($data['user']['id']);
             $data['user']['api_key'] = $user_auth['api_key'];
         }
+
+        $data['rooms'] = $this->room_model->get_all_rooms();
 
         // A/B testing
         $ab_array = array('', '');

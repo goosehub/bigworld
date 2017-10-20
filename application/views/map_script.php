@@ -39,9 +39,22 @@ function initMap() {
         $('#overlay').fadeOut();
     });
 
+    // Add markers
+    <?php foreach ($rooms as $room) { ?>
+    var location = {};
+    location.lat = <?php echo $room['lat']; ?>;
+    location.lng = <?php echo $room['lng']; ?>;
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: '<?php echo $room['name'] ?>'
+    });
+    <?php } ?>
+
     // Trigger event on click
     google.maps.event.addListener(map, 'click', function(event) {
-       open_create_room_block(event.latLng);
+        console.log(event.latLng);
+        open_create_room_block(event.latLng);
     });
 
     // Place marker

@@ -1,48 +1,27 @@
 ==========================================================================================
-	smallworld
+smallworld
 ==========================================================================================
 
-google maps with chat rooms on locations
-registered users can create chat rooms on google maps
-all users can comment and post content in those rooms
-users can subscribe to their favorite places
-map shows most recent 1000 places plus subscribed and owned places
-top places are blue, subscribed places are red, your places are orange
-on zoom in or out, after wait, do new query for top and subscribed places
+==========================================================================================
+todo
+==========================================================================================
+	high priority
+open rooms on map
+add chat to room
+show chats in room
+embedica
+list owned rooms
 
-hot rooms
-most recent
-finding rooms
+	low priority
+filter rooms by active/recently active
+color markers based on room, favorite, owned
 limit how many rooms a user can create
+add favorite rooms
+list favorited rooms
+link to room
+refresh rooms on zoom
+show count of users currently on
 
 ==========================================================================================
-	todo
-==========================================================================================
-
-
-==========================================================================================
-	view
-==========================================================================================
-
-==========================================================================================
-	database
-==========================================================================================
-
-users
-	color
-	location
-
-chats
-	room_key
-	user_key
-	color
-
-rooms
-	long
-	lat
-	user_key
-	name
-
-==========================================================================================
-	notes
+notes
 ==========================================================================================
