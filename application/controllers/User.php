@@ -123,9 +123,9 @@ class User extends CI_Controller {
         }
 
         // Login
-        $sess_array = array();
         $sess_array = array(
             'id' => $user_id,
+            'color' => $color,
             'username' => $username
         );
         $this->session->set_userdata('user_session', $sess_array);

@@ -6,8 +6,6 @@ class Main extends CI_Controller {
     function __construct()
     {
         parent::__construct();
-
-        // Uncomment models after database created
         $this->load->model('main_model', '', TRUE);
         $this->load->model('user_model', '', TRUE);
 

@@ -13,13 +13,12 @@ on zoom in or out, after wait, do new query for top and subscribed places
 hot rooms
 most recent
 finding rooms
-
+limit how many rooms a user can create
 
 ==========================================================================================
 	todo
 ==========================================================================================
 
-review password implementation
 
 ==========================================================================================
 	view

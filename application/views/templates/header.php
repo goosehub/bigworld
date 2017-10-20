@@ -14,7 +14,7 @@
         <meta name="description" content="Small World">
 
         <!-- Link to Favicon -->
-        <link rel="icon" href="<?=base_url()?>resources/icon.ico">
+        <!-- <link rel="icon" href="<?=base_url()?>resources/icon.ico"> -->
 
         <!-- Bootstrap -->
         <link href="<?=base_url()?>resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -27,6 +27,12 @@
 
         <!-- JSColor -->
         <script src="<?=base_url()?>resources/jscolor/jscolor.min.js"></script>
+
+        <!-- Make data available to script -->
+        <script>
+        var user = <?php echo $user ? json_encode($user) : 'false'; ?>;
+        var base_url = '<?=base_url()?>';
+        </script>
 
         <!-- Local Script -->
         <script src="<?=base_url()?>resources/script.js?<?php echo time(); ?>"></script>

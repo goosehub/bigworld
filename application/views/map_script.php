@@ -38,6 +38,43 @@ function initMap() {
     google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
         $('#overlay').fadeOut();
     });
+
+    // Trigger event on click
+    google.maps.event.addListener(map, 'click', function(event) {
+       open_create_room_block(event.latLng);
+    });
+
+    // Place marker
+    function open_create_room_block(location) {
+        $('.center_block').hide();
+        $('#create_room_block').show();
+        $('#input_room_name').val('');
+        $('#input_room_name').focus();
+        $('#create_room_submit').click(function(){
+            create_room(location);
+        });
+    }
+
+    function create_room(location) {
+        var url = 'room/create';
+        var data = {};
+        data.lat = location.lat();
+        data.lng = location.lng();
+        data.room_name = $('#input_room_name').val();
+        ajax_post(url, data, function(result){
+            if (result.error) {
+                alert(result.error_message);
+                return false;
+            }
+            $('.center_block').hide();
+            // Create marker
+            var marker = new google.maps.Marker({
+                position: location, 
+                map: map
+            });
+        });
+    }
+
 }
 </script>
 
