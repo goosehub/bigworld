@@ -74,7 +74,7 @@ function initMap() {
     var coord_slug = lat + ',' + lng;
     console.log(coord_slug);
     $('.center_block').hide();
-    $('#room_parent').show();
+    $('#room_parent').fadeIn();
 
     // Initial Load Messages
     messages_load(true);

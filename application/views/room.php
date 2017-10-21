@@ -1,6 +1,14 @@
 <div id="room_parent" class="center_block">
     <strong>Room</strong>
 
+    <span id="toolbar">
+        <span id="toggle_theme" class="btn btn-sm btn-danger active">Switch to Light Theme</span>
+        <span id="user_count_parent" class="btn btn-default" title="">
+            <span id="user_count">0</span>
+            <span id="user_list_parent" style="display: none;"> | <span id="user_list"></span></span>
+        </span>
+    </span>
+
     <button type="button" class="exit_center_block btn btn-default btn-sm">
         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
     </button>
@@ -15,16 +23,6 @@
                 <!-- submit button positioned off screen -->
                 <input name="submit_message" type="submit" id="submit_message" value="true" style="position: absolute; left: -9999px">
             </form>
-        </div>
-        <div id="toolbar">
-            <a href="<?=base_url()?>" id="join_new" class="btn btn-sm btn-primary">
-                Join a New Room
-            </a>
-            <div id="toggle_theme" class="btn btn-sm btn-danger active">Switch to Light Theme</div>
-            <div id="user_count_parent" class="btn btn-default" title="">
-                <span id="user_count">0</span>
-                <span id="user_list_parent" style="display: none;"> | <span id="user_list"></span></span>
-            </div>
         </div>
     </div>
 

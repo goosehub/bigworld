@@ -9,10 +9,29 @@ var page_title = '';
 var missed_messages = 0;
 var users_array = new Array();
 
+$(document).on('click', '.message_pin', function(event) {
+  pin_action(event);
+});
+
+// On tab press in message input
+document.querySelector('#message_input').addEventListener('keydown', function (e) {
+  if (e.which == 9) {
+    autocomplete_username();
+    e.preventDefault();
+  }
+});
+
+$('#toggle_theme').click(function(event) {
+  toggle_theme(event);
+});
+
 // Message Load
 function messages_load(inital_load) {
   if (!load_messages) {
     return false;
+  }
+  if (inital_load) {
+    $("#message_content_parent").html('Loading');
   }
   $.ajax({
     url: "<?=base_url()?>chat/load",
@@ -30,6 +49,9 @@ function messages_load(inital_load) {
       // Emergency force reload
       if (response === 'reload') {
         window.location.reload(true);
+      }
+      if (inital_load) {
+        $("#message_content_parent").html('');
       }
       // Parse messages and loop through them
       messages = JSON.parse(response);
@@ -127,6 +149,29 @@ function submit_new_message(event) {
   return false;
 }
 
+function autocomplete_username() {
+  if ($('#message_input').val().startsWith('@')) {
+    var parsed_text_input = $('#message_input').val().replace('@','').toLowerCase();
+    for (var i = 0; i < users_array.length; i++) {
+      if (users_array[i].username.toLowerCase().startsWith(parsed_text_input)) {
+        $('#message_input').val('@' + users_array[i].username);
+      }
+    }
+  }
+}
+
+function pin_action(event) {
+  if (!$(event.target).hasClass('active_pin')) {
+    $('.active_pin').removeClass('active_pin');
+    $('.pinned').removeClass('pinned')
+    $(event.target).addClass('active_pin');
+    $(event.target).parent().addClass('pinned')
+  } else {
+    $(event.target).removeClass('active_pin');
+    $(event.target).parent().removeClass('pinned')
+  }
+}
+
 function convert_at_username(input) {
   var pattern = /^\@\w+/g;
   if (pattern.test(input)) {
@@ -142,13 +187,13 @@ function convert_at_username(input) {
 
 function use_pin(message) {
   if (
-    string_contains(message, 'message_youtube') ||
-    string_contains(message, 'message_vimeo') ||
-    string_contains(message, 'message_twitch') ||
-    string_contains(message, 'message_soundcloud') ||
-    string_contains(message, 'message_vocaroo') ||
-    string_contains(message, 'message_video') ||
-    string_contains(message, 'message_image')
+    string_contains(message, 'embedica_youtube') ||
+    string_contains(message, 'embedica_vimeo') ||
+    string_contains(message, 'embedica_twitch') ||
+    string_contains(message, 'embedica_soundcloud') ||
+    string_contains(message, 'embedica_vocaroo') ||
+    string_contains(message, 'embedica_video') ||
+    string_contains(message, 'embedica_image')
   ) {
     return true;
   }
@@ -164,6 +209,20 @@ function string_contains(string, sub_string) {
     return true;
   }
   return false;
+}
+
+function toggle_theme(event) {
+  if ($(event.target).hasClass('active')) {
+    $(event.target).text('Switch to Dark Theme');
+    $(event.target).removeClass('active');
+    $('#room_parent').addClass('light');
+    $('#message_content_parent').addClass('light');
+  } else {
+    $(event.target).text('Switch to Light Theme');
+    $(event.target).addClass('active');
+    $('#room_parent').removeClass('light');
+    $('#message_content_parent').removeClass('light');
+  }
 }
 
 </script>

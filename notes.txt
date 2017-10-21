@@ -6,10 +6,8 @@ smallworld
 todo
 ==========================================================================================
 	high priority
-open rooms on map
-add chat to room
-show chats in room
-embedica
+rooms not hard coded to 9
+refactor
 list owned rooms
 
 	low priority
