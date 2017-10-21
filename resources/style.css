@@ -77,6 +77,14 @@ html, body {
   float: right;
 }
 
+#room_parent {
+  top: 7vh;
+  max-height: 86vh;
+  height: 90vh;
+  left: 5%;
+  width: 90%;
+}
+
 /* Orange Action Bootstrap-Styled Button */
 .btn-action {   
     background-color: hsl(44, 100%, 56%) !important; 

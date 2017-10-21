@@ -28,6 +28,9 @@
         <!-- JSColor -->
         <script src="<?=base_url()?>resources/jscolor/jscolor.min.js"></script>
 
+        <!-- Embedica -->
+        <script src="<?=base_url()?>resources/embedica/embedica.js"></script>
+
         <!-- Make data available to script -->
         <script>
         var user = <?php echo $user ? json_encode($user) : 'false'; ?>;
