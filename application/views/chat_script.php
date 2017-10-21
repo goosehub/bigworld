@@ -1,6 +1,4 @@
 <script>
-var room_key = 1;
-var slug = '';
 var last_message_id = 0;
 var at_bottom = true;
 var load_messages = true;
@@ -26,25 +24,26 @@ $('#toggle_theme').click(function(event) {
 });
 
 // Message Load
-function messages_load(inital_load) {
+function messages_load(room_id, inital_load) {
   if (!load_messages) {
     return false;
   }
   if (inital_load) {
+    $('#input_room_id').val(room_id);
     $("#message_content_parent").html('Loading');
+    last_message_id = 0;
   }
   $.ajax({
     url: "<?=base_url()?>chat/load",
     type: "POST",
     data: {
-      room_key: room_key,
-      slug: slug,
+      room_key: room_id,
       inital_load: inital_load,
       last_message_id: last_message_id
     },
     cache: false,
     success: function(response) {
-      console.log('load chat');
+      console.log('load messages');
       var html = '';
       // Emergency force reload
       if (response === 'reload') {
@@ -65,10 +64,11 @@ function messages_load(inital_load) {
         // Alert user
         alert(messages.error + '. You\'ll be redirected so you can rejoin the room.');
         // Redirect to try to rejoin user
-        window.location = '<?=base_url()?>join_start/' + slug;
+        window.location = '<?=base_url()?>?room=' + room_id;
         // Prevent more execution
         return false;
       }
+      console.log('marco');
       console.log(messages);
       if (!messages.messages) {
         last_message_id = 0;
@@ -121,6 +121,7 @@ function messages_load(inital_load) {
 function submit_new_message(event) {
   // Message input
   var message_input = $("#message_input").val();
+  var room_key = $('#input_room_id').val();
   // Empty chat input
   $('#message_input').val('');
   $.ajax({
@@ -128,7 +129,7 @@ function submit_new_message(event) {
     type: "POST",
     data: {
       message_input: message_input,
-      slug: ''
+      room_key: room_key
     },
     cache: false,
     success: function(response) {
@@ -139,7 +140,7 @@ function submit_new_message(event) {
         return false;
       }
       // Load log so user can instantly see his message
-      messages_load(false);
+      messages_load(room_key, false);
       // Focus back on input
       $('#message_input').focus();
       // Scroll to bottom

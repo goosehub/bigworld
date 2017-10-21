@@ -12,6 +12,7 @@ loading();
 
 // Google Map Created Callback
 var map;
+var messages_load_interval_id;
 function initMap() {
   // Create map init
   map = new google.maps.Map(document.getElementById('map'), {
@@ -50,7 +51,8 @@ function initMap() {
   marker = new google.maps.Marker({
     position: location,
     map: map,
-    title: '<?php echo $room['name'] ?>'
+    title: '<?php echo $room['name'] ?>',
+    room_id: <?php echo $room['id'] ?>,
   });
 
   // Open room on click
@@ -68,19 +70,17 @@ function initMap() {
   });
 
   function marker_clicked(event) {
-    console.log(event);
-    var lat = event.latLng.lat();
-    var lng = event.latLng.lng();
-    var coord_slug = lat + ',' + lng;
-    console.log(coord_slug);
+    // var lat = event.latLng.lat();
+    // var lng = event.latLng.lng();
     $('.center_block').hide();
     $('#room_parent').fadeIn();
 
     // Initial Load Messages
-    messages_load(true);
+    clearInterval(messages_load_interval_id);
+    messages_load(this.room_id, true);
     var load_interval = 3000;
-    setInterval(function() {
-      messages_load(false);
+    messages_load_interval_id = setInterval(function() {
+      messages_load(this.room_id, false);
     }, load_interval);
   }
 

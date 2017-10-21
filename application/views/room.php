@@ -19,6 +19,7 @@
         </div>
         <div id="message_input_parent">
             <form id="new_message" onsubmit="return submit_new_message()">
+                <input type="hidden" id="input_room_id" name="room_id" value=""/>
                 <input type="text" name="message_input" class="form-control" id="message_input" autocomplete="off" value="" placeholder="" />
                 <!-- submit button positioned off screen -->
                 <input name="submit_message" type="submit" id="submit_message" value="true" style="position: absolute; left: -9999px">

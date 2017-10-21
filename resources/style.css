@@ -102,6 +102,7 @@ html, body {
   position: fixed;
   max-height: calc(100vh - 4em);
   bottom: 4em;
+  top: 3em;
   overflow: auto;
   width: 100vw;
   font-size: 1.2em;

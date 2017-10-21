@@ -17,7 +17,6 @@ class Chat extends CI_Controller {
     {
         // Set parameters
         $room_key = $this->input->post('room_key');
-        $room_key = 9;
         $inital_load = $this->input->post('inital_load') === 'true' ? true : false;
         $last_message_id = $this->input->post('last_message_id');
         if ($inital_load) {
@@ -51,7 +50,8 @@ class Chat extends CI_Controller {
     {
         // Validation
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('message_input', 'Message', 'trim|max_length[3000]|callback_new_message_validation');
+        $this->form_validation->set_rules('message_input', 'Message', 'trim|required|max_length[3000]|callback_new_message_validation');
+        $this->form_validation->set_rules('room_key', 'Room Key', 'trim|required|max_length[11]');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -61,8 +61,8 @@ class Chat extends CI_Controller {
         // Authentication
         $user = $this->user_model->get_this_user();
         $user['color'] = '#ff0000';
-        $room_key = 9;
 
+        $room_key = $this->input->post('room_key');
         $message = htmlspecialchars($this->input->post('message_input'));
 
         // Insert message

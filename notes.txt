@@ -6,8 +6,9 @@ smallworld
 todo
 ==========================================================================================
 	high priority
-rooms not hard coded to 9
 refactor
+add anonymous chat
+implement colors
 list owned rooms
 
 	low priority
