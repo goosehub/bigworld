@@ -5,10 +5,9 @@ smallworld
 ==========================================================================================
 todo
 ==========================================================================================
+
 	high priority
-refactor
 add anonymous chat
-implement colors
 list owned rooms
 
 	low priority
@@ -20,6 +19,10 @@ list favorited rooms
 link to room
 refresh rooms on zoom
 show count of users currently on
+
+	refactor
+chat to use post methods
+break up chat load method
 
 ==========================================================================================
 notes

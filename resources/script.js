@@ -68,6 +68,13 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+function string_contains(string, sub_string) {
+  if (string.indexOf(sub_string) !== -1) {
+    return true;
+  }
+  return false;
+}
+
 $(document).ready(function(){
     console.log(
         '%c Hello World! If you would like to contribute to this project, or find any bugs or vulnerabilities, please look for the project in https://github.com/goosehub or contact me at goosepostbox@gmail.com',

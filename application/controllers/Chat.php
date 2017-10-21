@@ -60,7 +60,6 @@ class Chat extends CI_Controller {
 
         // Authentication
         $user = $this->user_model->get_this_user();
-        $user['color'] = '#ff0000';
 
         $room_key = $this->input->post('room_key');
         $message = htmlspecialchars($this->input->post('message_input'));

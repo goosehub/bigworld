@@ -91,6 +91,14 @@ function deslug($string) {
     return ucwords(str_replace('_', ' ', $string));
 }
 
+// Random color function for generating primary color
+function random_color_part() {
+    return str_pad( dechex( mt_rand( 0, 255 ) ), 2, '0', STR_PAD_LEFT);
+}
+function random_hex_color() {
+    return '#' . random_color_part() . random_color_part() . random_color_part();
+}
+
 // http://stackoverflow.com/a/5727346/3774582
 // Parse CRON frequency
 // Break it down like James Brown

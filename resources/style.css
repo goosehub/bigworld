@@ -4,6 +4,9 @@ html, body {
   margin: 0;
   padding: 0;
 }
+.btn {
+    border-radius: 0;
+}
 
 /* Map */
 #map {
@@ -35,21 +38,19 @@ html, body {
     width: 50px;
 }
 
-/* Facebook */
-.facebook_block {
-  position: absolute;
-  top: 0.5em;
-  left: 8em;
-  z-index: 5;
-}
-
-/* Top right block*/
-#top_right_block {
+/* Menu */
+#menu_parent {
   position: absolute;
   top: 0.5em;
   right: 6em;
   opacity: 0.95;
   z-index: 5;
+}
+.user_dropdown {
+    font-weight: bold;
+}
+.user_dropdown .btn {
+    color: #fff;
 }
 
 /* Center Block */

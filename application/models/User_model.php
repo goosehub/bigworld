@@ -6,7 +6,7 @@ Class user_model extends CI_Model
     // Get all users
     function get_all_users()
     {
-        $this->db->select('id, username, created');
+        $this->db->select('id, username, color, created');
         $this->db->from('user');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -26,7 +26,8 @@ Class user_model extends CI_Model
                 exit();
                 return false;
             }
-            $this->user_loaded($user['id']);
+            // Disabled for performance concerns
+            // $this->user_loaded($user['id']);
         }
 
         // Get user by api key
@@ -40,7 +41,8 @@ Class user_model extends CI_Model
                     exit();
                 }
                 $user = $this->get_user_by_id($user_auth['id']);
-                $this->user_loaded($user['id']);
+                // Disabled for performance concerns
+                // $this->user_loaded($user['id']);
             }
         }
 
@@ -49,7 +51,7 @@ Class user_model extends CI_Model
     }
     function get_user_by_id($user_id)
     {
-        $this->db->select('id, username, created');
+        $this->db->select('id, username, color, created');
         $this->db->from('user');
         $this->db->where('id', $user_id);
         $this->db->limit(1);
@@ -87,7 +89,7 @@ Class user_model extends CI_Model
             return false;
         }
     }
-    function register($username, $password, $api_key, $email, $ip, $register_ip_frequency_limit_minutes, $ab_test)
+    function register($username, $password, $api_key, $email, $ip, $register_ip_frequency_limit_minutes, $ab_test, $color)
     {
         // Check for excessive IPs registers
         $this->db->select('id');
@@ -123,6 +125,7 @@ Class user_model extends CI_Model
             'email' => $email,
             'ip' => $ip,
             'ab_test' => $ab_test,
+            'color' => $color,
             );
             $this->db->insert('user', $data);
 
@@ -139,6 +142,15 @@ Class user_model extends CI_Model
     {
         $data = array(
             'last_load' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $user_id);
+        $this->db->update('user', $data);
+        return true;
+    }
+    function update_color($user_id, $color)
+    {
+        $data = array(
+            'color' => $color
         );
         $this->db->where('id', $user_id);
         $this->db->update('user', $data);

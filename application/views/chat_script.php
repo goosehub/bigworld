@@ -23,6 +23,20 @@ $('#toggle_theme').click(function(event) {
   toggle_theme(event);
 });
 
+// Keep dropdown open on altering color
+$('#input_user_color').click(function(event){
+  event.stopPropagation();
+});
+
+// Update color on change of color
+$('#input_user_color').change(function(event){
+  data = {};
+  data.color = $(this).val();
+  ajax_post('user/update_color', data, function(response){
+    $('#input_user_color')[0].jscolor.hide();
+  });
+});
+
 // Message Load
 function messages_load(room_id, inital_load) {
   if (!load_messages) {
@@ -203,13 +217,6 @@ function use_pin(message) {
 
 function scroll_to_bottom() {
   $("#message_content_parent").scrollTop($("#message_content_parent")[0].scrollHeight);
-}
-
-function string_contains(string, sub_string) {
-  if (string.indexOf(sub_string) !== -1) {
-    return true;
-  }
-  return false;
 }
 
 function toggle_theme(event) {

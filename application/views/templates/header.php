@@ -53,8 +53,6 @@
     </head>
     <body>
         <!-- Facebook share -->
-        <?php $use_facebook = false; ?>
-        <?php if ($use_facebook) { ?>
         <div id="fb-root"></div>
         <script>
         window.fbAsyncInit = function() {
@@ -73,8 +71,3 @@
         fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
         </script>
-
-        <div class="facebook_block">
-            <div class="fb-like" data-href="https://smallworld.xyz/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="true"></div>
-        </div>
-        <?php } ?>

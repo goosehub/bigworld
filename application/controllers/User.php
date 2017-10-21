@@ -108,7 +108,11 @@ class User extends CI_Controller {
         $ab_test = $this->input->post('ab_test');
         $ip = $_SERVER['REMOTE_ADDR'];
         $api_key = $token = bin2hex(openssl_random_pseudo_bytes(16));
-        $user_id = $this->user_model->register($username, $password, $api_key, $email, $ip, REGISTER_IP_FREQUENCY_LIMIT_MINUTES, $ab_test);
+
+        // Random color for each account
+        $color = random_hex_color();
+
+        $user_id = $this->user_model->register($username, $password, $api_key, $email, $ip, REGISTER_IP_FREQUENCY_LIMIT_MINUTES, $ab_test, $color);
 
         // Registered too recently
         if ($user_id === 'ip_fail') {
@@ -137,5 +141,31 @@ class User extends CI_Controller {
     {
         $this->session->unset_userdata('user_session');
         redirect(base_url() . '?logged_out=true', 'refresh');
+    }
+
+    public function update_color()
+    {
+        // Authentication
+        $user = $this->user_model->get_this_user();
+        if (!$user) {
+            $this->form_validation->set_message('new_message_validation', 'Your session has expired');
+            return false;
+        }
+        $input = get_json_post(true);
+        if (!isset($input->color) || !$input->color) {
+            echo api_error_response('no_color_provided', 'Color is required to update your color and was not provided.');
+            return false;
+        }
+        $color = $input->color;
+        // Some browsers may append a hashtag, others don't
+        $color = str_replace('#', '', $color);
+        if (strlen($color) != 6) {
+            echo api_error_response('invalid_color', 'Color provided was not valid.');
+            return false;
+        }
+        $color = '#' . $color;
+        $this->user_model->update_color($user['id'], $color);
+
+        echo api_response($room = array());
     }
 }
