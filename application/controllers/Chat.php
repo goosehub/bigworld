@@ -61,6 +61,18 @@ class Chat extends CI_Controller {
         // Authentication
         $user = $this->user_model->get_this_user();
 
+        // Anonymous users
+        if (!$user) {
+            $user['id'] = 0;
+            $user['username'] = 'Anonymous';
+            // Anonymous color is session based
+            $user['color'] = $this->session->userdata('color');
+            if (!$user['color']) {
+                $user['color'] = random_hex_color();
+                $this->session->set_userdata('color', $user['color']);
+            }
+        }
+
         $room_key = $this->input->post('room_key');
         $message = htmlspecialchars($this->input->post('message_input'));
 
@@ -71,12 +83,6 @@ class Chat extends CI_Controller {
     // Message Callback
     public function new_message_validation()
     {
-        // Authentication
-        $user = $this->user_model->get_this_user();
-        if (!$user) {
-            $this->form_validation->set_message('new_message_validation', 'Your session has expired');
-            return false;
-        }
         if (!$this->input->post('message_input')) {
             $this->form_validation->set_message('new_message_validation', '');
             return false;

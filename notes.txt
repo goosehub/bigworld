@@ -7,7 +7,7 @@ todo
 ==========================================================================================
 
 	high priority
-add anonymous chat
+show currently active users in room
 list owned rooms
 
 	low priority
@@ -23,6 +23,7 @@ show count of users currently on
 	refactor
 chat to use post methods
 break up chat load method
+rename chat controller, variables to messages
 
 ==========================================================================================
 notes
