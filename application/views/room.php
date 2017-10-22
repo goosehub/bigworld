@@ -1,5 +1,5 @@
 <div id="room_parent" class="center_block">
-    <strong>Room</strong>
+    <strong id="room_name">Room</strong>
 
     <span id="toolbar">
         <span id="toggle_theme" class="btn btn-sm btn-danger active">Switch to Light Theme</span>

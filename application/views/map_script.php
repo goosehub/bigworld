@@ -52,6 +52,7 @@ function initMap() {
     position: location,
     map: map,
     title: '<?php echo $room['name'] ?>',
+    room_name: '<?php echo $room['name'] ?>',
     room_id: <?php echo $room['id'] ?>,
   });
 
@@ -77,6 +78,7 @@ function initMap() {
 
     // Initial Load Messages
     clearInterval(messages_load_interval_id);
+    $('#room_name').html(this.room_name);
     messages_load(this.room_id, true);
     var load_interval = 3000;
     messages_load_interval_id = setInterval(function() {

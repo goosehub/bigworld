@@ -6,6 +6,7 @@ var window_active = true;
 var page_title = '';
 var missed_messages = 0;
 var users_array = new Array();
+var room_name = '';
 
 $(document).on('click', '.message_pin', function(event) {
   pin_action(event);
@@ -37,21 +38,36 @@ $('#input_user_color').change(function(event){
   });
 });
 
+// Detect if window is open
+$(window).blur(function() {
+  window_active = false;
+});
+$(window).focus(function() {
+  missed_messages = 0;
+  $('title').html(room_name);
+  window_active = true;
+});
+
 // Message Load
-function messages_load(room_id, inital_load) {
+function messages_load(room_key, inital_load) {
   if (!load_messages) {
     return false;
   }
   if (inital_load) {
-    $('#input_room_id').val(room_id);
+    $('#input_room_id').val(room_key);
     $("#message_content_parent").html('Loading');
+    room_name = $('#room_name').html();
+    $('title').html(room_name);
     last_message_id = 0;
+  }
+  else {
+    var room_key = $('#input_room_id').val();
   }
   $.ajax({
     url: "<?=base_url()?>chat/load",
     type: "POST",
     data: {
-      room_key: room_id,
+      room_key: room_key,
       inital_load: inital_load,
       last_message_id: last_message_id
     },
@@ -98,7 +114,7 @@ function messages_load(room_id, inital_load) {
         // If window is not active, give feedback in tab title
         if (!window_active && !inital_load) {
           missed_messages++;
-          $('title').html('(' + missed_messages + ') ' + page_title);
+          $('title').html('(' + missed_messages + ') ' + room_name);
         }
         // System Messages
         var system_user_id = 1;

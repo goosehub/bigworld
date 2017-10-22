@@ -7,10 +7,8 @@ todo
 ==========================================================================================
 
 	high priority
-show currently active users in room
+show currently active users and anons in room
 list owned rooms
-chat load when window inactive
-unread messages in title
 chat times between gaps
 
 	low priority
