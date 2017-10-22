@@ -34,6 +34,7 @@ Class chat_model extends CI_Model
             'color' => $color,
             'message' => $message,
             'room_key' => $room_key,
+            'timestamp' => date('Y-m-d H:i:s'),
         );
         $this->db->insert('message', $data);
     }

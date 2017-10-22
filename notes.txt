@@ -9,8 +9,13 @@ todo
 	high priority
 show currently active users in room
 list owned rooms
+chat load when window inactive
+unread messages in title
+chat times between gaps
 
 	low priority
+languages international
+chat date international/localizaed
 filter rooms by active/recently active
 color markers based on room, favorite, owned
 limit how many rooms a user can create
