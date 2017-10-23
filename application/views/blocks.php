@@ -82,6 +82,7 @@
 </div>
 <!-- create_room_block Block -->
 <div id="create_room_block" class="center_block">
+    <?php if ($user) { ?>
     <strong>Create A Room Here</strong>
 
     <button type="button" class="exit_center_block btn btn-default btn-sm">
@@ -90,7 +91,20 @@
 
     <div class="form-group">
         <label for="input_room_name">Room Name</label>
-        <input type="room_name" class="form-control" id="input_room_name" name="room_name" placeholder="Room Name">
+        <input type="room_name" class="form-control" id="input_room_name" name="room_name" placeholder="">
     </div>
     <button id="create_room_submit" type="submit" class="btn btn-action form-control">Create</button>
+    <?php } else { ?>
+    <strong>You must be logged in to create a room</strong>
+
+    <button type="button" class="exit_center_block btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+    </button>
+
+    <hr>
+
+    <button class="login_button btn btn-info">Login</button>
+    <button class="register_button btn btn-success">Register</button>
+
+    <?php } ?>
 </div>

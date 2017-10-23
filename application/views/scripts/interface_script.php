@@ -4,7 +4,6 @@
 var user;
 <?php if ($user) { ?>
 user = <?php echo json_encode($user); ?>;
-console.log(user);
 <?php } ?>
 
 // Error reporting

@@ -11,11 +11,12 @@ list owned rooms
 add location for logged in users
 system message on user join room
 reverse geocode in room info
-create room prevent for non logged in
-fix room mix up bug
 room share url
 
 	low priority
+reverse geocode in room name placeholder/starting value
+cookie/local storage remember last used theme
+detect two points at same location
 performance review
 prevent system username and user username mix up
 fonts
