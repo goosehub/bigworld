@@ -42,9 +42,9 @@ class Main extends CI_Controller {
         $this->load->view('menus', $data);
         $this->load->view('blocks', $data);
         $this->load->view('room', $data);
-        $this->load->view('map_script', $data);
-        $this->load->view('chat_script', $data);
-        $this->load->view('interface_script', $data);
+        $this->load->view('scripts/map_script', $data);
+        $this->load->view('scripts/chat_script', $data);
+        $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
     }
 }

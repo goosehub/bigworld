@@ -7,6 +7,7 @@ var page_title = '';
 var missed_messages = 0;
 var users_array = new Array();
 var room_name = '';
+var load_interval = 3000;
 
 $(document).on('click', '.message_pin', function(event) {
   pin_action(event);
@@ -38,6 +39,14 @@ $('#input_user_color').change(function(event){
   });
 });
 
+// Detect if user is at bottom
+$('#message_content_parent').scroll(function() {
+  at_bottom = false;
+  if ($('#message_content_parent').prop('scrollHeight') - $('#message_content_parent').scrollTop() <= Math.ceil($('#message_content_parent').height())) {
+    at_bottom = true;
+  }
+});
+
 // Detect if window is open
 $(window).blur(function() {
   window_active = false;
@@ -47,6 +56,21 @@ $(window).focus(function() {
   $('title').html(room_name);
   window_active = true;
 });
+
+// Kill room load interval on exit of room
+$('#exit_room_button').click(function(){
+  clearInterval(messages_load_interval_id);
+});
+
+function load_room(marker_data) {
+  // Initial Load Messages
+  clearInterval(messages_load_interval_id);
+  $('#room_name').html(marker_data.room_name);
+  messages_load(marker_data.room_id, true);
+  messages_load_interval_id = setInterval(function() {
+    messages_load(marker_data.room_id, false);
+  }, load_interval);
+}
 
 // Message Load
 function messages_load(room_key, inital_load) {
@@ -237,12 +261,10 @@ function scroll_to_bottom() {
 
 function toggle_theme(event) {
   if ($(event.target).hasClass('active')) {
-    $(event.target).text('Switch to Dark Theme');
     $(event.target).removeClass('active');
     $('#room_parent').addClass('light');
     $('#message_content_parent').addClass('light');
   } else {
-    $(event.target).text('Switch to Light Theme');
     $(event.target).addClass('active');
     $('#room_parent').removeClass('light');
     $('#message_content_parent').removeClass('light');

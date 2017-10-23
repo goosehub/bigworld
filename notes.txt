@@ -7,8 +7,8 @@ todo
 ==========================================================================================
 
 	high priority
-show currently active users and anons in room
 list owned rooms
+add location for users
 chat times between gaps
 
 	low priority
@@ -22,6 +22,9 @@ list favorited rooms
 link to room
 refresh rooms on zoom
 show count of users currently on
+
+	no priority
+show currently active users and anons in room
 
 	refactor
 chat to use post methods

@@ -76,14 +76,8 @@ function initMap() {
     $('.center_block').hide();
     $('#room_parent').fadeIn();
 
-    // Initial Load Messages
-    clearInterval(messages_load_interval_id);
-    $('#room_name').html(this.room_name);
-    messages_load(this.room_id, true);
-    var load_interval = 3000;
-    messages_load_interval_id = setInterval(function() {
-      messages_load(this.room_id, false);
-    }, load_interval);
+    // Load room
+    load_room(this);
   }
 
   // Place marker
