@@ -1,7 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Chat
+// Chat Constants
+define('MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE', 1);
+define('SYSTEM_USER_ID', 0);
+define('ANONYMOUS_USER_ID', 1000000);
+define('SYSTEM_DATE_USERNAME', 'system_date');
+define('SYSTEM_START_ROOM_USERNAME', 'system_start_room');
+
+// Chat Spam Limits
 define('MESSAGE_SPAM_LIMIT_AMOUNT', 3);
 define('MESSAGE_SPAM_LIMIT_LENGTH', 60);
 

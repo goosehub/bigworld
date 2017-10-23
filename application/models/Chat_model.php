@@ -26,6 +26,18 @@ Class chat_model extends CI_Model
         return $result;
     }
 
+    function get_last_message_in_room($room_key)
+    {
+        $this->db->select('*');
+        $this->db->from('message');
+        $this->db->where('room_key', $room_key);
+        $this->db->limit(1);
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
+    }
+
     function new_message($user_key, $username, $color, $ip, $message, $room_key)
     {
         $data = array(

@@ -156,16 +156,16 @@ html, body {
   text-align: center;
   font-family: 'Righteous', sans-serif;
 }
-.system_message.start_room, .system_message.archive_room {
+.system_message.system_start_room, .system_message.system_date_time {
   font-weight: bold;
   margin-top: 2em;
   margin-bottom: 2em;
 }
-.system_message.start_room {
+.system_message.system_start_room {
   color: #882D60;
 }
-.system_message.archive_room {
-  color: #980000;
+.system_message.system_date_time {
+  color: #882D60;
 }
 .at_username {
   font-weight: bold;

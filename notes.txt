@@ -9,10 +9,15 @@ todo
 	high priority
 list owned rooms
 add location for logged in users
-chat times between gaps
-other system messages
+system message on user join room
+reverse geocode in room info
+create room prevent for non logged in
+fix room mix up bug
+room share url
 
 	low priority
+performance review
+prevent system username and user username mix up
 fonts
 icons
 languages international
@@ -37,3 +42,6 @@ rename chat controller, variables to messages
 ==========================================================================================
 notes
 ==========================================================================================
+
+reverse geocode
+	https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse

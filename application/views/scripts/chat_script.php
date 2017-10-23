@@ -8,6 +8,7 @@ var missed_messages = 0;
 var users_array = new Array();
 var room_name = '';
 var load_interval = 3000;
+var system_user_id = <?php echo SYSTEM_USER_ID ?>;
 
 $(document).on('click', '.message_pin', function(event) {
   pin_action(event);
@@ -122,8 +123,6 @@ function messages_load(room_key, inital_load) {
         // Prevent more execution
         return false;
       }
-      console.log('marco');
-      console.log(messages);
       if (!messages.messages) {
         last_message_id = 0;
         return true;
@@ -141,7 +140,6 @@ function messages_load(room_key, inital_load) {
           $('title').html('(' + missed_messages + ') ' + room_name);
         }
         // System Messages
-        var system_user_id = 1;
         if (parseInt(message.user_key) === system_user_id) {
           html += '<div class="system_message ' + message.username + '">' + message.message + '</div>';
           return true;

@@ -6,8 +6,23 @@ Class room_model extends CI_Model
     function insert_room($data)
     {
         $this->db->insert('room', $data);
-        return $this->db->insert_id();
+        $room_id = $this->db->insert_id();
+
+        // Create system start message
+        $message = $this->system_start_room_message();
+        $result = $this->chat_model->new_message(SYSTEM_USER_ID, SYSTEM_START_ROOM_USERNAME, '#000000', '', $message, $room_id);
+        
+        return $room_id;
+
     }
+
+    function system_start_room_message()
+    {
+        $message = "";
+        $message .= "Welcome to your room! Some tips: Embed Youtube, Vimeo, Twitch, SoundCloud, Vocaroo, and Images by posting the URL. Pin posts to keep in view as you chat. Share this url to invite others to join directly.";
+        return $message;
+    }
+
     function get_all_rooms()
     {
         $this->db->select('*');

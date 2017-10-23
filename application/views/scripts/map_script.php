@@ -86,8 +86,19 @@ function initMap() {
     $('#create_room_block').show();
     $('#input_room_name').val('');
     $('#input_room_name').focus();
+
+    // Create room on enter key
+    $('#input_room_name').on('keyup', function (e) {
+      if (e.keyCode == 13 && $('#input_room_name').val()) {
+        create_room(location);
+      }
+    });
+
+    // Create room on button click
     $('#create_room_submit').click(function(){
-      create_room(location);
+      if ($('#input_room_name').val()) {
+        create_room(location);
+      }
     });
   }
 
@@ -105,9 +116,18 @@ function initMap() {
       $('.center_block').hide();
       // Create marker
       var marker = new google.maps.Marker({
-        position: location, 
-        map: map
+        position: location,
+        map: map,
+        title: result.name,
+        room_name: result.name,
+        room_id: result.id,
       });
+
+      // Open room on click
+      marker.addListener('click', marker_clicked);
+
+      // Add to marker array
+      markers[result.id] = marker;
     });
   }
 

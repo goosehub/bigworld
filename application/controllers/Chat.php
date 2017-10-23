@@ -9,8 +9,6 @@ class Chat extends CI_Controller {
         $this->load->model('user_model', '', TRUE);
         $this->load->model('room_model', '', TRUE);
         $this->load->model('chat_model', '', TRUE);
-
-        $this->main_model->record_request();
     }
 
     public function load()
@@ -64,14 +62,14 @@ class Chat extends CI_Controller {
         // Limit number of new messages in a timespan
         $ip = $_SERVER['REMOTE_ADDR'];
         $recent_messages = $this->chat_model->recent_messages_by_ip($ip, MESSAGE_SPAM_LIMIT_LENGTH);
-        if ($recent_messages > MESSAGE_SPAM_LIMIT_AMOUNT) {
+        if (!is_dev() && $recent_messages > MESSAGE_SPAM_LIMIT_AMOUNT) {
             echo 'Your talking too much';
             return false;
         }
 
         // Anonymous users
         if (!$user) {
-            $user['id'] = 0;
+            $user['id'] = ANONYMOUS_USER_ID;
             $user['username'] = 'Anonymous';
             // Anonymous color is session based
             $user['color'] = $this->session->userdata('color');
@@ -84,7 +82,16 @@ class Chat extends CI_Controller {
         $room_key = $this->input->post('room_key');
         $message = htmlspecialchars($this->input->post('message_input'));
 
+        // Get most recent message
+        $most_recent_message = $this->chat_model->get_last_message_in_room($room_key);
+
+        // If it's been a while since last message, system message on time
+        if ($most_recent_message && strtotime($most_recent_message['timestamp']) + MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE * 60 < time()) {
+            $date_message = date('Y F dS g:i A e');
+            $this->chat_model->new_message(SYSTEM_USER_ID, SYSTEM_DATE_USERNAME, '#000000', '', $date_message, $room_key);
+        }
+
         // Insert message
-        $result = $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key);
+        $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key);
     }
 }

@@ -8,6 +8,7 @@ class Room extends CI_Controller {
         $this->load->model('main_model', '', TRUE);
         $this->load->model('user_model', '', TRUE);
         $this->load->model('room_model', '', TRUE);
+        $this->load->model('chat_model', '', TRUE);
 
         $this->main_model->record_request();
     }
