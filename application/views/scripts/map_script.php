@@ -61,9 +61,7 @@ function initMap() {
 
   // Add to marker array
   markers[<?php echo $room['id'] ?>] = marker;
-
   <?php } ?>
-  // console.log(markers);
 
   // Trigger event on click
   google.maps.event.addListener(map, 'click', function(event) {
@@ -88,14 +86,14 @@ function initMap() {
     $('#input_room_name').focus();
 
     // Create room on enter key
-    $('#input_room_name').on('keyup', function (e) {
+    $('#input_room_name').off().on('keyup', function (e) {
       if (e.keyCode == 13 && $('#input_room_name').val()) {
         create_room(location);
       }
     });
 
     // Create room on button click
-    $('#create_room_submit').click(function(){
+    $('#create_room_submit').off().click(function(){
       if ($('#input_room_name').val()) {
         create_room(location);
       }
