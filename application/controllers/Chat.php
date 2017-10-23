@@ -50,7 +50,7 @@ class Chat extends CI_Controller {
     {
         // Validation
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('message_input', 'Message', 'trim|required|max_length[3000]|callback_new_message_validation');
+        $this->form_validation->set_rules('message_input', 'Message', 'trim|required|max_length[3000]');
         $this->form_validation->set_rules('room_key', 'Room Key', 'trim|required|max_length[11]');
 
         if ($this->form_validation->run() == FALSE) {
@@ -60,6 +60,14 @@ class Chat extends CI_Controller {
 
         // Authentication
         $user = $this->user_model->get_this_user();
+
+        // Limit number of new messages in a timespan
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $recent_messages = $this->chat_model->recent_messages_by_ip($ip, MESSAGE_SPAM_LIMIT_LENGTH);
+        if ($recent_messages > MESSAGE_SPAM_LIMIT_AMOUNT) {
+            echo 'Your talking too much';
+            return false;
+        }
 
         // Anonymous users
         if (!$user) {
@@ -77,25 +85,6 @@ class Chat extends CI_Controller {
         $message = htmlspecialchars($this->input->post('message_input'));
 
         // Insert message
-        $result = $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $message, $room_key);
-    }
-
-    // Message Callback
-    public function new_message_validation()
-    {
-        if (!$this->input->post('message_input')) {
-            $this->form_validation->set_message('new_message_validation', '');
-            return false;
-        }
-        // Limit number of new messages in a timespan
-        // $message_spam_limit_amount = 10;
-        // $message_spam_limit_length = 60;
-        // $recent_messages = $this->main_model->recent_messages($user['id'], $message_spam_limit_length);
-        // if (!is_dev() && $recent_messages > $message_spam_limit_amount) {
-            // $this->form_validation->set_message('new_message_validation', 'Your talking too much');
-            // return false;
-        // }
-
-        return true;
+        $result = $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key);
     }
 }

@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Chat
+define('MESSAGE_SPAM_LIMIT_AMOUNT', 3);
+define('MESSAGE_SPAM_LIMIT_LENGTH', 60);
+
 // User Auth
 define('PASSWORD_OVERRIDE', false); // Dev and emergency use only
 define('PASSWORD_OPTIONAL', false); // Useful for /r/webgames which requires no required password logins

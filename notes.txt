@@ -8,10 +8,13 @@ todo
 
 	high priority
 list owned rooms
-add location for users
+add location for logged in users
 chat times between gaps
+other system messages
 
 	low priority
+fonts
+icons
 languages international
 chat date international/localizaed
 filter rooms by active/recently active
