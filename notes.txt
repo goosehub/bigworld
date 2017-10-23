@@ -12,23 +12,27 @@ add location for logged in users
 system message on user join room
 reverse geocode in room info
 room share url
+Open room after creating
+filter rooms by active/recently active
+
+	moderate priority
+UI/UX review
+mobile review
+performance review
+fonts
+icons
+language support
+date localizaed
 
 	low priority
 reverse geocode in room name placeholder/starting value
 cookie/local storage remember last used theme
 detect two points at same location
-performance review
 prevent system username and user username mix up
-fonts
-icons
-languages international
-chat date international/localizaed
-filter rooms by active/recently active
 color markers based on room, favorite, owned
-limit how many rooms a user can create
+limit how many rooms a user/an IP can create
 add favorite rooms
 list favorited rooms
-link to room
 refresh rooms on zoom
 show count of users currently on
 
@@ -36,9 +40,9 @@ show count of users currently on
 show currently active users and anons in room
 
 	refactor
-chat to use post methods
+standardize input serialized vs json
 break up chat load method
-rename chat controller, variables to messages
+layout percents more layered into parents
 
 ==========================================================================================
 notes

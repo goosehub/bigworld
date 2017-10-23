@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2017 at 01:51 AM
+-- Generation Time: Oct 23, 2017 at 03:57 AM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -32,6 +32,7 @@ CREATE TABLE `message` (
   `room_key` int(10) UNSIGNED NOT NULL,
   `username` varchar(64) NOT NULL,
   `color` varchar(8) NOT NULL,
+  `ip` varchar(100) NOT NULL,
   `message` text NOT NULL,
   `timestamp` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -65,8 +66,8 @@ CREATE TABLE `room` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
-  `lng` int(4) NOT NULL,
-  `lat` int(4) NOT NULL,
+  `lng` float NOT NULL,
+  `lat` float NOT NULL,
   `last_message_time` timestamp NOT NULL,
   `created` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -127,12 +128,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 --
 -- AUTO_INCREMENT for table `room`
 --
@@ -142,7 +143,7 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -33,7 +33,7 @@
 </div>
 <!-- Join Block -->
 <div id="register_block" class="center_block">
-    <strong>Start Playing</strong>
+    <strong>Start Talking</strong>
 
     <button type="button" class="exit_center_block btn btn-default btn-sm">
         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
@@ -67,7 +67,7 @@
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-action form-control">Start Playing</button>
+    <button type="submit" class="btn btn-action form-control">Start Talking</button>
     </form>
     <hr>
     <div class="row">

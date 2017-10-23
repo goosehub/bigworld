@@ -1,8 +1,8 @@
 /* Global */
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 .btn {
     border-radius: 0;
@@ -10,7 +10,8 @@ html, body {
 
 /* Map */
 #map {
-  height: 100%;
+    height: 100%;
+    width: 50%;
 }
 
 /* Overlay */
@@ -24,15 +25,15 @@ html, body {
     opacity: 0.9;
 }
 #overlay p {
-  font-size: 2em;
-  color: #222;
-  position: absolute;
-  text-align: center;
-  top: 30vh;
-  left: 40%;
-  width: 20%;
-  background: #fff;
-  padding: 0.5em;
+    font-size: 2em;
+    color: #222;
+    position: absolute;
+    text-align: center;
+    top: 30vh;
+    left: 20%;
+    width: 10%;
+    background: #fff;
+    padding: 0.5em;
 }
 #loading {
     width: 50px;
@@ -40,11 +41,11 @@ html, body {
 
 /* Menu */
 #menu_parent {
-  position: absolute;
-  top: 0.5em;
-  right: 6em;
-  opacity: 0.95;
-  z-index: 5;
+    position: absolute;
+    top: 0.5em;
+    right: 55%;
+    opacity: 0.95;
+    z-index: 5;
 }
 .user_dropdown {
     font-weight: bold;
@@ -61,7 +62,7 @@ html, body {
   max-height: 75vh;
   overflow-y: auto;
   overflow-x: hidden;
-  left: 30%;
+  left: 5%;
   width: 40%;
   background: #fff;
   padding: 1em;
@@ -80,11 +81,13 @@ html, body {
 
 /* Room */
 #room_parent {
+  position: absolute;
+  z-index: 10;
   top: 0vh;
   max-height: 100vh;
   height: 100vh;
-  left: 0%;
-  width: 100%;
+  left: 50%;
+  width: 50%;
   border-radius: 0;
   opacity: 0.98;
   font-family: "Roboto", sans-serif;
@@ -96,22 +99,19 @@ html, body {
   background-color: #F4F4F4;
   color: #222;
 }
-#toggle_theme {
-  margin-right: 2em;
-}
 
 /* Content */
 #message_content_parent {
   /* Fix chat to bottom */
   position: fixed;
-  max-height: calc(100vh - 4em);
   bottom: 4em;
   top: 3em;
+  max-height: calc(100vh - 4em);
+  width: 45%;
+  max-width: 45%;
   overflow: auto;
-  width: 100vw;
-  font-size: 1.2em;
-  max-width: 100%;
   overflow-x: hidden;
+  font-size: 1.2em;
 }
 .message_face {
   margin-right: 0.1em;
@@ -151,8 +151,6 @@ html, body {
   vertical-align: bottom;
 }
 .system_message {
-  width: 33vw;
-  margin-left: 33vw;
   text-align: center;
   font-family: 'Righteous', sans-serif;
 }
@@ -194,7 +192,7 @@ html, body {
 
 /* Content */
 .message_content {
-  max-width: 100vw;
+  max-width: 100%;
   max-height: 100vh;
 }
 .pinned .embedica_youtube iframe, .pinned .embedica_vimeo iframe, .pinned .embedica_twitch iframe, .pinned .embedica_video iframe {
@@ -214,7 +212,7 @@ html, body {
   position: fixed;
   z-index: 20;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   bottom: 0;
 }
 #message_input {

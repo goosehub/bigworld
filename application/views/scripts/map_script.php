@@ -24,10 +24,10 @@ function initMap() {
     },
 
     // This level of zoom shows whole world but no repetition
-    zoom: 3,
+    zoom: 2,
 
     // Prevent zooming out so much users can see north and south edge
-    minZoom: 2,
+    minZoom: 1,
 
     // Map type
     // mapTypeId: google.maps.MapTypeId.TERRAIN
