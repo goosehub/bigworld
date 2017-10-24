@@ -13,6 +13,27 @@ class Room extends CI_Controller {
         $this->main_model->record_request();
     }
 
+    public function get_room($room_id = false)
+    {
+        // Validate input
+        if (!$room_id) {
+            echo api_error_response('room_id_missing', 'Room id is a required parameter and was not provided.');
+            return false;
+        }
+
+        // Get room
+        $room = $this->room_model->get_room_by_id($room_id);
+
+        // Handle room not found
+        if (!$room) {
+            echo api_error_response('room_not_found', 'That room was not found.');
+            return false;
+        }
+
+        // Return room
+        echo api_response($room);
+    }
+
     public function create()
     {
         // Authentication

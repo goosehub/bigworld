@@ -33,7 +33,7 @@ function ajax_post(url, data, callback) {
 // Abstract simple ajax calls
 function ajax_get(url, callback) {
 	$.ajax({
-		url: base_url + 'api/' + url,
+		url: base_url + url,
 		type: 'GET',
 		dataType: 'json',
 		success: function(data) {

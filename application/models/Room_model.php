@@ -31,5 +31,15 @@ Class room_model extends CI_Model
         $result = $query->result_array();
         return $result;
     }
+
+    function get_room_by_id($room_id)
+    {
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where('id', $room_id);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
+    }
 }
 ?>

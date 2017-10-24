@@ -41,6 +41,8 @@ function initMap() {
   });
 
   // Add markers to map
+  // This loop might thousands large
+  // Keep this performant and minimize bytes transfered
   var markers = [];
   <?php foreach ($rooms as $room) { ?>
 
@@ -52,7 +54,6 @@ function initMap() {
     position: location,
     map: map,
     title: '<?php echo $room['name'] ?>',
-    room_name: '<?php echo $room['name'] ?>',
     room_id: <?php echo $room['id'] ?>,
   });
 
@@ -75,7 +76,7 @@ function initMap() {
     $('#room_parent').fadeIn();
 
     // Load room
-    load_room(this.room_name, this.room_id);
+    load_room(this.room_id);
   }
 
   // Place marker
@@ -117,7 +118,6 @@ function initMap() {
         position: location,
         map: map,
         title: result.name,
-        room_name: result.name,
         room_id: result.id,
       });
 
@@ -128,7 +128,7 @@ function initMap() {
       markers[result.id] = marker;
 
       // Load room
-      load_room(result.name, result.id);
+      load_room(result.id);
     });
   }
 

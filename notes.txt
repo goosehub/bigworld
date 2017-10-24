@@ -11,7 +11,6 @@ list owned rooms
 intro on right panel
 system message on user join room
 reverse geocode in room info
-room share url
 filter rooms by active/recently active
 
 	moderate priority

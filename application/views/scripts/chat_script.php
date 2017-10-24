@@ -6,7 +6,7 @@ var window_active = true;
 var page_title = '';
 var missed_messages = 0;
 var users_array = new Array();
-var room_name = '';
+var room_name = 'Small World';
 var load_interval = 3000;
 var system_user_id = <?php echo SYSTEM_USER_ID ?>;
 
@@ -63,14 +63,34 @@ $('#exit_room_button').click(function(){
   clearInterval(messages_load_interval_id);
 });
 
-function load_room(room_name, room_id) {
-  // Initial Load Messages
-  clearInterval(messages_load_interval_id);
-  $('#room_name').html(room_name);
-  messages_load(room_id, true);
-  messages_load_interval_id = setInterval(function() {
-    messages_load(room_id, false);
-  }, load_interval);
+// If hash exists, it is a room id, load that room
+if (window.location.hash) {
+  // Remove hash to get room id and load room
+  var room_id = window.location.hash.replace('#', '');
+  load_room(room_id);
+}
+
+function load_room(room_id) {
+  // Get room
+  ajax_get('room/get_room/' + room_id, function(room){
+
+    // Handle errors
+    if (room.error) {
+      alert(room.error_message);
+      return false;
+    }
+
+    // Set up room
+    window.location.hash = room_id;
+    $('#room_name').html(room.name);
+
+    // Load Messages
+    clearInterval(messages_load_interval_id);
+    messages_load(room_id, true);
+    messages_load_interval_id = setInterval(function() {
+      messages_load(room_id, false);
+    }, load_interval);
+  });
 }
 
 // Message Load
