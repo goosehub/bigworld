@@ -1,4 +1,5 @@
 <!-- Login Block -->
+<?php if (!$user) { ?>
 <div id="login_block" class="center_block">
     <strong>Login</strong>
 
@@ -31,7 +32,10 @@
         </div>
     </div>
 </div>
+<?php } ?>
+
 <!-- Join Block -->
+<?php if (!$user) { ?>
 <div id="register_block" class="center_block">
     <strong>Start Talking</strong>
 
@@ -47,7 +51,7 @@
         <input type="hidden" name="bee_movie" id="bee_movie" value="">
         <input type="hidden" name="ab_test" id="ab_test" value="">
         <label for="input_username">Username</label>
-        <input type="username" class="form-control" id="register_input_username" name="username" placeholder="Username">
+        <input type="username" class="form-control" id="register_input_username" name="username" placeholder="">
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -67,6 +71,14 @@
             </div>
         </div>
     </div>
+    <div class="form-group">
+        <label for="register_location">Location</label>
+        <input type="location" class="form-control" id="register_location" name="register_location" value="<?php echo $location_prepopulate; ?>">
+    </div>
+    <div class="form-group">
+        <label for="register_color">Color</label>
+        <input type="text" class="jscolor color_input form-control" id="register_color" name="register_color" value="<?php echo $random_color; ?>">
+    </div>
     <button type="submit" class="btn btn-action form-control">Start Talking</button>
     </form>
     <hr>
@@ -80,6 +92,8 @@
         </div>
     </div>
 </div>
+<?php } ?>
+
 <!-- create_room_block Block -->
 <div id="create_room_block" class="center_block">
     <?php if ($user) { ?>

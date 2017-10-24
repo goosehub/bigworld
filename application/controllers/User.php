@@ -85,6 +85,8 @@ class User extends CI_Controller {
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[64]|' . $matches . 'callback_register_validation');
         $this->form_validation->set_rules('confirm', 'Confirm', 'trim|required');
         $this->form_validation->set_rules('ab_test', 'ab_test', 'trim|max_length[32]');
+        $this->form_validation->set_rules('register_location', 'Location', 'trim|max_length[50]');
+        $this->form_validation->set_rules('register_color', 'Color', 'trim|max_length[50]');
 
         // Fail
         if ($this->form_validation->run() == FALSE) {
@@ -106,13 +108,20 @@ class User extends CI_Controller {
         $email = '';
         $username = $this->input->post('username');
         $ab_test = $this->input->post('ab_test');
+        $location = $this->input->post('register_location');
+        $color = $this->input->post('register_color');
         $ip = $_SERVER['REMOTE_ADDR'];
         $api_key = $token = bin2hex(openssl_random_pseudo_bytes(16));
 
-        // Random color for each account
-        $color = random_hex_color();
+        // If no color, don't sweat it, just make one up
+        if (!$color) {
+            $color = random_hex_color();
+        }
 
-        $user_id = $this->user_model->register($username, $password, $api_key, $email, $ip, REGISTER_IP_FREQUENCY_LIMIT_MINUTES, $ab_test, $color);
+        // Always fix colors
+        $color = $this->fix_color($color);
+
+        $user_id = $this->user_model->register($username, $password, $api_key, $email, $ip, REGISTER_IP_FREQUENCY_LIMIT_MINUTES, $ab_test, $color, $location);
 
         // Registered too recently
         if ($user_id === 'ip_fail') {
@@ -148,7 +157,7 @@ class User extends CI_Controller {
         // Authentication
         $user = $this->user_model->get_this_user();
         if (!$user) {
-            $this->form_validation->set_message('new_message_validation', 'Your session has expired');
+            echo api_error_response('session_expired', 'Your session has expired.');
             return false;
         }
         $input = get_json_post(true);
@@ -156,7 +165,32 @@ class User extends CI_Controller {
             echo api_error_response('no_color_provided', 'Color is required to update your color and was not provided.');
             return false;
         }
-        $color = $input->color;
+        $color = $this->fix_color($input->color);
+        $this->user_model->update_color($user['id'], $color);
+
+        echo api_response($room = array());
+    }
+
+    public function update_location()
+    {
+        // Authentication
+        $user = $this->user_model->get_this_user();
+        if (!$user) {
+            echo api_error_response('session_expired', 'Your session has expired.');
+            return false;
+        }
+        $input = get_json_post(true);
+        if (!isset($input->location) || !$input->location) {
+            echo api_error_response('no_location_provided', 'Location is required to update your location and was not provided.');
+            return false;
+        }
+        $this->user_model->update_location($user['id'], $input->location);
+
+        echo api_response(array());
+    }
+
+    public function fix_color($color)
+    {
         // Some browsers may append a hashtag, others don't
         $color = str_replace('#', '', $color);
         if (strlen($color) != 6) {
@@ -164,8 +198,6 @@ class User extends CI_Controller {
             return false;
         }
         $color = '#' . $color;
-        $this->user_model->update_color($user['id'], $color);
-
-        echo api_response($room = array());
+        return $color;
     }
 }

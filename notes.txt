@@ -8,7 +8,7 @@ todo
 
 	high priority
 list owned rooms
-add location for logged in users
+intro on right panel
 system message on user join room
 reverse geocode in room info
 room share url
@@ -23,8 +23,10 @@ fonts
 icons
 language support
 date localizaed
+error messanging
 
 	low priority
+strange chrome pixelated mirror in room bug
 reverse geocode in room name placeholder/starting value
 cookie/local storage remember last used theme
 detect two points at same location

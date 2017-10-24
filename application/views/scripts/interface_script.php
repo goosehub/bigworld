@@ -27,6 +27,22 @@ $('#login_block').show();
 $('#register_block').show();
 <?php } ?>
 
+$('#input_user_location').click(function(event){
+  event.stopPropagation();
+});
+
+function update_location() {
+  user_location = $('#input_user_location').val();
+  if (!user_location) {
+    return false;
+  }
+  data = {};
+  data.location = user_location;
+  ajax_post('user/update_location', data, function(response){
+    $('.user_menu_parent').dropdown('toggle');
+  });
+}
+
 // 
 // Center block hide and show logic
 // 

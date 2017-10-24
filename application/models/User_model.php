@@ -6,7 +6,7 @@ Class user_model extends CI_Model
     // Get all users
     function get_all_users()
     {
-        $this->db->select('id, username, color, created');
+        $this->db->select('id, username, color, location, created');
         $this->db->from('user');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -51,7 +51,7 @@ Class user_model extends CI_Model
     }
     function get_user_by_id($user_id)
     {
-        $this->db->select('id, username, color, created');
+        $this->db->select('id, username, color, location, created');
         $this->db->from('user');
         $this->db->where('id', $user_id);
         $this->db->limit(1);
@@ -89,7 +89,7 @@ Class user_model extends CI_Model
             return false;
         }
     }
-    function register($username, $password, $api_key, $email, $ip, $register_ip_frequency_limit_minutes, $ab_test, $color)
+    function register($username, $password, $api_key, $email, $ip, $register_ip_frequency_limit_minutes, $ab_test, $color, $location)
     {
         // Check for excessive IPs registers
         $this->db->select('id');
@@ -126,6 +126,7 @@ Class user_model extends CI_Model
             'ip' => $ip,
             'ab_test' => $ab_test,
             'color' => $color,
+            'location' => $location,
             );
             $this->db->insert('user', $data);
 
@@ -151,6 +152,15 @@ Class user_model extends CI_Model
     {
         $data = array(
             'color' => $color
+        );
+        $this->db->where('id', $user_id);
+        $this->db->update('user', $data);
+        return true;
+    }
+    function update_location($user_id, $location)
+    {
+        $data = array(
+            'location' => $location
         );
         $this->db->where('id', $user_id);
         $this->db->update('user', $data);

@@ -10,6 +10,11 @@
         <ul class="user_dropdown dropdown-menu" aria-labelledby="site_dropdown">
             <li><p class="text-center">Small World</p></li>
             <li><input type="text" class="jscolor color_input form-control" id="input_user_color" name="input_user_color" value="<?php echo $user['color']; ?>"></li>
+            <li>
+                <form id="update_location_form" onsubmit="update_location(); return false;">
+                    <input type="text" class="form-control" id="input_user_location" name="input_user_location" value="<?php echo $user['location']; ?>">
+                </form>
+            </li>
             <li><a class="btn btn-info" href="https://github.com/goosehub/smallworld" target="_blank">GitHub</a></li>
             <li><a class="btn btn-success" href="https://gooseweb.io/" target="_blank">GooseWeb</a></li>
             <li><a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">Logout</a></li>

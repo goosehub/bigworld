@@ -30,6 +30,15 @@ class Main extends CI_Controller {
         $ab_array = array('', '');
         $data['ab_test'] = $ab_array[array_rand($ab_array)];
 
+        // Registration starting details
+        if (!$data['user']) {
+            // Random color
+            $data['random_color'] = random_hex_color();
+
+            // Guess location
+            $data['location_prepopulate'] = $this->guess_location();
+        }
+
         // Validation errors
         $data['validation_errors'] = $this->session->flashdata('validation_errors');
         $data['failed_form'] = $this->session->flashdata('failed_form');
@@ -46,5 +55,23 @@ class Main extends CI_Controller {
         $this->load->view('scripts/chat_script', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    public function guess_location()
+    {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if (is_dev()) {
+            $ip = '3.62.232.229';
+        }
+        $api_response = @file_get_contents("http://ipinfo.io/{$ip}");
+        if (!$api_response) {
+            return '';
+        }
+        $location_guess = json_decode($api_response);
+        $location_prepopulate = '';
+        if (isset($location_guess->region) && $location_guess->region && isset($location_guess->country) && $location_guess->country) {
+            $location_prepopulate = $location_guess->region . ', ' . $location_guess->country;
+        }
+        return $location_prepopulate;
     }
 }
