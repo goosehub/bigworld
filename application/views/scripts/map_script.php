@@ -75,7 +75,7 @@ function initMap() {
     $('#room_parent').fadeIn();
 
     // Load room
-    load_room(this);
+    load_room(this.room_name, this.room_id);
   }
 
   // Place marker
@@ -126,6 +126,9 @@ function initMap() {
 
       // Add to marker array
       markers[result.id] = marker;
+
+      // Load room
+      load_room(result.name, result.id);
     });
   }
 

@@ -12,7 +12,6 @@ intro on right panel
 system message on user join room
 reverse geocode in room info
 room share url
-Open room after creating
 filter rooms by active/recently active
 
 	moderate priority

@@ -63,13 +63,13 @@ $('#exit_room_button').click(function(){
   clearInterval(messages_load_interval_id);
 });
 
-function load_room(marker_data) {
+function load_room(room_name, room_id) {
   // Initial Load Messages
   clearInterval(messages_load_interval_id);
-  $('#room_name').html(marker_data.room_name);
-  messages_load(marker_data.room_id, true);
+  $('#room_name').html(room_name);
+  messages_load(room_id, true);
   messages_load_interval_id = setInterval(function() {
-    messages_load(marker_data.room_id, false);
+    messages_load(room_id, false);
   }, load_interval);
 }
 

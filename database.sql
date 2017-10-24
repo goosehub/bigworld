@@ -85,6 +85,7 @@ CREATE TABLE `user` (
   `ab_test` varchar(100) NOT NULL,
   `email` varchar(250) NOT NULL,
   `color` varchar(8) NOT NULL,
+  `location` varchar(100) NOT NULL,
   `ip` varchar(100) NOT NULL,
   `api_key` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
