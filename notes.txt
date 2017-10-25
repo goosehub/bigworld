@@ -24,7 +24,6 @@ intro on right panel
 
 	low priority
 strange chrome pixelated mirror in room bug
-cookie/local storage remember last used theme
 detect two points at same location
 prevent system username and user username mix up
 color markers based on room, favorite, owned

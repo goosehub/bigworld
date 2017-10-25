@@ -23,8 +23,13 @@ document.querySelector('#message_input').addEventListener('keydown', function (e
 });
 
 $('#toggle_theme').click(function(event) {
-  toggle_theme(event);
+  toggle_theme($('#toggle_theme').hasClass('active'));
 });
+
+// If client has theme stored and value is light, toggle to light
+if (localStorage.getItem('theme') === 'light') {
+  toggle_theme(true);
+}
 
 // Keep dropdown open on altering color
 $('#input_user_color').click(function(event){
@@ -277,15 +282,17 @@ function scroll_to_bottom() {
   $("#message_content_parent").scrollTop($("#message_content_parent")[0].scrollHeight);
 }
 
-function toggle_theme(event) {
-  if ($(event.target).hasClass('active')) {
-    $(event.target).removeClass('active');
+function toggle_theme(light_theme) {
+  if (light_theme) {
+    $('#toggle_theme').removeClass('active');
     $('#room_parent').addClass('light');
     $('#message_content_parent').addClass('light');
+    localStorage.setItem('theme', 'light');
   } else {
-    $(event.target).addClass('active');
+    $('#toggle_theme').addClass('active');
     $('#room_parent').removeClass('light');
     $('#message_content_parent').removeClass('light');
+    localStorage.setItem('theme', 'dark');
   }
 }
 
