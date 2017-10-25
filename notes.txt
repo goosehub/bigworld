@@ -8,9 +8,7 @@ todo
 
 	high priority
 list owned rooms
-intro on right panel
 system message on user join room
-reverse geocode in room info
 filter rooms by active/recently active
 
 	moderate priority
@@ -22,10 +20,10 @@ icons
 language support
 date localizaed
 error messanging
+intro on right panel
 
 	low priority
 strange chrome pixelated mirror in room bug
-reverse geocode in room name placeholder/starting value
 cookie/local storage remember last used theme
 detect two points at same location
 prevent system username and user username mix up
@@ -33,11 +31,11 @@ color markers based on room, favorite, owned
 limit how many rooms a user/an IP can create
 add favorite rooms
 list favorited rooms
-refresh rooms on zoom
-show count of users currently on
 
 	no priority
+refresh rooms on zoom
 show currently active users and anons in room
+show count of users currently on
 
 	refactor
 standardize input serialized vs json
@@ -47,6 +45,3 @@ layout percents more layered into parents
 ==========================================================================================
 notes
 ==========================================================================================
-
-reverse geocode
-	https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse

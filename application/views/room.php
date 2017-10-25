@@ -1,15 +1,14 @@
 <div id="room_parent">
-    <strong id="room_name">No Room Selected</strong>
-
-    <!-- <button id="exit_room_button" class="exit_center_block btn btn-default btn-sm" type="button"> -->
-        <!-- <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> -->
-    <!-- </button> -->
+    <strong id="room_name">Small World</strong>
 
     <button id="toggle_theme" class="btn btn-sm btn-info pull-right active" type="button">Toggle Theme</button>
 
     <div id="message_outer_parent">
         <div id="message_content_parent">
-            
+            <p>Welcome to Small World</p>
+            <p>A Social Network on Google Maps</p>
+            <p>Click on any pin to join a conversation in progress</p>
+            <p>Make an account to create your own rooms</p>
         </div>
         <div id="message_input_parent">
             <form id="new_message" onsubmit="return submit_new_message()">
