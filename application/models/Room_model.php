@@ -52,6 +52,17 @@ Class room_model extends CI_Model
         return isset($result[0]) ? $result[0] : false;
     }
 
+    function get_room_by_location($lat, $lng)
+    {
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where('CAST(lat AS DECIMAL) =', 'CAST(' . $lat . ' AS DECIMAL)', false);
+        $this->db->where('CAST(lng AS DECIMAL) =', 'CAST(' . $lng . ' AS DECIMAL)', false);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
+    }
+
     function get_rooms_by_user_key($user_key)
     {
         $this->db->select('*');

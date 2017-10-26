@@ -154,6 +154,8 @@ function messages_load(room_key, inital_load) {
         return true;
       }
       $.each(messages.messages, function(i, message) {
+        console.log('marco');
+        console.log(message);
         // Skip if we already have this message, although we really shouldn't
         if (parseInt(message.id) <= parseInt(last_message_id)) {
           return true;
@@ -161,7 +163,7 @@ function messages_load(room_key, inital_load) {
         // Update latest message id
         last_message_id = message.id;
         // If window is not active, give feedback in tab title
-        if (!window_active && !inital_load) {
+        if (!window_active && !inital_load && message.user_key != system_user_id) {
           missed_messages++;
           $('title').html('(' + missed_messages + ') ' + room_name);
         }

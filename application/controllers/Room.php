@@ -63,8 +63,17 @@ class Room extends CI_Controller {
             return false;
         }
         // Lat and Lng must be valid geo locations
+        if (!is_numeric($input->lat) || !is_numeric($input->lng)) {
+            echo api_error_response('invalid_location', 'Location provided was invalid.');
+            return false;
+        }
+        // Check that no room at that location exists
+        $room_exists_at_location = $this->room_model->get_room_by_location($input->lat, $input->lng);
+        if ($room_exists_at_location) {
+            echo api_error_response('room_exists_at_location', 'Room at that location already exists.');
+            return false;
+        }
 
-        // Check if user is at maximum number of rooms
 
         // Create room
         $room = array();
@@ -74,7 +83,6 @@ class Room extends CI_Controller {
         $room['last_message_time'] = date('Y-m-d H:i:s');
         $room['created'] = date('Y-m-d H:i:s');
         $room['user_key'] = $user['id'];
-
         // Insert room
         $room['id'] = $this->room_model->insert_room($room);
 

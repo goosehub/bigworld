@@ -95,7 +95,7 @@ class Main extends CI_Controller {
         );
         $filters['currently_active'] = array(
             'slug' => 'currently_active',
-            'last_activity_in_minutes' => 5,
+            'last_activity_in_minutes' => 15,
         );
         return $filters;
     }
