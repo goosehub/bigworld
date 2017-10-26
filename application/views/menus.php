@@ -21,6 +21,8 @@
             <li><small>Get your friends on</small><div class="fb-like" data-href="https://landgrab.xyz/" data-layout="button" data-="recommend" data-show-faces="false" data-share="true"></div></li>
         </ul>
     </div>
+
+    <!-- Login and Join -->
     <?php } else { ?>
     <button class="login_button menu_element btn btn-primary">Login</button>
     <button class="register_button menu_element btn btn-action">Join</button>

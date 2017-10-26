@@ -64,6 +64,13 @@ function initMap() {
   markers[<?php echo $room['id'] ?>] = marker;
   <?php } ?>
 
+  // If hash exists, zoom on room
+  if (window.location.hash) {
+    var room_id = window.location.hash.replace('#', '');
+    map.setZoom(17);
+    map.panTo(markers[room_id].position);
+  }
+
   // Trigger event on click
   google.maps.event.addListener(map, 'click', function(event) {
     open_create_room_block(event.latLng);

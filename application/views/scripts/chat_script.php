@@ -63,11 +63,6 @@ $(window).focus(function() {
   window_active = true;
 });
 
-// Kill room load interval on exit of room
-$('#exit_room_button').click(function(){
-  clearInterval(messages_load_interval_id);
-});
-
 // If hash exists, it is a room id, load that room
 if (window.location.hash) {
   // Remove hash to get room id and load room
