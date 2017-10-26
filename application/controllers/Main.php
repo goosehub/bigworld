@@ -89,7 +89,7 @@ class Main extends CI_Controller {
         $filters = array();
         $filters['all'] = array(
             'slug' => 'all',
-            'last_activity_in_minutes' => 100 * 365 * 24 * 60,
+            'last_activity_in_minutes' => 0, // 0 evaluated to false
         );
         $filters['active_today'] = array(
             'slug' => 'active_today',
