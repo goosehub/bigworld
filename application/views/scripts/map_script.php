@@ -10,9 +10,23 @@ loading = function() {
 };
 loading();
 
+// Marker options
+// https://sites.google.com/site/gmapsdevelopment/
+var classic_marker_img = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png';
+var green_marker_img = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+var blue_marker_img = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+var red_marker_img = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
+var purple_marker_img = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
+var yellow_marker_img = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+
+
+// Constants
+var default_marker_img = classic_marker_img;
+var current_marker_img = blue_marker_img;
 // Google Map Created Callback
 var map;
 var messages_load_interval_id;
+var current_marker = false;
 function initMap() {
   // Create map init
   map = new google.maps.Map(document.getElementById('map'), {
@@ -66,9 +80,19 @@ function initMap() {
 
   // If hash exists, zoom on room
   if (window.location.hash) {
+    // Get room id
     var room_id = window.location.hash.replace('#', '');
-    map.setZoom(17);
-    map.panTo(markers[room_id].position);
+
+    // Switch marker icons
+    if (current_marker) {
+      current_marker.setIcon(default_marker_img);
+    }
+    markers[this.room_id].setIcon(current_marker_img);
+    current_marker = markers[this.room_id];
+
+    // Zoom
+    // map.setZoom(17);
+    // map.panTo(markers[room_id].position);
   }
 
   // Trigger event on click
@@ -79,8 +103,16 @@ function initMap() {
   function marker_clicked(event) {
     // var lat = event.latLng.lat();
     // var lng = event.latLng.lng();
+
+    // Hide any center blocks
     $('.center_block').hide();
-    $('#room_parent').fadeIn();
+
+    // Switch marker icons
+    if (current_marker) {
+      current_marker.setIcon(default_marker_img);
+    }
+    markers[this.room_id].setIcon(current_marker_img);
+    current_marker = markers[this.room_id];
 
     // Load room
     load_room(this.room_id);
