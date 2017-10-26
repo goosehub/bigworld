@@ -32,6 +32,16 @@ Class room_model extends CI_Model
         return $result;
     }
 
+    function get_all_rooms_by_last_activity($last_activity_in_minutes)
+    {
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where('last_message_time >', date('Y-m-d H:i:s', time() - $last_activity_in_minutes * 60));
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
     function get_room_by_id($room_id)
     {
         $this->db->select('*');
@@ -50,6 +60,15 @@ Class room_model extends CI_Model
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
+    }
+
+    function update_room_last_message_time($room_id)
+    {
+        $data = array(
+            'last_message_time' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $room_id);
+        $this->db->update('room', $data);
     }
 }
 ?>

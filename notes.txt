@@ -7,8 +7,6 @@ todo
 ==========================================================================================
 
 	high priority
-system message on user join room
-filter rooms by active/recently active
 
 	moderate priority
 UI/UX review
@@ -22,6 +20,7 @@ error messanging
 intro on right panel
 
 	low priority
+system message on user join room
 highlight pin of current room
 strange chrome pixelated mirror in room bug
 detect two points at same location
@@ -30,6 +29,7 @@ color markers based on room, favorite, owned
 limit how many rooms a user/an IP can create
 add favorite rooms
 list favorited rooms
+zoom out button
 
 	no priority
 refresh rooms on zoom

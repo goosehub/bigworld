@@ -1,5 +1,20 @@
 <div id="menu_parent">
 
+    <!-- Filter -->
+    <div class="owned_rooms_menu_parent menu_element btn-group">
+        <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Filter
+            <span class="caret"></span>
+        </button>
+        <ul class="user_dropdown dropdown-menu" aria-labelledby="site_dropdown">
+            <?php foreach ($filters as $filter) { ?>
+            <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['last_activity_in_minutes']; ?>">
+                <?php echo deslug($filter['slug']) ?>
+            </a></li>
+            <?php } ?>
+        </ul>
+    </div>
+
     <?php if ($user) { ?>
     <!-- Owned Rooms Dropdown -->
     <?php if (!empty($user['rooms'])) { ?>

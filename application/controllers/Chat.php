@@ -93,5 +93,8 @@ class Chat extends CI_Controller {
 
         // Insert message
         $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key);
+
+        // Update room last new message
+        $this->room_model->update_room_last_message_time($room_key);
     }
 }

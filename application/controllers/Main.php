@@ -19,13 +19,21 @@ class Main extends CI_Controller {
         $data['user'] = $this->user_model->get_this_user();
         $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
 
+        // Get filters
+        $data['filters'] = $this->get_filters();
+
         // Include api key in user array
         if ($data['user']) {
             $user_auth = $this->user_model->get_user_auth_by_id($data['user']['id']);
             $data['user']['api_key'] = $user_auth['api_key'];
         }
 
-        $data['rooms'] = $this->room_model->get_all_rooms();
+        if ($this->input->get('last_activity')) {
+            $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($this->input->get('last_activity'));
+        }
+        else {
+            $data['rooms'] = $this->room_model->get_all_rooms();
+        }
 
         // A/B testing
         $ab_array = array('', '');
@@ -74,5 +82,23 @@ class Main extends CI_Controller {
             $location_prepopulate = $location_guess->region . ', ' . $location_guess->country;
         }
         return $location_prepopulate;
+    }
+
+    public function get_filters()
+    {
+        $filters = array();
+        $filters['all'] = array(
+            'slug' => 'all',
+            'last_activity_in_minutes' => 100 * 365 * 24 * 60,
+        );
+        $filters['active_today'] = array(
+            'slug' => 'active_today',
+            'last_activity_in_minutes' => 1 * 24 * 60,
+        );
+        $filters['currently_active'] = array(
+            'slug' => 'currently_active',
+            'last_activity_in_minutes' => 5,
+        );
+        return $filters;
     }
 }
