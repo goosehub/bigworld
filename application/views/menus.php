@@ -15,9 +15,8 @@
         </ul>
     </div>
 
-    <?php if ($user) { ?>
     <!-- Owned Rooms Dropdown -->
-    <?php if (!empty($user['rooms'])) { ?>
+    <?php if ($user && !empty($user['rooms'])) { ?>
     <div class="owned_rooms_menu_parent menu_element btn-group">
         <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             Owned Rooms
@@ -34,6 +33,7 @@
     <?php } ?>
 
     <!-- User Dropdown -->
+    <?php if ($user) { ?>
     <div class="user_menu_parent menu_element btn-group">
         <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <?php echo $user['username']; ?>
@@ -53,9 +53,10 @@
             <li><small>Get your friends on</small><div class="fb-like" data-href="https://landgrab.xyz/" data-layout="button" data-="recommend" data-show-faces="false" data-share="true"></div></li>
         </ul>
     </div>
+    <?php } ?>
 
     <!-- Login and Join -->
-    <?php } else { ?>
+    <?php if (!$user) { ?>
     <button class="login_button menu_element btn btn-primary">Login</button>
     <button class="register_button menu_element btn btn-action">Join</button>
     <?php } ?>

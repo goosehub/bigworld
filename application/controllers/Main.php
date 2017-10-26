@@ -17,15 +17,13 @@ class Main extends CI_Controller {
     {
         // Authentication
         $data['user'] = $this->user_model->get_this_user();
-        $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
 
         // Get filters
         $data['filters'] = $this->get_filters();
 
-        // Include api key in user array
+        // Include rooms in user
         if ($data['user']) {
-            $user_auth = $this->user_model->get_user_auth_by_id($data['user']['id']);
-            $data['user']['api_key'] = $user_auth['api_key'];
+            $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
         }
 
         if ($this->input->get('last_activity')) {

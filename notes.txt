@@ -26,7 +26,7 @@ strange chrome pixelated mirror in room bug
 detect two points at same location
 prevent system username and user username mix up
 color markers based on room, favorite, owned
-limit how many rooms a user/an IP can create
+trim inactive rooms
 add favorite rooms
 list favorited rooms
 zoom out button
