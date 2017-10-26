@@ -17,6 +17,7 @@ class Main extends CI_Controller {
     {
         // Authentication
         $data['user'] = $this->user_model->get_this_user();
+        $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
 
         // Include api key in user array
         if ($data['user']) {

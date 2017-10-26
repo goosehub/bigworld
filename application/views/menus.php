@@ -1,6 +1,23 @@
 <div id="menu_parent">
 
     <?php if ($user) { ?>
+    <!-- Owned Rooms Dropdown -->
+    <?php if (!empty($user['rooms'])) { ?>
+    <div class="owned_rooms_menu_parent menu_element btn-group">
+        <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Owned Rooms
+            <span class="caret"></span>
+        </button>
+        <ul class="user_dropdown dropdown-menu" aria-labelledby="site_dropdown">
+            <?php foreach ($user['rooms'] as $user_room) { ?>
+            <li><a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>#<?php echo $user_room['id']; ?>">
+                <?php echo $user_room['name'] ?>
+            </a></li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php } ?>
+
     <!-- User Dropdown -->
     <div class="user_menu_parent menu_element btn-group">
         <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

@@ -7,7 +7,6 @@ todo
 ==========================================================================================
 
 	high priority
-list owned rooms
 system message on user join room
 filter rooms by active/recently active
 
@@ -23,6 +22,7 @@ error messanging
 intro on right panel
 
 	low priority
+highlight pin of current room
 strange chrome pixelated mirror in room bug
 detect two points at same location
 prevent system username and user username mix up

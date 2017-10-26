@@ -70,6 +70,12 @@ if (window.location.hash) {
   load_room(room_id);
 }
 
+// Load owned room on click
+$('.owned_room_link').click(function(){
+  room_id = $(this).attr('room_id');
+  load_room(room_id);
+});
+
 function load_room(room_id) {
   // Get room
   ajax_get('room/get_room/' + room_id, function(room){
