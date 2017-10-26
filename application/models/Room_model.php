@@ -54,6 +54,11 @@ Class room_model extends CI_Model
 
     function get_room_by_location($lat, $lng)
     {
+        // Double check these inputs just incase
+        if (!is_numeric($lat) || !is_numeric($lng)) {
+            die();
+        }
+
         $this->db->select('*');
         $this->db->from('room');
         $this->db->where('CAST(lat AS DECIMAL) =', 'CAST(' . $lat . ' AS DECIMAL)', false);

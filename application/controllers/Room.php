@@ -68,6 +68,8 @@ class Room extends CI_Controller {
             return false;
         }
         // Check that no room at that location exists
+        $input->lat = number_format($input->lat, 4);
+        $input->lng = number_format($input->lng, 4);
         $room_exists_at_location = $this->room_model->get_room_by_location($input->lat, $input->lng);
         if ($room_exists_at_location) {
             echo api_error_response('room_exists_at_location', 'Room at that location already exists.');
@@ -78,8 +80,8 @@ class Room extends CI_Controller {
         // Create room
         $room = array();
         $room['name'] = $input->room_name;
-        $room['lat'] = number_format($input->lat, 4);
-        $room['lng'] = number_format($input->lng, 4);
+        $room['lat'] = $input->lat;
+        $room['lng'] = $input->lng;
         $room['last_message_time'] = date('Y-m-d H:i:s');
         $room['created'] = date('Y-m-d H:i:s');
         $room['user_key'] = $user['id'];

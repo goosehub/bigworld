@@ -166,6 +166,13 @@ function initMap() {
       // Add to marker array
       markers[result.id] = marker;
 
+      // Switch marker icons
+      if (current_marker) {
+        current_marker.setIcon(default_marker_img);
+      }
+      markers[result.id].setIcon(current_marker_img);
+      current_marker = markers[result.id];
+
       // Load room
       load_room(result.id);
     });
