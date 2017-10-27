@@ -125,5 +125,12 @@ Class room_model extends CI_Model
         return $result;
     }
 
+    function delete_inactive_rooms($room_trim_minutes_since_last_message)
+    {
+        $delete_time = time() - ($room_trim_minutes_since_last_message * 60);
+        $this->db->where('last_message_time < ', date('Y-m-d H:i:s', $delete_time));
+        $this->db->delete('room');
+    }
+
 }
 ?>

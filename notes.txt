@@ -7,9 +7,10 @@ todo
 ==========================================================================================
 
 	high priority
-favorite rooms
 
 	moderate priority
+name
+domain
 UI/UX review
 mobile review
 performance review
@@ -22,16 +23,15 @@ intro on right panel
 
 	low priority
 prevent system username and user username mix up
-trim inactive rooms
-list favorited rooms
-zoom out button
+set anon user id to 1
 
 	bugs
 strange chrome pixelated mirror in room bug
 inspect element popping up on element click
 
 	no priority
-color markers based on room, favorite, owned (db bottleneck concern)
+color markers based on room, favorite, owned
+marker z-index
 refresh rooms on zoom
 show currently active users and anons in room
 show count of users currently on

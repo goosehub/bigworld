@@ -1,10 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Room Trim
+define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 7 * 24 * 60);
+
 // Chat Constants
 define('MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE', 1);
 define('SYSTEM_USER_ID', 0);
-define('ANONYMOUS_USER_ID', 1000000);
+define('ANONYMOUS_USER_ID', 1);
 define('SYSTEM_DATE_USERNAME', 'system_date');
 define('SYSTEM_START_ROOM_USERNAME', 'system_start_room');
 
