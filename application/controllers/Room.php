@@ -24,6 +24,13 @@ class Room extends CI_Controller {
         // Get room
         $room = $this->room_model->get_room_by_id($room_id);
 
+        // Authentication
+        $user = $this->user_model->get_this_user();
+        $room['is_favorite'] = false;
+        if ($user) {
+            $room['is_favorite'] = $this->room_model->get_favorite($user['id'], $room_id);
+        }
+
         // Handle room not found
         if (!$room) {
             echo api_error_response('room_not_found', 'That room was not found.');
@@ -90,5 +97,47 @@ class Room extends CI_Controller {
 
         // Respond
         echo api_response($room);
+    }
+
+    public function favorite()
+    {
+        // Authentication
+        $user = $this->user_model->get_this_user();
+        if (!$user) {
+            echo api_error_response('not_logged_in', 'You must be logged in to favorite a room');
+            return false;
+        }
+
+        // Validate input
+        $input = get_json_post(true);
+        if (!isset($input->room_id)) {
+            echo api_error_response('room_id_missing', 'Room id is a required parameter and was not provided.');
+            return false;
+        }
+        if (!isset($input->current_favorite)) {
+            echo api_error_response('current_favorite_missing', 'Current favorite is a required parameter and was not provided.');
+            return false;
+        }
+
+        // Check if room is already a favorite
+        $get_favorite = $this->room_model->get_favorite($user['id'], $input->room_id);
+
+        // Check if input matches database
+        if (($get_favorite && !$input->current_favorite) || !$get_favorite && $input->current_favorite) {
+            echo api_error_response('current_favorite_mismatch', 'User input did not match database for favorite.');
+            return false;
+        }
+
+        // If current favorite, delete favorite
+        if ($get_favorite) {
+            $this->room_model->delete_favorite($user['id'], $input->room_id);
+        }
+        // If not current favorite, insert favorite
+        else {
+            $this->room_model->create_favorite($user['id'], $input->room_id);
+        }
+
+        // Respond
+        echo api_response(array());
     }
 }

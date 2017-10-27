@@ -15,6 +15,23 @@
         </ul>
     </div>
 
+    <!-- Favorites -->
+    <?php if ($user && !empty($user['favorites'])) { ?>
+    <div class="owned_rooms_menu_parent menu_element btn-group">
+        <button class="user_button btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Favorites
+            <span class="caret"></span>
+        </button>
+        <ul class="user_dropdown dropdown-menu" aria-labelledby="site_dropdown">
+            <?php foreach ($user['favorites'] as $favorite) { ?>
+            <li><a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>#<?php echo $favorite['id']; ?>">
+                <?php echo $favorite['name'] ?>
+            </a></li>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php } ?>
+
     <!-- Owned Rooms Dropdown -->
     <?php if ($user && !empty($user['rooms'])) { ?>
     <div class="owned_rooms_menu_parent menu_element btn-group">

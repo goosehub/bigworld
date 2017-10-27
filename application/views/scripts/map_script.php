@@ -23,10 +23,12 @@ var yellow_marker_img = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png
 // Constants
 var default_marker_img = classic_marker_img;
 var current_marker_img = blue_marker_img;
+var favorite_marker_img = green_marker_img;
 // Google Map Created Callback
 var map;
 var messages_load_interval_id;
 var current_marker = false;
+var markers = [];
 function initMap() {
   // Create map init
   map = new google.maps.Map(document.getElementById('map'), {
@@ -57,7 +59,6 @@ function initMap() {
   // Add markers to map
   // This loop might thousands large
   // Keep this performant and minimize bytes transfered
-  var markers = [];
   <?php foreach ($rooms as $room) { ?>
 
   // Create marker
@@ -83,13 +84,6 @@ function initMap() {
     // Get room id
     var room_id = window.location.hash.replace('#', '');
 
-    // Switch marker icons
-    if (current_marker) {
-      current_marker.setIcon(default_marker_img);
-    }
-    markers[this.room_id].setIcon(current_marker_img);
-    current_marker = markers[this.room_id];
-
     // Zoom
     // map.setZoom(17);
     // map.panTo(markers[room_id].position);
@@ -106,14 +100,6 @@ function initMap() {
 
     // Hide any center blocks
     $('.center_block').hide();
-
-    // Switch marker icons
-    if (current_marker) {
-      current_marker.setIcon(default_marker_img);
-    }
-    markers[this.room_id].setIcon(current_marker_img);
-    current_marker = markers[this.room_id];
-
     // Load room
     load_room(this.room_id);
   }

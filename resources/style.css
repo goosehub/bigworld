@@ -107,8 +107,8 @@ html, body {
   bottom: 4em;
   top: 3em;
   max-height: calc(100vh - 4em);
-  width: 45%;
-  max-width: 45%;
+  width: 50%;
+  max-width: 50%;
   overflow: auto;
   overflow-x: hidden;
   font-size: 1.2em;

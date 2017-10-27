@@ -21,9 +21,12 @@ class Main extends CI_Controller {
         // Get filters
         $data['filters'] = $this->get_filters();
 
-        // Include rooms in user
         if ($data['user']) {
+            // Include owned rooms
             $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
+            
+            // Include favorited rooms
+            $data['user']['favorites'] = $this->room_model->get_favorites_by_user_key($data['user']['id']);
         }
 
         if ($this->input->get('last_activity')) {

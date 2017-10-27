@@ -13,7 +13,6 @@ Class room_model extends CI_Model
         $result = $this->chat_model->new_message(SYSTEM_USER_ID, SYSTEM_START_ROOM_USERNAME, '#000000', '', $message, $room_id);
         
         return $room_id;
-
     }
 
     function system_start_room_message()
@@ -86,5 +85,45 @@ Class room_model extends CI_Model
         $this->db->where('id', $room_id);
         $this->db->update('room', $data);
     }
+
+    function get_favorite($user_key, $room_key)
+    {
+        $this->db->select('*');
+        $this->db->from('favorite');
+        $this->db->where('user_key', $user_key);
+        $this->db->where('room_key', $room_key);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
+    }
+
+    function delete_favorite($user_key, $room_key)
+    {
+        $this->db->where('user_key', $user_key);
+        $this->db->where('room_key', $room_key);
+        $this->db->delete('favorite');
+    }
+
+    function create_favorite($user_key, $room_key)
+    {
+        $data = array(
+            'user_key' => $user_key,
+            'room_key' => $room_key,
+            'created' => date('Y-m-d H:i:s'),
+        );
+        $this->db->insert('favorite', $data);
+    }
+
+    function get_favorites_by_user_key($user_key)
+    {
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where('favorite.user_key', $user_key);
+        $this->db->join('favorite', 'favorite.room_key = room.id', 'right');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 }
 ?>

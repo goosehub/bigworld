@@ -1,6 +1,12 @@
 <div id="room_parent">
     <strong id="room_name">Small World</strong>
 
+    <?php if ($user) { ?>
+    <div id="favorite_room_button" class="btn btn-default pull-right" style="display: none;">
+        <span class="glyphicon glyphicon-star"></span>
+    </div>
+    <?php } ?>
+
     <button id="toggle_theme" class="btn btn-sm btn-info pull-right active" type="button">Toggle Theme</button>
 
     <div id="message_outer_parent">

@@ -76,19 +76,41 @@ $('.owned_room_link').click(function(){
   load_room(room_id);
 });
 
+// Load favorite room on click
+$('.favorite_room_link').click(function(){
+  room_id = $(this).attr('room_id');
+  load_room(room_id);
+});
+
+// Load owned room on click
+$('#favorite_room_button').click(function(){
+  room_id = current_marker.room_id
+  favorite_room(room_id);
+});
+
 function load_room(room_id) {
   // Get room
   ajax_get('room/get_room/' + room_id, function(room){
 
-    // Handle errors
-    if (room.error) {
-      alert(room.error_message);
-      return false;
-    }
-
     // Set up room
     window.location.hash = room_id;
     $('#room_name').html(room.name);
+
+    // Switch marker icons
+    if (current_marker) {
+      current_marker.setIcon(default_marker_img);
+    }
+    markers[room_id].setIcon(current_marker_img);
+    current_marker = markers[room_id];
+
+    // Favorite button
+    $('#favorite_room_button').removeClass('btn-success').removeClass('btn-default').show();
+    if (room.is_favorite) {
+      $('#favorite_room_button').addClass('btn-success');
+    }
+    else {
+      $('#favorite_room_button').addClass('btn-default');
+    }
 
     // Load Messages
     clearInterval(messages_load_interval_id);
@@ -96,6 +118,25 @@ function load_room(room_id) {
     messages_load_interval_id = setInterval(function() {
       messages_load(room_id, false);
     }, load_interval);
+  });
+}
+
+function favorite_room(room_id) {
+  // Find if room is already favorited
+  var current_favorite = $(this).hasClass('btn-success');
+
+  // Send request
+  data = {};
+  data.room_id = room_id;
+  data.current_favorite = current_favorite;
+  ajax_post('room/favorite', data, function(response){
+    // Activate favorite button
+    if (current_favorite) {
+      $(this).removeClass('btn-success').addClass('btn-default');
+    }
+    else {
+      $(this).removeClass('btn-default').addClass('btn-success');
+    }
   });
 }
 

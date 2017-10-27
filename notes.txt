@@ -21,14 +21,17 @@ error messanging
 intro on right panel
 
 	low priority
-strange chrome pixelated mirror in room bug
 prevent system username and user username mix up
-color markers based on room, favorite, owned
 trim inactive rooms
 list favorited rooms
 zoom out button
 
+	bugs
+strange chrome pixelated mirror in room bug
+inspect element popping up on element click
+
 	no priority
+color markers based on room, favorite, owned (db bottleneck concern)
 refresh rooms on zoom
 show currently active users and anons in room
 show count of users currently on
