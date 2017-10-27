@@ -92,6 +92,10 @@ function load_room(room_id) {
   // Get room
   ajax_get('room/get_room/' + room_id, function(room){
 
+    // Ensure chat window is set up
+    $('#message_input').show();
+    $('#message_input').focus();
+
     // Set up room
     window.location.hash = room_id;
     $('#room_name').html(room.name);

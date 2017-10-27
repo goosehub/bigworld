@@ -22,8 +22,6 @@ error messanging
 intro on right panel
 
 	low priority
-prevent system username and user username mix up
-set anon user id to 1
 
 	bugs
 strange chrome pixelated mirror in room bug
