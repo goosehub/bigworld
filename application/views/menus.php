@@ -9,6 +9,9 @@
         <ul class="user_dropdown dropdown-menu" aria-labelledby="site_dropdown">
             <?php foreach ($filters as $filter) { ?>
             <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['last_activity_in_minutes']; ?>">
+                <?php if ($current_last_activity_filter === $filter['last_activity_in_minutes']) { ?>
+                <span class="glyphicon glyphicon-star"></span>
+                <?php } ?>
                 <?php echo deslug($filter['slug']) ?>
             </a></li>
             <?php } ?>

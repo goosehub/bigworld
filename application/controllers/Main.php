@@ -29,8 +29,9 @@ class Main extends CI_Controller {
             $data['user']['favorites'] = $this->room_model->get_favorites_by_user_key($data['user']['id']);
         }
 
+        $data['current_last_activity_filter'] = (int) $this->input->get('last_activity');
         if ($this->input->get('last_activity')) {
-            $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($this->input->get('last_activity'));
+            $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']);
         }
         else {
             $data['rooms'] = $this->room_model->get_all_rooms();

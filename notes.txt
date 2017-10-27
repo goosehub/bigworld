@@ -32,7 +32,7 @@ color markers based on room, favorite, owned
 marker z-index
 refresh rooms on zoom
 show currently active users and anons in room
-show count of users currently on
+show site wide count of total users currently on
 
 	refactor
 standardize input serialized vs json
