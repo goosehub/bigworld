@@ -18,7 +18,6 @@ fonts
 icons
 language support
 date localizaed
-error messanging
 intro on right panel
 
 	low priority
@@ -28,6 +27,7 @@ strange chrome pixelated mirror in room bug
 inspect element popping up on element click
 
 	no priority
+better error messaging
 color markers based on room, favorite, owned
 marker z-index
 refresh rooms on zoom
