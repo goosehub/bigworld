@@ -11,14 +11,14 @@ todo
 	moderate priority
 name
 domain
-UI/UX review
-mobile review
-performance review
-fonts
+UI/UX design
+mobile design
+performance testing
 icons
-language support
-date localizaed
+language selection and support
+date formatting
 intro on right panel
+create subreddit
 
 	low priority
 
@@ -42,3 +42,21 @@ layout percents more layered into parents
 ==========================================================================================
 notes
 ==========================================================================================
+
+languages to support
+	english
+	russian
+	german
+	japanese
+	spanish
+	french
+	chinese
+	hindi
+	arabic
+	portuguese
+
+places with language to translate
+	site welcome
+	room welcome
+	filters
+	user menu

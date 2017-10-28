@@ -47,10 +47,10 @@ html, body {
     opacity: 0.95;
     z-index: 5;
 }
-.user_dropdown {
+.dropdown_item {
     font-weight: bold;
 }
-.user_dropdown .btn {
+.dropdown_item .btn {
     color: #fff;
 }
 

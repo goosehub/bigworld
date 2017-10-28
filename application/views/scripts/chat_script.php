@@ -126,20 +126,16 @@ function load_room(room_id) {
 }
 
 function favorite_room(room_id) {
-  // Find if room is already favorited
-  var current_favorite = $(this).hasClass('btn-success');
-
   // Send request
   data = {};
   data.room_id = room_id;
-  data.current_favorite = current_favorite;
   ajax_post('room/favorite', data, function(response){
     // Activate favorite button
-    if (current_favorite) {
-      $(this).removeClass('btn-success').addClass('btn-default');
+    if ($('#favorite_room_button').hasClass('btn-success')) {
+      $('#favorite_room_button').removeClass('btn-success').addClass('btn-default');
     }
     else {
-      $(this).removeClass('btn-default').addClass('btn-success');
+      $('#favorite_room_button').removeClass('btn-default').addClass('btn-success');
     }
   });
 }
@@ -199,8 +195,6 @@ function messages_load(room_key, inital_load) {
         return true;
       }
       $.each(messages.messages, function(i, message) {
-        console.log('marco');
-        console.log(message);
         // Skip if we already have this message, although we really shouldn't
         if (parseInt(message.id) <= parseInt(last_message_id)) {
           return true;
@@ -333,11 +327,13 @@ function scroll_to_bottom() {
 function toggle_theme(light_theme) {
   if (light_theme) {
     $('#toggle_theme').removeClass('active');
+    $('#toggle_icon').removeClass('fa-toggle-off').addClass('fa-toggle-on');
     $('#room_parent').addClass('light');
     $('#message_content_parent').addClass('light');
     localStorage.setItem('theme', 'light');
   } else {
     $('#toggle_theme').addClass('active');
+    $('#toggle_icon').removeClass('fa-toggle-on').addClass('fa-toggle-off');
     $('#room_parent').removeClass('light');
     $('#message_content_parent').removeClass('light');
     localStorage.setItem('theme', 'dark');

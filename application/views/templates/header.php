@@ -19,6 +19,9 @@
         <!-- Bootstrap -->
         <link href="<?=base_url()?>resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
+        <!-- Font Awesome -->
+        <link href="<?=base_url()?>resources/font_awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
         <!-- jQuery -->
         <script src="<?=base_url()?>resources/jquery/jquery-3.1.1.min.js"></script>
 

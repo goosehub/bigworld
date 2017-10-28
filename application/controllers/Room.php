@@ -114,19 +114,9 @@ class Room extends CI_Controller {
             echo api_error_response('room_id_missing', 'Room id is a required parameter and was not provided.');
             return false;
         }
-        if (!isset($input->current_favorite)) {
-            echo api_error_response('current_favorite_missing', 'Current favorite is a required parameter and was not provided.');
-            return false;
-        }
 
         // Check if room is already a favorite
         $get_favorite = $this->room_model->get_favorite($user['id'], $input->room_id);
-
-        // Check if input matches database
-        if (($get_favorite && !$input->current_favorite) || !$get_favorite && $input->current_favorite) {
-            echo api_error_response('current_favorite_mismatch', 'User input did not match database for favorite.');
-            return false;
-        }
 
         // If current favorite, delete favorite
         if ($get_favorite) {

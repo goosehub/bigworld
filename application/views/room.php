@@ -3,11 +3,13 @@
 
     <?php if ($user) { ?>
     <div id="favorite_room_button" class="btn btn-default pull-right" style="display: none;">
-        <span class="glyphicon glyphicon-star"></span>
+        <i class="fa fa-star" aria-hidden="true"></i>
     </div>
     <?php } ?>
 
-    <button id="toggle_theme" class="btn btn-sm btn-info pull-right active" type="button">Toggle Theme</button>
+    <div id="toggle_theme" class="btn btn-default btn-info pull-right active">
+        <i id="toggle_icon" class="fa fa-toggle-off" aria-hidden="true"></i>
+    </div>
 
     <div id="message_outer_parent">
         <div id="message_content_parent">
