@@ -26,6 +26,7 @@ Class room_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('room');
+        $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -35,6 +36,7 @@ Class room_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('room');
+        $this->db->where('archived', 0);
         $this->db->where('last_message_time >', date('Y-m-d H:i:s', time() - $last_activity_in_minutes * 60));
         $query = $this->db->get();
         $result = $query->result_array();
@@ -46,6 +48,7 @@ Class room_model extends CI_Model
         $this->db->select('*');
         $this->db->from('room');
         $this->db->where('id', $room_id);
+        $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
         return isset($result[0]) ? $result[0] : false;
@@ -62,6 +65,7 @@ Class room_model extends CI_Model
         $this->db->from('room');
         $this->db->where('CAST(lat AS DECIMAL) =', 'CAST(' . $lat . ' AS DECIMAL)', false);
         $this->db->where('CAST(lng AS DECIMAL) =', 'CAST(' . $lng . ' AS DECIMAL)', false);
+        $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
         return isset($result[0]) ? $result[0] : false;
@@ -72,6 +76,7 @@ Class room_model extends CI_Model
         $this->db->select('*');
         $this->db->from('room');
         $this->db->where('user_key', $user_key);
+        $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -80,7 +85,7 @@ Class room_model extends CI_Model
     function update_room_last_message_time($room_id)
     {
         $data = array(
-            'last_message_time' => date('Y-m-d H:i:s')
+            'last_message_time' => date('Y-m-d H:i:s'),
         );
         $this->db->where('id', $room_id);
         $this->db->update('room', $data);
@@ -125,11 +130,15 @@ Class room_model extends CI_Model
         return $result;
     }
 
-    function delete_inactive_rooms($room_trim_minutes_since_last_message)
+    function archive_inactive_rooms($room_trim_minutes_since_last_message)
     {
+        $data = array(
+            'archived' => 1,
+        );
         $delete_time = time() - ($room_trim_minutes_since_last_message * 60);
         $this->db->where('last_message_time < ', date('Y-m-d H:i:s', $delete_time));
-        $this->db->delete('room');
+        $this->db->where('archived', 0);
+        $this->db->update('room', $data);
     }
 
 }

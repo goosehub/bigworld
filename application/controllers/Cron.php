@@ -40,7 +40,7 @@ class Cron extends CI_Controller {
         }
 
         echo 'trim_inactive_rooms - ' . time() . '<br>';
-        $this->room_model->delete_inactive_rooms(ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE);
+        $this->room_model->archive_inactive_rooms(ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE);
     }
 
 }

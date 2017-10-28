@@ -81,6 +81,7 @@ CREATE TABLE `room` (
   `user_key` int(10) UNSIGNED NOT NULL,
   `lng` float NOT NULL,
   `lat` float NOT NULL,
+  `archived` bit(1) NOT NULL,
   `last_message_time` timestamp NOT NULL,
   `created` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
