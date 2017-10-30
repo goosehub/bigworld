@@ -1,13 +1,17 @@
 <div id="room_parent">
     <strong id="room_name">Small World</strong>
 
+    <div id="room_exit" class="btn btn-danger pull-right">
+        <i class="fa fa-times-circle" aria-hidden="true"></i>
+    </div>
+
     <?php if ($user) { ?>
     <div id="favorite_room_button" class="btn btn-default pull-right" style="display: none;">
         <i class="fa fa-star" aria-hidden="true"></i>
     </div>
     <?php } ?>
 
-    <div id="toggle_theme" class="btn btn-default btn-info pull-right active">
+    <div id="toggle_theme" class="btn btn-info pull-right active">
         <i id="toggle_icon" class="fa fa-toggle-off" aria-hidden="true"></i>
     </div>
 

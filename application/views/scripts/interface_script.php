@@ -43,6 +43,11 @@ function update_location() {
   });
 }
 
+// Room close
+$('#room_exit').click(function(){
+  $('#room_parent').fadeOut();
+});
+
 // 
 // Center block hide and show logic
 // 

@@ -95,6 +95,7 @@ function load_room(room_id) {
     // Ensure chat window is set up
     $('#message_input').show();
     $('#message_input').focus();
+    $('#room_parent').fadeIn();
 
     // Set up room
     window.location.hash = room_id;

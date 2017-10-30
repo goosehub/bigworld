@@ -11,7 +11,6 @@ todo
 	moderate priority
 name/domain/subreddit
 UI/UX design
-mobile design
 performance testing
 language selection and support
 date formatting
@@ -22,6 +21,8 @@ intro on right panel
 	bugs
 strange chrome pixelated mirror in room bug
 inspect element popping up on element click
+overlay loading text looks strange
+pinning on mobile
 
 	no priority
 better error messaging
