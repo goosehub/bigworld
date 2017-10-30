@@ -221,6 +221,78 @@ html, body {
   color: #222;
 }
 
+/* Change layout for mobile, chat on top */
+/*@media only screen and (max-device-width: 600px) {
+  #map {
+    top: 50%;
+    height: 50%;
+    width: 100%;
+  }
+  #room_parent {
+    top: 0vh;
+    max-height: 50vh;
+    height: 50vh;
+    left: 0;
+    width: 100%;
+  }
+  .message_content {
+    max-width: 100%;
+    max-height: 50vh;
+  }
+  #message_content_parent {
+    bottom: 4em;
+    top: 3em;
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(50vh - 4em);
+  }
+  #message_input_parent {
+    top: 50%;
+  }
+  #menu_parent {
+      top: 60%;
+      right: 0%;
+      width: 100%;
+  }
+}*/
+
+/* Change layout for mobile, map on top */
+@media only screen and (max-device-width: 600px) {
+  #map {
+    top: 0;
+    height: 50%;
+    width: 100%;
+  }
+  #room_parent {
+    top: 50vh;
+    max-height: 50vh;
+    height: 50vh;
+    left: 0;
+    width: 100%;
+  }
+  .message_content {
+    max-width: 100%;
+    max-height: 50vh;
+  }
+  #message_content_parent {
+    bottom: 2em;
+    top: calc(50vh + 2em);
+    width: 100%;
+    max-width: 100%;
+    max-height: calc(50vh - 2em);
+  }
+  #message_input_parent {
+    /*top: 50%;*/
+  }
+  #message_input {
+    height: 2em;
+  }
+  #menu_parent {
+    right: -15%;
+    width: 70%;
+  }
+}
+
 /* Orange Action Bootstrap-Styled Button */
 .btn-action {   
     background-color: hsl(44, 100%, 56%) !important; 

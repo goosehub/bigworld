@@ -9,16 +9,13 @@ todo
 	high priority
 
 	moderate priority
-name
-domain
+name/domain/subreddit
 UI/UX design
 mobile design
 performance testing
-icons
 language selection and support
 date formatting
 intro on right panel
-create subreddit
 
 	low priority
 
