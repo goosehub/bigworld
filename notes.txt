@@ -11,7 +11,6 @@ todo
 	moderate priority
 name/domain/subreddit
 UI/UX design
-language selection and support
 intro on right panel
 
 	low priority
@@ -23,7 +22,9 @@ inspect element popping up on element click
 overlay loading text looks strange
 pinning on mobile
 
-	no priority
+	wish list
+language selection and support
+zoom way in/way out button
 localized date formatting
 better error messaging
 color markers based on room, favorite, owned

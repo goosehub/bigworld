@@ -3,7 +3,7 @@
     <!-- Filter -->
     <div class="owned_rooms_menu_parent menu_element btn-group">
         <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
             <!-- Filter -->
             <span class="caret"></span>
         </button>
@@ -41,7 +41,8 @@
     <?php if ($user && !empty($user['rooms'])) { ?>
     <div class="owned_rooms_menu_parent menu_element btn-group">
         <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-square" aria-hidden="true"></i>
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            <!-- <i class="fa fa-square" aria-hidden="true"></i> -->
             <!-- Owned Rooms -->
             <span class="caret"></span>
         </button>
@@ -60,7 +61,9 @@
     <div class="user_menu_parent menu_element btn-group">
         <button id="user_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-user" aria-hidden="true"></i>
-            <?php echo $user['username']; ?>
+            <span class="menu_username_text">
+                <?php echo $user['username']; ?>
+            </span>
             <span class="caret"></span>
         </button>
         <ul id="user_dropdown" class="dropdown_item dropdown-menu" aria-labelledby="site_dropdown">
@@ -90,8 +93,14 @@
 
     <!-- Login and Join -->
     <?php if (!$user) { ?>
-    <button class="login_button menu_element btn btn-primary">Login</button>
-    <button class="register_button menu_element btn btn-action">Join</button>
+    <button class="login_button menu_element btn btn-primary">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        Login
+    </button>
+    <button class="register_button menu_element btn btn-action">
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        Join
+    </button>
     <?php } ?>
 
 </div>
