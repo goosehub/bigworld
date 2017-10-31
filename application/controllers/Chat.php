@@ -41,6 +41,7 @@ class Chat extends CI_Controller {
             $data['messages'] = $this->chat_model->load_message_by_last_message_id($room_key, $last_message_id);
         }
 
+        // htmlspecialchars is used inside api_response
         echo api_response($data);
     }
 
@@ -52,7 +53,7 @@ class Chat extends CI_Controller {
         $this->form_validation->set_rules('room_key', 'Room Key', 'trim|required|max_length[11]');
 
         if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
+            echo strip_tags(validation_errors());
             return false;
         }
 
@@ -79,8 +80,9 @@ class Chat extends CI_Controller {
             }
         }
 
+        // htmlspecialchars is used inside api_response on output
+        $message = $this->input->post('message_input');
         $room_key = $this->input->post('room_key');
-        $message = htmlspecialchars($this->input->post('message_input'));
 
         // Get most recent message
         $most_recent_message = $this->chat_model->get_last_message_in_room($room_key);
