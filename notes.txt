@@ -11,12 +11,11 @@ todo
 	moderate priority
 name/domain/subreddit
 UI/UX design
-performance testing
 language selection and support
-date formatting
 intro on right panel
 
 	low priority
+performance testing
 
 	bugs
 strange chrome pixelated mirror in room bug
@@ -25,6 +24,7 @@ overlay loading text looks strange
 pinning on mobile
 
 	no priority
+localized date formatting
 better error messaging
 color markers based on room, favorite, owned
 marker z-index
