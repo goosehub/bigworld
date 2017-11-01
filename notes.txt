@@ -7,11 +7,11 @@ todo
 ==========================================================================================
 
 	high priority
-
-	moderate priority
 name/domain/subreddit
-UI/UX design
-intro on right panel
+message appearance tweaking
+create room UX/UI
+intro with multi language on starting right panel
+easy bug reporting
 
 	low priority
 performance testing

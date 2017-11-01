@@ -22,6 +22,9 @@
         <!-- Font Awesome -->
         <link href="<?=base_url()?>resources/font_awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto|Righteous|Open+Sans" rel="stylesheet">
+
         <!-- jQuery -->
         <script src="<?=base_url()?>resources/jquery/jquery-3.1.1.min.js"></script>
 
