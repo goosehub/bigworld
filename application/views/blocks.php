@@ -153,7 +153,10 @@
         <i class="fa fa-arrow-right" aria-hidden="true"></i>
     </button>
     <?php } else { ?>
-    <strong>You must be logged in to create a room</strong>
+    <strong>
+        <i class="fa fa-key" aria-hidden="true"></i>
+        Login to create a room
+    </strong>
 
     <button type="button" class="exit_center_block btn btn-default btn-sm">
         <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>

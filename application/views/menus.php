@@ -7,7 +7,7 @@
             <!-- Filter -->
             <span class="caret"></span>
         </button>
-        <ul id="filter_dropdown" class="dropdown-menu" aria-labelledby="site_dropdown">
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($filters as $filter) { ?>
             <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['last_activity_in_minutes']; ?>">
                 <?php if ($current_last_activity_filter === $filter['last_activity_in_minutes']) { ?>
@@ -27,7 +27,7 @@
             <!-- Favorites -->
             <span class="caret"></span>
         </button>
-        <ul id="favorites_dropdown" class="dropdown-menu" aria-labelledby="site_dropdown">
+        <ul id="favorites_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($user['favorites'] as $favorite) { ?>
             <li><a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>#<?php echo $favorite['id']; ?>">
                 <?php echo $favorite['name'] ?>
@@ -46,7 +46,7 @@
             <!-- Owned Rooms -->
             <span class="caret"></span>
         </button>
-        <ul id="owned_rooms_dropdown" class="dropdown-menu" aria-labelledby="site_dropdown">
+        <ul id="owned_rooms_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($user['rooms'] as $user_room) { ?>
             <li><a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>#<?php echo $user_room['id']; ?>">
                 <?php echo $user_room['name'] ?>
@@ -66,7 +66,7 @@
             </span>
             <span class="caret"></span>
         </button>
-        <ul id="user_dropdown" class="dropdown_item dropdown-menu" aria-labelledby="site_dropdown">
+        <ul id="user_dropdown" class="dropdown_item dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <li><p class="text-center">Big World</p></li>
             <li><input type="text" class="jscolor color_input form-control" id="input_user_color" name="input_user_color" value="<?php echo $user['color']; ?>"></li>
             <li>

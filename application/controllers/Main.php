@@ -71,9 +71,6 @@ class Main extends CI_Controller {
     public function guess_location()
     {
         $ip = $_SERVER['REMOTE_ADDR'];
-        if (is_dev()) {
-            $ip = '3.62.232.229';
-        }
         $api_response = @file_get_contents("http://ipinfo.io/{$ip}");
         if (!$api_response) {
             return '';
