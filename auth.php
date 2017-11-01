@@ -2,6 +2,6 @@
     "hostname" : "localhost",
     "username" : "root",
     "password" : "",
-    "database" : "smallworld",
+    "database" : "bigworld",
     "token" : "1234"
 }

@@ -1,6 +1,6 @@
-<h1>Small World</h1>
+<h1>Big World</h1>
 
-<p>Small World is a social network for creating and joining chat rooms that exist on a shared google map. It is in Alpha and not ready for public release.</p>
+<p>Big World is a social network for creating and joining chat rooms that exist on a shared google map. It is in Alpha and not ready for public release.</p>
 
 <h2>Set up an instance</h2>
 

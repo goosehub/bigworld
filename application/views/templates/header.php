@@ -8,10 +8,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
 
         <!-- Page Title -->
-        <title>Small World</title>
+        <title>Big World</title>
 
         <!-- Google please read this -->
-        <meta name="description" content="Small World">
+        <meta name="description" content="Big World">
 
         <!-- Link to Favicon -->
         <!-- <link rel="icon" href="<?=base_url()?>resources/icon.ico"> -->

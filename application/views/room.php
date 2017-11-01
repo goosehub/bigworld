@@ -2,7 +2,7 @@
 
     <div id="room_toolbar">
 
-        <strong id="room_name">Small World</strong>
+        <strong id="room_name">Big World</strong>
 
         <div id="room_exit" class="btn btn-danger pull-right">
             <i class="fa fa-times-circle" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
 
     <div id="message_outer_parent">
         <div id="message_content_parent">
-            <p>Welcome to Small World</p>
+            <p>Welcome to Big World</p>
             <p>A Social Network on Google Maps</p>
             <p>Click on any pin to join a conversation in progress</p>
             <p>Make an account to create your own rooms</p>
