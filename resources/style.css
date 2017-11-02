@@ -76,6 +76,8 @@ body {
     .center_block {
         left: 5%;
         width: 90%;
+        top: 8vh;
+        max-height: 90vh;
     }
 }
 .exit_center_block {
