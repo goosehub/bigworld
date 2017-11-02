@@ -40,7 +40,7 @@
             <p class="lead">Not registered?</p>
         </div>
         <div class="col-md-2">
-            <button class="register_button btn btn-success form-control">
+            <button class="register_button btn btn-success btn-sm form-control">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 Join
             </button>
@@ -120,7 +120,7 @@
             <p class="lead">Already a user?</p>
         </div>
         <div class="col-md-2">
-            <button class="login_button btn btn-info form-control">
+            <button class="login_button btn btn-info btn-sm form-control">
                 <i class="fa fa-sign-in" aria-hidden="true"></i>
                 Login
             </button>

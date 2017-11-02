@@ -7,9 +7,7 @@ todo
 ==========================================================================================
 
 	high priority
-name/domain/subreddit
 message appearance tweaking
-create room UX/UI
 intro with multi language on starting right panel
 easy bug reporting
 
