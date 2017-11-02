@@ -7,12 +7,13 @@ todo
 ==========================================================================================
 
 	high priority
-message appearance tweaking
-intro with multi language on starting right panel
-easy bug reporting
+intro with multi language on starting right panel, room start
 
 	low priority
 performance testing
+thumbnail
+add to gooseweb.io
+re-enable social
 
 	bugs
 strange chrome pixelated mirror in room bug

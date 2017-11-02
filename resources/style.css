@@ -128,7 +128,6 @@ body {
     font-size: 1.2em;
     padding-left: 0.4em;
     padding-right: 0.4em;
-    font-family: sans-serif, cursive;
 }
 .message_parent {
 }
@@ -158,6 +157,7 @@ body {
 #message_content_parent .message_username {
     font-weight: bold;
     margin-right: 0.2em;
+    font-family: "Roboto", sans-serif;
 }
 #message_content_parent .message_username,
 #message_content_parent .message_face,
