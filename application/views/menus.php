@@ -9,8 +9,8 @@
         </button>
         <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($filters as $filter) { ?>
-            <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['last_activity_in_minutes']; ?>">
-                <?php if ($current_last_activity_filter === $filter['last_activity_in_minutes']) { ?>
+            <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['slug']; ?>">
+                <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 <?php } ?>
                 <?php echo deslug($filter['slug']) ?>

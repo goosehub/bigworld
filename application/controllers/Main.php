@@ -29,13 +29,16 @@ class Main extends CI_Controller {
             $data['user']['favorites'] = $this->room_model->get_favorites_by_user_key($data['user']['id']);
         }
 
-        $data['current_last_activity_filter'] = (int) $this->input->get('last_activity');
-        if ($this->input->get('last_activity')) {
-            $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']);
+        // Use last activity default first
+        $data['current_last_activity_filter'] = $data['filters'][LAST_ACTIVITY_DEFAULT];
+
+        // Get last activity filter if exists
+        if ($this->input->get('last_activity') && isset($data['filters'][$this->input->get('last_activity')])) {
+            $data['current_last_activity_filter'] = $data['filters'][$this->input->get('last_activity')];
         }
-        else {
-            $data['rooms'] = $this->room_model->get_all_rooms();
-        }
+
+        // Get rooms by last activity
+        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago']);
 
         // A/B testing
         $ab_array = array('', '');
@@ -88,23 +91,23 @@ class Main extends CI_Controller {
         $filters = array();
         $filters['all'] = array(
             'slug' => 'all',
-            'last_activity_in_minutes' => 0, // 0 evaluated to false
+            'minutes_ago' => 0, // 0 evaluated to false
         );
         $filters['this_week'] = array(
             'slug' => 'this_week',
-            'last_activity_in_minutes' => 7 * 24 * 60,
+            'minutes_ago' => 7 * 24 * 60,
         );
         $filters['today'] = array(
             'slug' => 'today',
-            'last_activity_in_minutes' => 1 * 24 * 60,
+            'minutes_ago' => 1 * 24 * 60,
         );
         $filters['this_hour'] = array(
             'slug' => 'this_hour',
-            'last_activity_in_minutes' => 1 * 60,
+            'minutes_ago' => 1 * 60,
         );
         $filters['now'] = array(
             'slug' => 'now',
-            'last_activity_in_minutes' => 15,
+            'minutes_ago' => 15,
         );
         return $filters;
     }
