@@ -14,7 +14,7 @@
         <meta name="description" content="Big World">
 
         <!-- Link to Favicon -->
-        <!-- <link rel="icon" href="<?=base_url()?>resources/icon.ico"> -->
+        <link rel="icon" href="<?=base_url()?>resources/img/favicon.ico">
 
         <!-- Bootstrap -->
         <link href="<?=base_url()?>resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
