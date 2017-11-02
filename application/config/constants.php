@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Polling
+define('MAP_ROOM_POLLING_SECONDS', 1 * 60);
+
 // Room Trim
 define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 365 * 24 * 60);
 define('LAST_ACTIVITY_DEFAULT', 'this_week');
@@ -19,7 +22,7 @@ define('MESSAGE_SPAM_LIMIT_LENGTH', 60);
 // User Auth
 define('PASSWORD_OVERRIDE', false); // Dev and emergency use only
 define('PASSWORD_OPTIONAL', false); // Useful for /r/webgames which requires no required password logins
-define('REGISTER_IP_FREQUENCY_LIMIT_MINUTES', 30); // Minutes between registration from IP
+define('REGISTER_IP_FREQUENCY_LIMIT_MINUTES', 1); // Minutes between registration from IP
 define('LOGIN_LIMIT_WINDOW_MINUTES', 30); // Number of minutes during which an IP can login LOGIN_LIMIT_COUNT times
 define('LOGIN_LIMIT_COUNT', 5); // Number of logins allowed in last LOGIN_LIMIT_WINDOW_MINUTES
 

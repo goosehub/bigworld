@@ -20,7 +20,11 @@ var purple_marker_img = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png
 var yellow_marker_img = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 
 
-// Constants
+// Map room polling
+var map_room_polling_seconds = <?php echo MAP_ROOM_POLLING_SECONDS; ?>;
+var current_last_activity_slug = '<?php echo $current_last_activity_filter['slug']; ?>';
+
+// Constants for markers
 var default_marker_img = classic_marker_img;
 var current_marker_img = blue_marker_img;
 var favorite_marker_img = green_marker_img;
@@ -97,6 +101,40 @@ function initMap() {
     }
     open_create_room_block(event.latLng);
   });
+
+  // Load map rooms on interval
+  setInterval(function(){
+    load_map_rooms();
+  }, map_room_polling_seconds * 1000);
+
+  function load_map_rooms() {
+    var url = 'main/load_map_rooms?last_activity=' + current_last_activity_slug;
+    ajax_get(url, function(result){
+      // Remove existing markers
+      Object.keys(markers).forEach(function(key) {
+        console.log(key, markers[key]);
+        markers[key].setMap(null);
+      });
+
+      $.each(result, function(i, room) {
+        var location = {};
+        location.lat = parseFloat(room.lat);
+        location.lng = parseFloat(room.lng);
+        marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          title: room.name,
+          room_id: parseInt(room.id)
+        });
+
+        // Open room on click
+        marker.addListener('click', marker_clicked);
+
+        // Add to marker array
+        markers[parseInt(room.id)] = marker;
+      });
+    });
+  }
 
   function marker_clicked(event) {
     // var lat = event.latLng.lat();

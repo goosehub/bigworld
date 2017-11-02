@@ -71,6 +71,26 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
+    public function load_map_rooms()
+    {
+        // Get filters
+        $data['filters'] = $this->get_filters();
+
+        // Use last activity default first
+        $data['current_last_activity_filter'] = $data['filters'][LAST_ACTIVITY_DEFAULT];
+
+        // Get last activity filter if exists
+        if ($this->input->get('last_activity') && isset($data['filters'][$this->input->get('last_activity')])) {
+            $data['current_last_activity_filter'] = $data['filters'][$this->input->get('last_activity')];
+        }
+
+        // Get rooms by last activity
+        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago']);
+
+        // Return rooms
+        echo api_response($data['rooms']);
+    }
+
     public function guess_location()
     {
         $ip = $_SERVER['REMOTE_ADDR'];
@@ -91,7 +111,7 @@ class Main extends CI_Controller {
         $filters = array();
         $filters['all'] = array(
             'slug' => 'all',
-            'minutes_ago' => 0, // 0 evaluated to false
+            'minutes_ago' => 5 * 365 * 24 * 60,
         );
         $filters['this_week'] = array(
             'slug' => 'this_week',
@@ -107,7 +127,7 @@ class Main extends CI_Controller {
         );
         $filters['now'] = array(
             'slug' => 'now',
-            'minutes_ago' => 15,
+            'minutes_ago' => 20,
         );
         return $filters;
     }
