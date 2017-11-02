@@ -82,11 +82,22 @@
                 <i class="fa fa-code" aria-hidden="true"></i>
                 GooseWeb
             </a></li>
+<!--             <li><a class="btn btn-primary" href="https://www.reddit.com/r/bigworldio/" target="_blank">
+                <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+                /r/bigworldio
+            </a></li> -->
+            <li><a class="report_bugs_button btn btn-warning" href="javascript:;">
+                <i class="fa fa-bug" aria-hidden="true"></i>
+                Report Bugs
+            </a></li>
             <li><a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Logout
             </a></li>
-            <li><small>Get your friends on</small><div class="fb-like" data-href="https://landgrab.xyz/" data-layout="button" data-="recommend" data-show-faces="false" data-share="true"></div></li>
+<!--             <li>
+                <small>Get your friends on</small>
+                <div class="fb-like" data-href="https://landgrab.xyz/" data-layout="button" data-="recommend" data-show-faces="false" data-share="true"></div>
+            </li> -->
         </ul>
     </div>
     <?php } ?>

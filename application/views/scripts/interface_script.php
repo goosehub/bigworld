@@ -43,6 +43,10 @@ function update_location() {
   });
 }
 
+$('.report_bugs_button').click(function(){
+  $('#report_bugs_block').show();
+});
+
 // Room close
 $('#room_exit').click(function(){
   $('#room_parent').fadeOut();

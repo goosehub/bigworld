@@ -61,7 +61,7 @@
         <!-- Facebook share -->
         <div id="fb-root"></div>
         <script>
-        window.fbAsyncInit = function() {
+/*        window.fbAsyncInit = function() {
             FB.init({
                 appId      : '523758294469574',
                 xfbml      : true,
@@ -75,5 +75,5 @@
         js = d.createElement(s); js.id = id;
         js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=523758294469574";
         fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        }(document, 'script', 'facebook-jssdk'));*/
         </script>

@@ -116,7 +116,7 @@ class User extends CI_Controller {
         // Disallow usernames we reserve
         if (
             strtolower($username) === 'anonymous' ||
-            strpos(strtolower($username), strtolower('system_')) !== false ||
+            strpos(strtolower($username), strtolower('system')) !== false ||
             strpos(strtolower($username), strtolower('admin')) !== false) {
             $this->form_validation->set_message('register_validation', 'Username is reserved');
             return false;
@@ -130,6 +130,7 @@ class User extends CI_Controller {
         // Always fix colors
         $color = $this->fix_color($color);
 
+        // Attempt to create user in databaase
         $user_id = $this->user_model->register($username, $password, $api_key, $email, $ip, REGISTER_IP_FREQUENCY_LIMIT_MINUTES, $ab_test, $color, $location);
 
         // Registered too recently
@@ -144,7 +145,7 @@ class User extends CI_Controller {
             return false;
         }
 
-        // Login
+        // User created, create session so user is logged in
         $sess_array = array(
             'id' => $user_id,
             'color' => $color,

@@ -175,3 +175,19 @@
 
     <?php } ?>
 </div>
+
+<!-- Report Bugs Block -->
+<div id="report_bugs_block" class="center_block">
+    <strong>Report Bugs</strong>
+
+    <button type="button" class="exit_center_block btn btn-default btn-sm">
+      <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>
+    </button>
+    <hr>
+
+    <p>Please report all bugs to 
+        <strong>
+            <a href="mailto:goosepostbox@gmail.com" target="_blank">goosepostbox@gmail.com </a>
+        </strong>
+    </p>
+</div>
