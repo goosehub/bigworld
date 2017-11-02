@@ -9,7 +9,6 @@ todo
 	high priority
 intro with multi language on starting right panel, room start
 localize time
-allow pins closer to each other
 
 	low priority
 performance testing
@@ -42,6 +41,9 @@ layout percents more layered into parents
 ==========================================================================================
 notes
 ==========================================================================================
+
+pin distance
+	at 4 decimal places, about yards yards apart
 
 languages to support
 	english

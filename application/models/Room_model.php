@@ -63,8 +63,8 @@ Class room_model extends CI_Model
 
         $this->db->select('*');
         $this->db->from('room');
-        $this->db->where('CAST(lat AS DECIMAL) =', 'CAST(' . $lat . ' AS DECIMAL)', false);
-        $this->db->where('CAST(lng AS DECIMAL) =', 'CAST(' . $lng . ' AS DECIMAL)', false);
+        $this->db->where('CAST(lat AS DECIMAL(12,4)) =', 'CAST(' . $lat . ' AS DECIMAL(12,4))', false);
+        $this->db->where('CAST(lng AS DECIMAL(12,4)) =', 'CAST(' . $lng . ' AS DECIMAL(12,4))', false);
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
