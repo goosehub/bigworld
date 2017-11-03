@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Map settings
+define('MAP_DEFAULT_ZOOM', 2);
+// Map default is north centric
+define('MAP_DEFAULT_LAT', 0);
+define('MAP_DEFAULT_LNG', 20);
+
 // Polling
 define('MAP_ROOM_POLLING_SECONDS', 1 * 60);
 

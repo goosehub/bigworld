@@ -100,6 +100,7 @@ function load_room(room_id) {
     // Set up room
     window.location.hash = room_id;
     $('#room_name').html(room.name);
+    $('#zoom_in_button').show();
 
     // Switch marker icons
     if (current_marker) {

@@ -17,7 +17,15 @@
         <div id="toggle_theme" class="btn btn-info pull-right active">
             <i id="toggle_icon" class="fa fa-toggle-off" aria-hidden="true"></i>
         </div>
-        
+
+        <div id="zoom_in_button" class="btn btn-warning pull-right" style="display: none;">
+            <i class="fa fa-search-plus" aria-hidden="true"></i>
+        </div>
+
+        <div id="zoom_out_button" class="btn btn-action pull-right" style="display: none;">
+            <i class="fa fa-search-minus" aria-hidden="true"></i>
+        </div>
+
     </div>
 
     <div id="message_outer_parent">

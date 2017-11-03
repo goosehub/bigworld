@@ -33,26 +33,23 @@ var map;
 var messages_load_interval_id;
 var current_marker = false;
 var markers = [];
+var map_default_zoom = <?php echo MAP_DEFAULT_ZOOM; ?>;
+var map_default_lat = <?php echo MAP_DEFAULT_LAT; ?>;
+var map_default_lng = <?php echo MAP_DEFAULT_LNG; ?>;
 function initMap() {
+  // var defaultMapType = google.maps.MapTypeId.TERRAIN
+  var defaultMapType = google.maps.MapTypeId.HYBRID;
+  // var defaultMapType = google.maps.MapTypeId.SATELLITE
+
   // Create map init
   map = new google.maps.Map(document.getElementById('map'), {
-
-    // Map center is slightly north centric
     center: {
-      lat: 20,
-      lng: 0
+      lat: map_default_lat,
+      lng: map_default_lng
     },
-
-    // This level of zoom shows whole world but no repetition
-    zoom: 2,
-
-    // Prevent zooming out so much users can see north and south edge
+    zoom: map_default_zoom,
     minZoom: 1,
-
-    // Map type
-    // mapTypeId: google.maps.MapTypeId.TERRAIN
-    mapTypeId: google.maps.MapTypeId.HYBRID
-    // mapTypeId: google.maps.MapTypeId.SATELLITE
+    mapTypeId: defaultMapType
   });
 
   // Remove overlay when map tiles are loaded
@@ -100,6 +97,48 @@ function initMap() {
       return false;
     }
     open_create_room_block(event.latLng);
+  });
+
+  // Map zoom in and out
+  $('#zoom_in_button').click(function(){
+    $('#zoom_in_button').hide();
+    $('#zoom_out_button').show();
+
+    // Recreate map init
+    map = new google.maps.Map(document.getElementById('map'), {
+      // Room location
+      center: {
+        lat: current_marker.getPosition().lat(),
+        lng: current_marker.getPosition().lng()
+      },
+      // Zoom in just enough for slanted view
+      zoom: 18,
+      minZoom: 1,
+      mapTypeId: defaultMapType
+    });
+    // Reload markers
+    load_map_rooms();
+  });
+
+  // Map zoom in and out
+  $('#zoom_out_button').click(function(){
+    $('#zoom_out_button').hide();
+    $('#zoom_in_button').show();
+
+    // Recreate map init
+    map = new google.maps.Map(document.getElementById('map'), {
+      // Room location
+      center: {
+        lat: map_default_lat,
+        lng: map_default_lng
+      },
+      // Zoom in just enough for slanted view
+      zoom: map_default_zoom,
+      minZoom: 1,
+      mapTypeId: defaultMapType
+    });
+    // Reload markers
+    load_map_rooms();
   });
 
   // Load map rooms on interval
