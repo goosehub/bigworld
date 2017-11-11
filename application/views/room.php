@@ -30,10 +30,11 @@
 
     <div id="message_outer_parent">
         <div id="message_content_parent">
-            <p>Welcome to Big World</p>
-            <p>A Social Network on Google Maps</p>
-            <p>Click on any pin to join a conversation in progress</p>
-            <p>Make an account to create your own rooms</p>
+            <div id="empty_room_message" class="text-center">
+                <p>Welcome to Big World</p>
+                <p>Click on any pin to join a conversation</p>
+                <p>Make an account to create your own space</p>
+            </div>
         </div>
         <div id="message_input_parent">
             <form id="new_message" onsubmit="return submit_new_message()">

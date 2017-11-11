@@ -134,7 +134,7 @@
     <?php if ($user) { ?>
     <strong>
         <i class="fa fa-map-marker" aria-hidden="true"></i>
-        Create A Room Here
+        Create A Space Here
     </strong>
 
     <button type="button" class="exit_center_block btn btn-default btn-sm">

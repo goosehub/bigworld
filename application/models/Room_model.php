@@ -18,7 +18,7 @@ Class room_model extends CI_Model
     function system_start_room_message()
     {
         $message = "";
-        $message .= "Welcome to your room! Some tips: Embed Youtube, Vimeo, Twitch, SoundCloud, Vocaroo, and Images by posting the URL. Pin posts to keep in view as you chat. Share this url to invite others to join directly.";
+        $message .= "Welcome! Embed Youtube, Vimeo, Twitch, SoundCloud, Vocaroo, and Images by posting the URL. Pin posts to keep in view as you chat. Share this url to invite others to join directly.";
         return $message;
     }
 

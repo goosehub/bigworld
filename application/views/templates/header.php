@@ -47,11 +47,11 @@
         <script src="<?=base_url()?>resources/script.js?<?php echo time(); ?>"></script>
 
         <!-- Define as share image -->
-        <!-- <link rel="image_src" href="<?=base_url()?>resources/logos/hero.jpg" / > -->
-        <!-- <meta property='og:image' content='<?=base_url()?>resources/logos/hero.jpg'/> -->
+        <link rel="image_src" href="<?=base_url()?>resources/logos/screenshot.png" / >
+        <meta property='og:image' content='<?=base_url()?>resources/img/screenshot.png'/>
 
         <!-- Thumbnail -->
-        <!-- <meta property="og:image" content="<?=base_url()?>resources/img/original_small.jpg" /> -->
+        <meta property="og:image" content="<?=base_url()?>resources/img/screenshot.png" />
 
         <!-- Local Style -->
         <link href="<?=base_url()?>resources/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
@@ -59,6 +59,7 @@
     </head>
     <body>
         <!-- Facebook share -->
+        <!-- Shit turned off for now -->
         <div id="fb-root"></div>
         <script>
 /*        window.fbAsyncInit = function() {

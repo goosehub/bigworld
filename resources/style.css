@@ -198,6 +198,12 @@ body {
     color: #882D60;
     vertical-align: bottom;
 }
+#empty_room_message {
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: "Righteous", sans-serif;
+    color: #882D60;
+}
 
 /* Pinned */
 .pinned {

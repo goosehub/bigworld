@@ -8,9 +8,9 @@ todo
 
 	high priority
 intro with multi language on starting right panel, room start
-localize time
 
 	low priority
+localize time
 performance testing
 thumbnail
 add to gooseweb.io
@@ -30,6 +30,7 @@ color markers based on room, favorite, owned
 marker z-index
 show currently active users and anons in room
 show site wide count of total users currently on
+room owner can change room name
 
 	refactor
 standardize input serialized vs json
@@ -39,6 +40,15 @@ layout percents more layered into parents
 ==========================================================================================
 notes
 ==========================================================================================
+
+Welcomes
+	<p>Bienvenido</p> <!-- Spanish -->
+	<p>herzlich willkommen</p> <!-- German -->
+	<p>ようこそ</p> <!-- Japannese -->
+	<p>Bienvenue</p> <!-- French -->
+	<p>欢迎</p> <!-- Chinnese -->
+	<p>أهلا بك</p> <!-- Arabic -->
+	<p>Welcome to Big World</p> <!-- English -->
 
 pin distance
 	at 4 decimal places, about yards yards apart
