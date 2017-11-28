@@ -12,18 +12,18 @@ define('MAP_ROOM_POLLING_SECONDS', 1 * 60);
 
 // Room Trim
 define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 365 * 24 * 60);
-define('LAST_ACTIVITY_DEFAULT', 'this_week');
+define('LAST_ACTIVITY_DEFAULT', 'today');
 
 // Chat Constants
-define('MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE', 1);
+define('MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE', 15);
 define('SYSTEM_USER_ID', 0);
 define('ANONYMOUS_USER_ID', 1);
 define('SYSTEM_DATE_USERNAME', 'system_date');
 define('SYSTEM_START_ROOM_USERNAME', 'system_start_room');
 
 // Chat Spam Limits
-define('MESSAGE_SPAM_LIMIT_AMOUNT', 3);
-define('MESSAGE_SPAM_LIMIT_LENGTH', 60);
+define('MESSAGE_SPAM_LIMIT_AMOUNT', 5);
+define('MESSAGE_SPAM_LIMIT_LENGTH', 30);
 
 // User Auth
 define('PASSWORD_OVERRIDE', false); // Dev and emergency use only

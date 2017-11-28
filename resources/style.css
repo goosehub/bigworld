@@ -216,6 +216,9 @@ body {
 .pinned .message_username {
     display: none;
 }
+.active_pin {
+    background-color: #000;
+}
 .embedica_element iframe {
     width: 350px;
     height: 200px;

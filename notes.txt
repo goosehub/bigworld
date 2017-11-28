@@ -15,8 +15,13 @@ performance testing
 thumbnail
 add to gooseweb.io
 re-enable social
+clear url button
+mutli rooming somehow
+fix vocaroo
 
 	bugs
+vocaroo
+active pin goes away on map reload
 strange chrome pixelated mirror in room bug
 inspect element popping up on element click
 overlay loading text looks strange
