@@ -33,7 +33,7 @@
             <div id="empty_room_message" class="text-center">
                 <p>Welcome to Big World</p>
                 <p>Click on any pin to join a conversation</p>
-                <p>Make an account to create your own space</p>
+                <p>Make an account to create your own pins</p>
             </div>
         </div>
         <div id="message_input_parent">

@@ -82,10 +82,10 @@
                 <i class="fa fa-code" aria-hidden="true"></i>
                 GooseWeb
             </a></li>
-<!--             <li><a class="btn btn-primary" href="https://www.reddit.com/r/bigworldio/" target="_blank">
+            <li><a class="btn btn-primary" href="https://www.reddit.com/r/bigworldio/" target="_blank">
                 <i class="fa fa-reddit-alien" aria-hidden="true"></i>
                 /r/bigworldio
-            </a></li> -->
+            </a></li>
             <li><a class="report_bugs_button btn btn-warning" href="javascript:;">
                 <i class="fa fa-bug" aria-hidden="true"></i>
                 Report Bugs

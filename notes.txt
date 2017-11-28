@@ -18,6 +18,7 @@ re-enable social
 clear url button
 mutli rooming somehow
 fix vocaroo
+menu items when logged out
 
 	bugs
 vocaroo
