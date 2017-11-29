@@ -7,18 +7,16 @@ todo
 ==========================================================================================
 
 	high priority
-intro with multi language on starting right panel, room start
 
 	low priority
 localize time
 performance testing
-thumbnail
-add to gooseweb.io
 re-enable social
 clear url button
 mutli rooming somehow
 fix vocaroo
 menu items when logged out
+handle http embedica
 
 	bugs
 vocaroo
