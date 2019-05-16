@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `favorite` (
   `id` int(10) NOT NULL,
   `room_key` int(10) UNSIGNED NOT NULL,
+  `world_key` int(10) UNSIGNED NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
   `created` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -42,6 +43,7 @@ CREATE TABLE `favorite` (
 CREATE TABLE `message` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
+  `world_key` int(10) UNSIGNED NOT NULL,
   `room_key` int(10) UNSIGNED NOT NULL,
   `username` varchar(64) NOT NULL,
   `color` varchar(8) NOT NULL,
@@ -78,12 +80,14 @@ CREATE TABLE `request` (
 CREATE TABLE `room` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
+  `world_key` int(10) UNSIGNED NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
   `lng` float NOT NULL,
   `lat` float NOT NULL,
   `archived` bit(1) NOT NULL,
   `last_message_time` timestamp NOT NULL,
-  `created` timestamp NOT NULL
+  `created` timestamp NOT NULL,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -104,6 +108,22 @@ CREATE TABLE `user` (
   `api_key` varchar(250) NOT NULL,
   `password` varchar(250) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `world`
+--
+
+CREATE TABLE `world` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `user_key` int(10) UNSIGNED NOT NULL,
+  `archived` bit(1) NOT NULL,
+  `last_message_time` timestamp NOT NULL,
+  `created` timestamp NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -142,6 +162,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `world`
+--
+ALTER TABLE `world`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -170,13 +196,27 @@ ALTER TABLE `room`
 --
 ALTER TABLE `user`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `world`
+--
+ALTER TABLE `world`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
 ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorites_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `favorites_room_key_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `message`
-  ADD CONSTRAINT `message_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `message_room_key_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `favorite`
+  ADD CONSTRAINT `favorites_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `message`
+  ADD CONSTRAINT `message_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `room`
+  ADD CONSTRAINT `rooms_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
