@@ -23,12 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favorite`
+-- Table structure for table `favorite_room`
 --
 
-CREATE TABLE `favorite` (
+CREATE TABLE `favorite_room` (
   `id` int(10) NOT NULL,
   `room_key` int(10) UNSIGNED NOT NULL,
+  `world_key` int(10) UNSIGNED NOT NULL,
+  `user_key` int(10) UNSIGNED NOT NULL,
+  `created` timestamp NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorite_world`
+--
+
+CREATE TABLE `favorite_world` (
+  `id` int(10) NOT NULL,
   `world_key` int(10) UNSIGNED NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
   `created` timestamp NOT NULL
@@ -132,9 +145,15 @@ CREATE TABLE `world` (
 --
 
 --
--- Indexes for table `favorite`
+-- Indexes for table `favorite_room`
 --
-ALTER TABLE `favorite`
+ALTER TABLE `favorite_room`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `favorite_world`
+--
+ALTER TABLE `favorite_world`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -172,9 +191,14 @@ ALTER TABLE `world`
 --
 
 --
--- AUTO_INCREMENT for table `favorite`
+-- AUTO_INCREMENT for table `favorite_room`
 --
-ALTER TABLE `favorite`
+ALTER TABLE `favorite_room`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `favorite_world`
+--
+ALTER TABLE `favorite_world`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `message`
@@ -206,14 +230,17 @@ ALTER TABLE `world`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorites_room_key_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `favorite_room`
+  ADD CONSTRAINT `favorite_rooms_room_key_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `message`
   ADD CONSTRAINT `message_room_key_cascade` FOREIGN KEY (`room_key`) REFERENCES `room` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `favorite`
-  ADD CONSTRAINT `favorites_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `favorite_room`
+  ADD CONSTRAINT `favorite_rooms_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `favorite_world`
+  ADD CONSTRAINT `favorite_worlds_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `message`
   ADD CONSTRAINT `message_world_key_cascade` FOREIGN KEY (`world_key`) REFERENCES `world` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
