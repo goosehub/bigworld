@@ -9,6 +9,7 @@ class Main extends CI_Controller {
         $this->load->model('main_model', '', TRUE);
         $this->load->model('user_model', '', TRUE);
         $this->load->model('room_model', '', TRUE);
+        $this->load->model('world_model', '', TRUE);
 
         $this->main_model->record_request();
     }
@@ -18,6 +19,32 @@ class Main extends CI_Controller {
         // Authentication
         $data['user'] = $this->user_model->get_this_user();
 
+        // Get Worlds
+        $data['worlds'] = $this->world_model->get_all_worlds();
+
+        // Load view
+        $data = $this->registration_starting_details($data);
+        $data['page_title'] = site_name();
+        $data['landing'] = true;
+        $this->load->view('templates/header', $data);
+        $this->load->view('landing', $data);
+        $this->load->view('login', $data);
+        $this->load->view('scripts/interface_script', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function world($slug)
+    {
+        // Authentication
+        $data['user'] = $this->user_model->get_this_user();
+
+        // Get World
+        $data['world'] = $this->world_model->get_world_by_slug($slug);
+        if (!$data['world']) {
+            echo 'no world';
+            return;
+        }
+
         // Get filters
         $data['filters'] = $this->get_filters();
 
@@ -25,8 +52,8 @@ class Main extends CI_Controller {
             // Include owned rooms
             $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
             
-            // Include favorited rooms
-            $data['user']['favorites'] = $this->room_model->get_favorites_by_user_key($data['user']['id']);
+            // Include favorite_roomd rooms
+            $data['user']['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['user']['id']);
         }
 
         // Use last activity default first
@@ -59,16 +86,77 @@ class Main extends CI_Controller {
         $data['just_registered'] = $this->session->flashdata('just_registered');
 
         // Load view
-        $data['page_title'] = site_name();
+        $data = $this->registration_starting_details($data);
+        $data['page_title'] = $slug;
+        $data['landing'] = false;
         $this->load->view('templates/header', $data);
-        $this->load->view('main', $data);
         $this->load->view('menus', $data);
         $this->load->view('blocks', $data);
         $this->load->view('room', $data);
+        $this->load->view('login', $data);
         $this->load->view('scripts/map_script', $data);
         $this->load->view('scripts/chat_script', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    public function registration_starting_details($data)
+    {
+        // Registration starting details
+        if (!$data['user']) {
+            // Random color
+            $data['random_color'] = random_hex_color();
+
+            // Guess location
+            $data['location_prepopulate'] = $this->guess_location();
+        }
+
+        // Validation errors
+        $data['validation_errors'] = $this->session->flashdata('validation_errors');
+        $data['failed_form'] = $this->session->flashdata('failed_form');
+        $data['just_registered'] = $this->session->flashdata('just_registered');
+
+        return $data;
+    }
+
+    public function create_world()
+    {
+        $user = $this->user_model->get_this_user();
+        // If user not logged in, return with fail
+        if (!$user) {
+            echo 'not logged in';
+            return;
+        }
+
+        // Basic Validation
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('slug', 'Slug', 'trim|required|alpha|max_length[100]');
+        
+        // Fail Basic Validation
+        if ($this->form_validation->run() == FALSE) {
+            echo '{"error": "' . trim(strip_tags(validation_errors())) . '"}';
+            return false;
+        }
+
+        $slug = $this->input->post('slug');
+
+        // Get World
+        $data['world'] = $this->world_model->get_world_by_slug($slug);
+        if ($data['world']) {
+            redirect(base_url() . $slug, 'refresh');
+        }
+
+        // Set inputs
+        $data = array();
+        $data['slug'] = $slug;
+        $data['user_key'] = $user['id'];
+        $data['archived'] = 0;
+
+        // Insert world
+        $this->world_model->insert_world($data);
+
+        // Redirect to homepage
+        redirect(base_url() . $slug, 'refresh');
     }
 
     public function load_map_rooms()

@@ -19,7 +19,7 @@ date_default_timezone_set('America/New_York');
 
 // Return if this is dev
 function site_name() {
-    return 'gooseigniter';
+    return 'Big World';
 }
 
 // Return if this is dev

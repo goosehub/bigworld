@@ -91,10 +91,10 @@ Class room_model extends CI_Model
         $this->db->update('room', $data);
     }
 
-    function get_favorite($user_key, $room_key)
+    function get_favorite_room($user_key, $room_key)
     {
         $this->db->select('*');
-        $this->db->from('favorite');
+        $this->db->from('favorite_room');
         $this->db->where('user_key', $user_key);
         $this->db->where('room_key', $room_key);
         $query = $this->db->get();
@@ -102,29 +102,29 @@ Class room_model extends CI_Model
         return isset($result[0]) ? $result[0] : false;
     }
 
-    function delete_favorite($user_key, $room_key)
+    function delete_favorite_room($user_key, $room_key)
     {
         $this->db->where('user_key', $user_key);
         $this->db->where('room_key', $room_key);
-        $this->db->delete('favorite');
+        $this->db->delete('favorite_room');
     }
 
-    function create_favorite($user_key, $room_key)
+    function create_favorite_room($user_key, $room_key)
     {
         $data = array(
             'user_key' => $user_key,
             'room_key' => $room_key,
             'created' => date('Y-m-d H:i:s'),
         );
-        $this->db->insert('favorite', $data);
+        $this->db->insert('favorite_room', $data);
     }
 
-    function get_favorites_by_user_key($user_key)
+    function get_favorite_rooms_by_user_key($user_key)
     {
         $this->db->select('*');
         $this->db->from('room');
-        $this->db->where('favorite.user_key', $user_key);
-        $this->db->join('favorite', 'favorite.room_key = room.id', 'right');
+        $this->db->where('favorite_room.user_key', $user_key);
+        $this->db->join('favorite_room', 'favorite_room.room_key = room.id', 'right');
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;

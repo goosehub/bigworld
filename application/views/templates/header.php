@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
 
         <!-- Page Title -->
-        <title>Big World</title>
+        <title><?php echo $page_title; ?></title>
 
         <!-- Google please read this -->
         <meta name="description" content="Big World - Talk with people inside Google Maps">
