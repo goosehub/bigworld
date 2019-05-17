@@ -62,5 +62,44 @@ Class world_model extends CI_Model
         return $result;
     }
 
+    function get_favorite_world($user_key, $world_key)
+    {
+        $this->db->select('*');
+        $this->db->from('favorite_world');
+        $this->db->where('user_key', $user_key);
+        $this->db->where('world_key', $world_key);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
+    }
+
+    function delete_favorite_world($user_key, $world_key)
+    {
+        $this->db->where('user_key', $user_key);
+        $this->db->where('world_key', $world_key);
+        $this->db->delete('favorite_world');
+    }
+
+    function create_favorite_world($user_key, $world_key)
+    {
+        $data = array(
+            'user_key' => $user_key,
+            'world_key' => $world_key,
+            'created' => date('Y-m-d H:i:s'),
+        );
+        $this->db->insert('favorite_world', $data);
+    }
+
+    function get_favorite_worlds_by_user_key($user_key)
+    {
+        $this->db->select('*');
+        $this->db->from('world');
+        $this->db->where('favorite_world.user_key', $user_key);
+        $this->db->join('favorite_world', 'favorite_world.world_key = world.id', 'right');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 }
 ?>

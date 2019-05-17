@@ -22,13 +22,13 @@ body {
 
         <h2>
           <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-          Worlds
+          Discover Worlds
         </h2>
         <ul>
           <?php foreach ($worlds as $world) { ?>
           <li>
             <a href="<?=base_url()?>w/<?php echo $world['slug']; ?>">
-              w/<?php echo $world['slug']; ?>
+              <?php echo $world['slug']; ?>
             </a>
           </li>
           <?php } ?>

@@ -2,9 +2,31 @@
 
     <!-- Filter -->
     <div class="owned_rooms_menu_parent menu_element btn-group">
-        <a class="btn btn-default dropdown-toggle" href="<?=base_url()?>">
+        <button id="worlds_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-        </a>
+            <!-- Filter -->
+            <span class="caret"></span>
+        </button>
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
+            <li>
+                <a class="btn btn-primary dropdown-toggle" href="<?=base_url()?>">
+                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                    Homepage
+                </a>
+            </li>
+            <li>
+                <button class="btn <?php echo $world_is_favorite ? 'btn-success' : 'btn-action'; ?> dropdown-toggle form-control" id="favorite_world_button">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <?php echo $world['slug']; ?>
+                </button>
+            </li>
+            <?php foreach ($favorite_worlds as $favorite_world) { ?>
+            <?php if ($favorite_world['world_key'] === $world['id']) { continue; } ?>
+            <li><a class="world_link text-center" href="<?=base_url()?>w/<?php echo $favorite_world['slug']; ?>">
+                <?php echo $favorite_world['slug']; ?>
+            </a></li>
+            <?php } ?>
+        </ul>
     </div>
 
     <!-- Filter -->

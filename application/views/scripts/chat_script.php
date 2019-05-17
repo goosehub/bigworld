@@ -88,6 +88,10 @@ $('#favorite_room_button').click(function(){
   favorite_room(room_id);
 });
 
+$('#favorite_world_button').click(function(){
+  favorite_world();
+});
+
 function load_room(room_id) {
   // Get room
   ajax_get('room/get_room/' + room_id, function(room){
@@ -139,6 +143,21 @@ function favorite_room(room_id) {
     }
     else {
       $('#favorite_room_button').removeClass('btn-default').addClass('btn-success');
+    }
+  });
+}
+
+function favorite_world() {
+  // Send request
+  data = {};
+  data.world_id = world_id;
+  ajax_post('world/favorite', data, function(response){
+    // Activate favorite button
+    if ($('#favorite_world_button').hasClass('btn-success')) {
+      $('#favorite_world_button').removeClass('btn-success').addClass('btn-action');
+    }
+    else {
+      $('#favorite_world_button').removeClass('btn-action').addClass('btn-success');
     }
   });
 }
