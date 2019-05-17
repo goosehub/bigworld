@@ -28,7 +28,7 @@ class Room extends CI_Controller {
         $user = $this->user_model->get_this_user();
         $room['is_favorite'] = false;
         if ($user) {
-            $room['is_favorite'] = $this->room_model->get_favorite($user['id'], $room_id);
+            $room['is_favorite'] = $this->room_model->get_favorite_room($user['id'], $room_id);
         }
 
         // Handle room not found
@@ -77,7 +77,7 @@ class Room extends CI_Controller {
         // Check that no room at that location exists
         $input->lat = number_format($input->lat, 4);
         $input->lng = number_format($input->lng, 4);
-        $room_exists_at_location = $this->room_model->get_room_by_location($input->lat, $input->lng);
+        $room_exists_at_location = $this->room_model->get_room_by_location($input->lat, $input->lng, $input->world_id);
         if ($room_exists_at_location) {
             echo api_error_response('room_exists_at_location', 'Room at that location already exists.');
             return false;
@@ -87,6 +87,7 @@ class Room extends CI_Controller {
         // Create room
         $room = array();
         $room['name'] = $input->room_name;
+        $room['world_key'] = $input->world_key;
         $room['lat'] = $input->lat;
         $room['lng'] = $input->lng;
         $room['last_message_time'] = date('Y-m-d H:i:s');
@@ -114,17 +115,21 @@ class Room extends CI_Controller {
             echo api_error_response('room_id_missing', 'Room id is a required parameter and was not provided.');
             return false;
         }
+        if (!isset($input->world_id)) {
+            echo api_error_response('world_id_missing', 'World id is a required parameter and was not provided.');
+            return false;
+        }
 
         // Check if room is already a favorite
-        $get_favorite = $this->room_model->get_favorite($user['id'], $input->room_id);
+        $get_favorite = $this->room_model->get_favorite_room($user['id'], $input->room_id);
 
         // If current favorite, delete favorite
         if ($get_favorite) {
-            $this->room_model->delete_favorite($user['id'], $input->room_id);
+            $this->room_model->delete_favorite_room($user['id'], $input->room_id);
         }
         // If not current favorite, insert favorite
         else {
-            $this->room_model->create_favorite($user['id'], $input->room_id);
+            $this->room_model->create_favorite_room($user['id'], $input->room_id, $input->world_id);
         }
 
         // Respond

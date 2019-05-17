@@ -15,7 +15,8 @@
             <i class="fa fa-comments" aria-hidden="true"></i>
             Name
         </label>
-        <input type="room_name" class="form-control" id="input_room_name" name="room_name" placeholder="">
+        <input type="text" class="form-control" id="input_room_name" name="room_name" placeholder="">
+        <input type="hidden" id="input_world_key" name="world_key" value="<?php echo $world['id']; ?>">
     </div>
     <button id="create_room_submit" type="submit" class="btn btn-action form-control">
         Create

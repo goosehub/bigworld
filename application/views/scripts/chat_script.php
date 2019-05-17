@@ -131,6 +131,7 @@ function favorite_room(room_id) {
   // Send request
   data = {};
   data.room_id = room_id;
+  data.world_id = world_id;
   ajax_post('room/favorite', data, function(response){
     // Activate favorite button
     if ($('#favorite_room_button').hasClass('btn-success')) {
@@ -149,6 +150,7 @@ function messages_load(room_key, inital_load) {
   }
   if (inital_load) {
     $('#input_room_id').val(room_key);
+    $('#input_world_id').val(world_id);
     $("#message_content_parent").html('Loading');
     room_name = $('#room_name').html();
     $('title').html(room_name);
@@ -162,6 +164,7 @@ function messages_load(room_key, inital_load) {
     type: "POST",
     data: {
       room_key: room_key,
+      world_key: world_id,
       inital_load: inital_load,
       last_message_id: last_message_id
     },
@@ -243,6 +246,7 @@ function submit_new_message(event) {
   // Message input
   var message_input = $("#message_input").val();
   var room_key = $('#input_room_id').val();
+  var world_key = $('#input_world_id').val();
   // Empty chat input
   $('#message_input').val('');
   $.ajax({
@@ -250,7 +254,8 @@ function submit_new_message(event) {
     type: "POST",
     data: {
       message_input: message_input,
-      room_key: room_key
+      room_key: room_key,
+      world_key: world_key
     },
     cache: false,
     success: function(response) {

@@ -38,7 +38,7 @@ Class chat_model extends CI_Model
         return isset($result[0]) ? $result[0] : false;
     }
 
-    function new_message($user_key, $username, $color, $ip, $message, $room_key)
+    function new_message($user_key, $username, $color, $ip, $message, $room_key, $world_key)
     {
         $data = array(
             'user_key' => $user_key,
@@ -47,6 +47,7 @@ Class chat_model extends CI_Model
             'ip' => $ip,
             'message' => $message,
             'room_key' => $room_key,
+            'world_key' => $world_key,
             'timestamp' => date('Y-m-d H:i:s'),
         );
         $this->db->insert('message', $data);

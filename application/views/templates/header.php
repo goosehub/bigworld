@@ -41,6 +41,7 @@
         <script>
         var user = <?php echo $user ? json_encode($user) : 'false'; ?>;
         var base_url = '<?=base_url()?>';
+        var world_id = <?php echo isset($world) ? $world['id'] : false; ?>
         </script>
 
         <!-- Local Script -->

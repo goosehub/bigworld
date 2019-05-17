@@ -2,6 +2,13 @@
 
     <!-- Filter -->
     <div class="owned_rooms_menu_parent menu_element btn-group">
+        <a class="btn btn-default dropdown-toggle" href="<?=base_url()?>">
+            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <!-- Filter -->
+    <div class="owned_rooms_menu_parent menu_element btn-group">
         <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             <!-- Filter -->
@@ -9,7 +16,7 @@
         </button>
         <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($filters as $filter) { ?>
-            <li><a class="filter_link text-center" href="<?=base_url()?>?last_activity=<?php echo $filter['slug']; ?>">
+            <li><a class="filter_link text-center" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/?last_activity=<?php echo $filter['slug']; ?>">
                 <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 <?php } ?>
@@ -20,7 +27,7 @@
     </div>
 
     <!-- Favorites -->
-    <?php if ($user && !empty($user['favorites'])) { ?>
+    <?php if ($user && !empty($user['favorite_rooms'])) { ?>
     <div class="owned_rooms_menu_parent menu_element btn-group">
         <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" id="site_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-star" aria-hidden="true"></i>
@@ -28,8 +35,8 @@
             <span class="caret"></span>
         </button>
         <ul id="favorites_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
-            <?php foreach ($user['favorites'] as $favorite) { ?>
-            <li><a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>#<?php echo $favorite['id']; ?>">
+            <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
+            <li><a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $favorite['id']; ?>">
                 <?php echo $favorite['name'] ?>
             </a></li>
             <?php } ?>
@@ -48,7 +55,7 @@
         </button>
         <ul id="owned_rooms_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
             <?php foreach ($user['rooms'] as $user_room) { ?>
-            <li><a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>#<?php echo $user_room['id']; ?>">
+            <li><a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $user_room['id']; ?>">
                 <?php echo $user_room['name'] ?>
             </a></li>
             <?php } ?>
@@ -90,7 +97,7 @@
                 <i class="fa fa-bug" aria-hidden="true"></i>
                 Report Bugs
             </a></li>
-            <li><a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">
+            <li><a class="logout_button btn btn-danger" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/user/logout">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Logout
             </a></li>

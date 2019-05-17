@@ -27,8 +27,8 @@ body {
         <ul>
           <?php foreach ($worlds as $world) { ?>
           <li>
-            <a href="<?=base_url()?>/<?php echo $world['slug']; ?>">
-              <?php echo $world['slug']; ?>
+            <a href="<?=base_url()?>w/<?php echo $world['slug']; ?>">
+              w/<?php echo $world['slug']; ?>
             </a>
           </li>
           <?php } ?>

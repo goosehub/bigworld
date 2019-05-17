@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'main';
 
-$route['(:any)'] = "main/world/$1";
+$route['w/(:any)'] = "main/world/$1";
 $route['create_world'] = "main/create_world/$1";
 
 // Cron

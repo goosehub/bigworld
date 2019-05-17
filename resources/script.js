@@ -24,8 +24,8 @@ function ajax_post(url, data, callback) {
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			console.log(xhr.status);
-			console.log(thrownError);
+			console.error(xhr.status);
+			console.error(thrownError);
 		}
 	});
 }
@@ -51,8 +51,8 @@ function ajax_get(url, callback) {
 			}
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
-			console.log(xhr.status);
-			console.log(thrownError);
+			console.error(xhr.status);
+			console.error(thrownError);
 		}
 	});
 }

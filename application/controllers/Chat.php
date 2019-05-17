@@ -83,6 +83,7 @@ class Chat extends CI_Controller {
         // htmlspecialchars is used inside api_response on output
         $message = $this->input->post('message_input');
         $room_key = $this->input->post('room_key');
+        $world_key = $this->input->post('world_key');
 
         // Get most recent message
         $most_recent_message = $this->chat_model->get_last_message_in_room($room_key);
@@ -90,11 +91,11 @@ class Chat extends CI_Controller {
         // If it's been a while since last message, system message on time
         if ($most_recent_message && strtotime($most_recent_message['timestamp']) + MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE * 60 < time()) {
             $date_message = gmdate('g:i A M dS Y T');
-            $this->chat_model->new_message(SYSTEM_USER_ID, SYSTEM_DATE_USERNAME, '#000000', '', $date_message, $room_key);
+            $this->chat_model->new_message(SYSTEM_USER_ID, SYSTEM_DATE_USERNAME, '#000000', '', $date_message, $room_key, $world_key);
         }
 
         // Insert message
-        $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key);
+        $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key, $world_key);
 
         // Update room last new message
         $this->room_model->update_room_last_message_time($room_key);

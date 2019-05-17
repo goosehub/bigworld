@@ -50,10 +50,10 @@ class Main extends CI_Controller {
 
         if ($data['user']) {
             // Include owned rooms
-            $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id']);
+            $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id'], $data['world']['id']);
             
             // Include favorite_roomd rooms
-            $data['user']['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['user']['id']);
+            $data['user']['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['user']['id'], $data['world']['id']);
         }
 
         // Use last activity default first
@@ -65,7 +65,7 @@ class Main extends CI_Controller {
         }
 
         // Get rooms by last activity
-        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago']);
+        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago'], $data['world']['id']);
 
         // A/B testing
         $ab_array = array('', '');
@@ -156,7 +156,7 @@ class Main extends CI_Controller {
         $this->world_model->insert_world($data);
 
         // Redirect to homepage
-        redirect(base_url() . $slug, 'refresh');
+        redirect(base_url() . 'w/' . $slug, 'refresh');
     }
 
     public function load_map_rooms()
@@ -173,7 +173,7 @@ class Main extends CI_Controller {
         }
 
         // Get rooms by last activity
-        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago']);
+        $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago'], $this->input->get('world_id'));
 
         // Return rooms
         echo api_response($data['rooms']);
