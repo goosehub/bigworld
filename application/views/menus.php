@@ -28,12 +28,12 @@
                     <span class="text-default">
                         <?php echo $world['slug']; ?>
                     </span>
-                    <small id="favorite_world_remove_icon" class="text-danger" aria-hidden="true" style="<?php echo $world_is_favorite ? '' : 'display: none;'; ?>">
+                    <button id="favorite_world_remove_icon" class="btn btn-sm btn-link" aria-hidden="true" style="<?php echo $world_is_favorite ? '' : 'display: none;'; ?>">
                         (Un-Star)
-                    </small>
-                    <small id="favorite_world_add_icon" class="text-success" aria-hidden="true" style="<?php echo $world_is_favorite ? 'display: none;' : ''; ?>">
-                        (Give Star)
-                    </small>
+                    </button>
+                    <button id="favorite_world_add_icon" class="btn btn-sm btn-link" aria-hidden="true" style="<?php echo $world_is_favorite ? 'display: none;' : ''; ?>">
+                        (Make Starred)
+                    </button>
                 </a>
             </li>
             <?php foreach ($favorite_worlds as $favorite_world) { ?>
@@ -147,26 +147,36 @@
                     <input type="text" class="form-control" id="input_user_location" name="input_user_location" value="<?php echo $user['location']; ?>">
                 </form>
             </li>
-            <li><a class="btn btn-info" href="https://github.com/goosehub/bigworld" target="_blank">
-                <i class="fa fa-github" aria-hidden="true"></i>
-                GitHub
-            </a></li>
-            <li><a class="btn btn-success" href="https://gooseweb.io/" target="_blank">
-                <i class="fa fa-code" aria-hidden="true"></i>
-                GooseWeb
-            </a></li>
-            <li><a class="btn btn-primary" href="https://www.reddit.com/r/bigworldio/" target="_blank">
-                <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-                /r/bigworldio
-            </a></li>
-            <li><a class="report_bugs_button btn btn-warning" href="javascript:;">
-                <i class="fa fa-bug" aria-hidden="true"></i>
-                Report Bugs
-            </a></li>
-            <li><a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                Logout
-            </a></li>
+            <li>
+                <a class="btn btn-info" href="https://github.com/goosehub/bigworld" target="_blank">
+                    <i class="fa fa-github" aria-hidden="true"></i>
+                    GitHub
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-success" href="https://gooseweb.io/" target="_blank">
+                    <i class="fa fa-code" aria-hidden="true"></i>
+                    GooseWeb
+                </a>
+            </li>
+            <li>
+                <a class="btn btn-primary" href="https://www.reddit.com/r/bigworldio/" target="_blank">
+                    <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+                    /r/bigworldio
+                </a>
+            </li>
+            <li>
+                <a class="report_bugs_button btn btn-warning" href="javascript:;">
+                    <i class="fa fa-bug" aria-hidden="true"></i>
+                    Report Bugs
+                </a>
+            </li>
+            <li>
+                <a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    Logout
+                </a>
+            </li>
 <!--             <li>
                 <small>Get your friends on</small>
                 <div class="fb-like" data-href="https://landgrab.xyz/" data-layout="button" data-="recommend" data-show-faces="false" data-share="true"></div>

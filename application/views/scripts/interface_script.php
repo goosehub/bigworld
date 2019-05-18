@@ -2,11 +2,13 @@
 <script>
 
 var user;
+var favorite_room_keys = new Array();
 <?php if ($user) { ?>
 user = <?php echo json_encode($user); ?>;
 var user_load_polling_seconds = <?php echo USER_LOAD_POLLING_SECONDS; ?>;
+<?php } ?>
+<?php if (!$landing && $user) { ?>
 var favorite_rooms = <?php echo json_encode($user['favorite_rooms']); ?>;
-var favorite_room_keys = new Array();
 favorite_rooms.forEach(function (favorite_room) {
     favorite_room_keys.push(parseInt(favorite_room.room_key));
 });
@@ -58,6 +60,7 @@ $('#room_exit').click(function(){
     $('#room_parent').fadeOut();
 });
 
+<?php if (!$landing && $user) { ?>
 // Load favorite rooms on interval
 load_user();
 setInterval(function(){
@@ -90,6 +93,7 @@ function update_favorite_rooms() {
         );
     }
 }
+<?php } ?>
 
 // 
 // Center block hide and show logic

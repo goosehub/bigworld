@@ -28,6 +28,7 @@ class Main extends CI_Controller {
         $data['landing'] = true;
         $this->load->view('templates/header', $data);
         $this->load->view('landing', $data);
+        $this->load->view('report_bugs', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
     }
@@ -101,6 +102,7 @@ class Main extends CI_Controller {
         $this->load->view('blocks', $data);
         $this->load->view('room', $data);
         $this->load->view('login', $data);
+        $this->load->view('report_bugs', $data);
         $this->load->view('scripts/map_script', $data);
         $this->load->view('scripts/chat_script', $data);
         $this->load->view('scripts/interface_script', $data);
