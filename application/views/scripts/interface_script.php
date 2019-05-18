@@ -4,6 +4,7 @@
 var user;
 <?php if ($user) { ?>
 user = <?php echo json_encode($user); ?>;
+var user_load_polling_seconds = <?php echo USER_LOAD_POLLING_SECONDS; ?>
 <?php } ?>
 
 // Error reporting
@@ -51,6 +52,19 @@ $('.report_bugs_button').click(function(){
 $('#room_exit').click(function(){
     $('#room_parent').fadeOut();
 });
+
+// Load favorite rooms on interval
+load_user();
+setInterval(function(){
+    load_user();
+}, user_load_polling_seconds * 1000);
+
+function load_user() {
+    var url = 'main/load_user/' + world_id;
+    ajax_get(url, function(result){
+        console.log(result);
+    });
+}
 
 // 
 // Center block hide and show logic

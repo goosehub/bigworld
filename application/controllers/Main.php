@@ -188,6 +188,17 @@ class Main extends CI_Controller {
         return $location_prepopulate;
     }
 
+    public function load_user($world_id = false)
+    {
+        // Authentication
+        $data = $this->user_model->get_this_user();
+        if ($data) {
+            $data['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['id'], $world_id);
+        }
+        // htmlspecialchars is used inside api_response
+        echo api_response($data);
+    }
+
     public function get_filters()
     {
         $filters = array();

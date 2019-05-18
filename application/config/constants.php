@@ -10,6 +10,7 @@ define('MAP_DEFAULT_LNG', 20);
 // Polling
 define('MAP_ROOM_POLLING_SECONDS', 30);
 define('CHAT_LOAD_POLLING_SECONDS', 2);
+define('USER_LOAD_POLLING_SECONDS', 5);
 
 // Room Trim
 define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 365 * 24 * 60);
