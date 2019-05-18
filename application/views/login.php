@@ -96,19 +96,25 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="register_location">
-            <i class="fa fa-map" aria-hidden="true"></i>
-            Location
-        </label>
-        <input type="location" class="form-control" id="register_location" name="register_location" value="<?php echo $location_prepopulate; ?>">
-    </div>
-    <div class="form-group">
-        <label for="register_color">
-            <i class="fa fa-commenting-o" aria-hidden="true"></i>
-            Color
-        </label>
-        <input type="text" class="jscolor color_input form-control" id="register_color" name="register_color" value="<?php echo $random_color; ?>">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="register_location">
+                    <i class="fa fa-map" aria-hidden="true"></i>
+                    Location
+                </label>
+                <input type="location" class="form-control" id="register_location" name="register_location" value="<?php echo $location_prepopulate; ?>">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="register_color">
+                    <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                    Color
+                </label>
+                <input type="text" class="jscolor color_input form-control" id="register_color" name="register_color" value="<?php echo $random_color; ?>">
+            </div>
+        </div>
     </div>
     <button type="submit" class="btn btn-action form-control">
         Join

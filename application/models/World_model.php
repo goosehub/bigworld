@@ -13,18 +13,8 @@ Class world_model extends CI_Model
         $this->db->select('*');
         $this->db->from('world');
         $this->db->where('archived', 0);
-        $this->db->order_by('rand()');
-        $query = $this->db->get();
-        $result = $query->result_array();
-        return $result;
-    }
-
-    function get_all_worlds_by_last_activity($last_activity_in_minutes)
-    {
-        $this->db->select('*');
-        $this->db->from('world');
-        $this->db->where('archived', 0);
-        $this->db->where('last_message_time >', date('Y-m-d H:i:s', time() - $last_activity_in_minutes * 60));
+        // $this->db->order_by('rand()');
+        $this->db->order_by('last_load', 'desc');
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -38,6 +28,15 @@ Class world_model extends CI_Model
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
+
+        // Update world last_load
+        $data = array(
+            'last_load' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $result[0]['id']);
+        $this->db->update('world', $data);
+
+        // Return world
         return isset($result[0]) ? $result[0] : false;
     }
 
@@ -49,6 +48,16 @@ Class world_model extends CI_Model
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
+
+
+        // Update world last_load
+        $data = array(
+            'last_load' => date('Y-m-d H:i:s')
+        );
+        $this->db->where('id', $result[0]['id']);
+        $this->db->update('world', $data);
+
+        // Return world
         return isset($result[0]) ? $result[0] : false;
     }
 

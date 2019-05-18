@@ -135,7 +135,7 @@ CREATE TABLE `world` (
   `slug` varchar(100) NOT NULL,
   `user_key` int(10) UNSIGNED NOT NULL,
   `archived` bit(1) NOT NULL,
-  `last_message_time` timestamp NOT NULL,
+  `last_load` timestamp NOT NULL,
   `created` timestamp NOT NULL,
   `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
