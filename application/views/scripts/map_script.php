@@ -25,7 +25,7 @@ var current_last_activity_slug = '<?php echo $current_last_activity_filter['slug
 
 // Constants for markers
 var default_marker_img = blue_marker_img;
-var current_marker_img = red_marker_img;
+var current_marker_img = classic_marker_img;
 var favorite_marker_img = green_marker_img;
 // Google Map Created Callback
 var map;
@@ -60,7 +60,6 @@ function initMap() {
     // This loop might be thousands large
     // Keep this performant and minimize bytes transfered
     <?php foreach ($rooms as $room) { ?>
-
     // Create marker
     var location = {};
     location.lat = <?php echo $room['lat']; ?>;
@@ -70,7 +69,7 @@ function initMap() {
         map: map,
         title: '<?php echo $room['name'] ?>',
         room_id: <?php echo $room['id'] ?>,
-        icon: default_marker_img
+        icon: favorite_room_keys.includes(<?php echo $room['id'] ?>) ? favorite_marker_img : default_marker_img
     });
 
     // Open room on click
@@ -171,6 +170,9 @@ function initMap() {
                     marker.setIcon(current_marker_img);
                     current_marker = marker;
                 }
+                else if (favorite_room_keys.includes(parseInt(room.id))) {
+                    marker.setIcon(favorite_marker_img);
+                }
 
                 // Open room on click
                 marker.addListener('click', marker_clicked);
@@ -243,7 +245,12 @@ function initMap() {
 
             // Switch marker icons
             if (current_marker) {
-                current_marker.setIcon(default_marker_img);
+                if (favorite_room_keys.includes(current_marker.room_key)) {
+                    current_marker.setIcon(favorite_marker_img);
+                }
+                else {
+                    current_marker.setIcon(default_marker_img);
+                }
             }
             markers[result.id].setIcon(current_marker_img);
             current_marker = markers[result.id];

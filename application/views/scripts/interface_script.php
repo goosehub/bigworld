@@ -4,7 +4,12 @@
 var user;
 <?php if ($user) { ?>
 user = <?php echo json_encode($user); ?>;
-var user_load_polling_seconds = <?php echo USER_LOAD_POLLING_SECONDS; ?>
+var user_load_polling_seconds = <?php echo USER_LOAD_POLLING_SECONDS; ?>;
+var favorite_rooms = <?php echo json_encode($user['favorite_rooms']); ?>;
+var favorite_room_keys = new Array();
+favorite_rooms.forEach(function (favorite_room) {
+    favorite_room_keys.push(parseInt(favorite_room.room_key));
+});
 <?php } ?>
 
 // Error reporting
@@ -62,11 +67,16 @@ setInterval(function(){
 function load_user() {
     var url = 'main/load_user/' + world_id;
     ajax_get(url, function(result){
-        update_favorite_rooms(result.favorite_rooms);
+        favorite_rooms = result.favorite_rooms;
+        update_favorite_rooms();
     });
 }
 
-function update_favorite_rooms(favorite_rooms) {
+function update_favorite_rooms() {
+    favorite_room_keys = new Array();
+    favorite_rooms.forEach(function (favorite_room) {
+        favorite_room_keys.push(parseInt(favorite_room.room_key));
+    });
     $('.favorite_room_listing').remove();
     let loop_length = favorite_rooms.length;
     for (var i = 0; i < loop_length; i++) {

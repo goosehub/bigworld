@@ -8,7 +8,7 @@ define('MAP_DEFAULT_LAT', 0);
 define('MAP_DEFAULT_LNG', 20);
 
 // Polling
-define('MAP_ROOM_POLLING_SECONDS', 30);
+define('MAP_ROOM_POLLING_SECONDS', 5);
 define('CHAT_LOAD_POLLING_SECONDS', 2);
 define('USER_LOAD_POLLING_SECONDS', 60);
 

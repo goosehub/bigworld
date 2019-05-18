@@ -102,7 +102,10 @@ function load_room(room_id) {
         $('#zoom_in_button').show();
 
         // Switch marker icons
-        if (current_marker) {
+        if (current_marker && favorite_room_keys.includes(parseInt(current_marker.room_id))) {
+            current_marker.setIcon(favorite_marker_img);
+        }
+        else if (current_marker) {
             current_marker.setIcon(default_marker_img);
         }
         if (markers[room_id]) {
