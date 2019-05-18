@@ -14,6 +14,7 @@
     <?php if ($failed_form === 'login') { echo $validation_errors; } ?>
     <!-- Form -->
     <?php echo form_open('user/login'); ?>
+    <input type="current_url" name="current_url" id="current_url" value="<?php echo uri_string(); ?>">
     <div class="form-group">
         <label for="input_username">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
@@ -68,6 +69,7 @@
     <div class="form-group">
         <input type="hidden" name="bee_movie" id="bee_movie" value="">
         <input type="hidden" name="ab_test" id="ab_test" value="">
+        <input type="current_url" name="current_url" id="current_url" value="<?php echo uri_string(); ?>">
         <label for="input_username">
             <i class="fa fa-user-circle" aria-hidden="true"></i>
             Username

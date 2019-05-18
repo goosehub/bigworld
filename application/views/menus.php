@@ -96,7 +96,7 @@
             <span class="caret"></span>
         </button>
         <ul id="user_dropdown" class="dropdown_item dropdown-menu dropdown-menu-right" aria-labelledby="site_dropdown">
-            <li><p class="text-center">Big World</p></li>
+            <li><p class="text-center"><?php echo site_name(); ?></p></li>
             <li><input type="text" class="jscolor color_input form-control" id="input_user_color" name="input_user_color" value="<?php echo $user['color']; ?>"></li>
             <li>
                 <form id="update_location_form" onsubmit="update_location(); return false;">

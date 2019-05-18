@@ -62,7 +62,8 @@ body {
     }
 }
 .landing-site-title {
-    font-family: 'Baloo Bhai', cursive;
+    font-family: 'Chango', cursive;
+    word-spacing: 2em;
 }
 .landing-lead-text {
     font-family: 'Baloo Bhai', cursive;

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-6 left-landing blue-background-color">
       <h1 class="text-center landing-site-title black-color">
-        <?php echo site_name(); ?>
+        <?php echo strtoupper(site_name()); ?>
       </h1>
       <br>
       <div class="row">
@@ -11,17 +11,17 @@
         <div class="col-sm-8">
           <p class="lead black-color landing-lead-text">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            Create A Map of the world
+            Meet people from around the world
           </p>
           <br>
           <p class="lead black-color landing-lead-text">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            Fill your world with Chatrooms
+            Create your own world
           </p>
           <br>
           <p class="lead black-color landing-lead-text">
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            It's your world, connect with it
+            Expore the earth
           </p>
         </div>
         <div class="col-sm-2">

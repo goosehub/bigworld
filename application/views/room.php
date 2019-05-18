@@ -2,7 +2,7 @@
 
     <div id="room_toolbar">
 
-        <strong id="room_name">Big World</strong>
+        <strong id="room_name"><?php echo $world['slug']; ?></strong>
 
         <div id="room_exit" class="btn btn-danger pull-right">
             <i class="fa fa-times-circle" aria-hidden="true"></i>
@@ -31,7 +31,7 @@
     <div id="message_outer_parent">
         <div id="message_content_parent">
             <div id="empty_room_message" class="text-center">
-                <p>Welcome to Big World</p>
+                <p>Welcome to <?php echo $world['slug']; ?></p>
                 <p>Click on any pin to join a conversation</p>
                 <p>Make an account to create your own pins</p>
             </div>
