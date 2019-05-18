@@ -19,14 +19,13 @@ var red_marker_img = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 var purple_marker_img = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
 var yellow_marker_img = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 
-
 // Map room polling
 var map_room_polling_seconds = <?php echo MAP_ROOM_POLLING_SECONDS; ?>;
 var current_last_activity_slug = '<?php echo $current_last_activity_filter['slug']; ?>';
 
 // Constants for markers
-var default_marker_img = classic_marker_img;
-var current_marker_img = blue_marker_img;
+var default_marker_img = blue_marker_img;
+var current_marker_img = red_marker_img;
 var favorite_marker_img = green_marker_img;
 // Google Map Created Callback
 var map;
@@ -58,7 +57,7 @@ function initMap() {
   });
 
   // Add markers to map
-  // This loop might thousands large
+  // This loop might be thousands large
   // Keep this performant and minimize bytes transfered
   <?php foreach ($rooms as $room) { ?>
 
@@ -71,6 +70,7 @@ function initMap() {
     map: map,
     title: '<?php echo $room['name'] ?>',
     room_id: <?php echo $room['id'] ?>,
+    icon: default_marker_img
   });
 
   // Open room on click
@@ -151,9 +151,10 @@ function initMap() {
     ajax_get(url, function(result){
       // Remove existing markers
       Object.keys(markers).forEach(function(key) {
-        console.log(key, markers[key]);
         markers[key].setMap(null);
       });
+
+      // current_marker_room_id = current_marker.room_id;
 
       $.each(result, function(i, room) {
         var location = {};
@@ -163,8 +164,13 @@ function initMap() {
           position: location,
           map: map,
           title: room.name,
-          room_id: parseInt(room.id)
+          room_id: parseInt(room.id),
+          icon: default_marker_img
         });
+        if (room.id == current_marker.room_id) {
+          marker.setIcon(current_marker_img);
+          current_marker = marker;
+        }
 
         // Open room on click
         marker.addListener('click', marker_clicked);

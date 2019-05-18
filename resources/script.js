@@ -11,8 +11,8 @@ function ajax_post(url, data, callback) {
 		dataType: 'json',
 		success: function(data) {
 			// Handle errors
-			console.log(url);
-			console.log(data);
+			// console.log(url);
+			// console.log(data);
 			if (data['error']) {
 				alert(data['error_message']);
 				return false;
@@ -38,8 +38,8 @@ function ajax_get(url, callback) {
 		dataType: 'json',
 		success: function(data) {
 			// Handle errors
-			console.log(url);
-			console.log(data);
+			// console.log(url);
+			// console.log(data);
 			if (data['error']) {
 				alert(data['error_message']);
 				return false;

@@ -104,6 +104,7 @@ function load_room(room_id) {
     // Set up room
     window.location.hash = room_id;
     $('#room_name').html(room.name);
+    $('#zoom_out_button').hide();
     $('#zoom_in_button').show();
 
     // Switch marker icons
@@ -127,7 +128,7 @@ function load_room(room_id) {
     messages_load(room_id, true);
     messages_load_interval_id = setInterval(function() {
       messages_load(room_id, false);
-    }, load_interval);
+    }, load_interval * 1000);
   });
 }
 
@@ -189,7 +190,6 @@ function messages_load(room_key, inital_load) {
     },
     cache: false,
     success: function(response) {
-      console.log('load messages');
       var html = '';
       // Emergency force reload
       if (response === 'reload') {
@@ -278,7 +278,6 @@ function submit_new_message(event) {
     },
     cache: false,
     success: function(response) {
-      // console.log('submit');
       // All responses are error messsages
       if (response) {
         alert(response);
