@@ -58,6 +58,7 @@ $('#room_exit').click(function(){
 
 $('.exit_center_block').click(function(){
   $('.center_block').hide();
+  $('.landing_center_block').hide();
 });
 $('.login_button').click(function(){
     $('.center_block').hide();
@@ -65,6 +66,18 @@ $('.login_button').click(function(){
 });
 $('.register_button').click(function(){
     $('.center_block').hide();
+    $('#register_block').show();
+});
+$('.landing_login_button').click(function(){
+    $('.landing_login_button').addClass('disabled');
+    $('.landing_register_button').removeClass('disabled');
+    $('.landing_center_block').hide();
+    $('#login_block').show();
+});
+$('.landing_register_button').click(function(){
+    $('.landing_register_button').addClass('disabled');
+    $('.landing_login_button').removeClass('disabled');
+    $('.landing_center_block').hide();
     $('#register_block').show();
 });
 $('.login_button').click(function(){

@@ -13,6 +13,7 @@ Class world_model extends CI_Model
         $this->db->select('*');
         $this->db->from('world');
         $this->db->where('archived', 0);
+        $this->db->order_by('rand()');
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;

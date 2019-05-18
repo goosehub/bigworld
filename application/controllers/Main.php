@@ -28,7 +28,6 @@ class Main extends CI_Controller {
         $data['landing'] = true;
         $this->load->view('templates/header', $data);
         $this->load->view('landing', $data);
-        $this->load->view('login', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
     }
@@ -41,7 +40,8 @@ class Main extends CI_Controller {
         // Get World
         $data['world'] = $this->world_model->get_world_by_slug($slug);
         if (!$data['world']) {
-            echo 'no world';
+            $this->output->set_status_header('404');
+            $this->load->view('templates/world_404', $data);
             return;
         }
 
@@ -133,47 +133,6 @@ class Main extends CI_Controller {
         $data['just_registered'] = $this->session->flashdata('just_registered');
 
         return $data;
-    }
-
-    public function create_world()
-    {
-        $user = $this->user_model->get_this_user();
-        // If user not logged in, return with fail
-        if (!$user) {
-            echo 'not logged in';
-            return;
-        }
-
-        // Basic Validation
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('slug', 'Slug', 'trim|required|alpha|max_length[100]');
-        
-        // Fail Basic Validation
-        if ($this->form_validation->run() == FALSE) {
-            echo '{"error": "' . trim(strip_tags(validation_errors())) . '"}';
-            return false;
-        }
-
-        $slug = $this->input->post('slug');
-
-        // Get World
-        $data['world'] = $this->world_model->get_world_by_slug($slug);
-        if ($data['world']) {
-            redirect(base_url() . 'w/' . $slug, 'refresh');
-            return;
-        }
-
-        // Set inputs
-        $data = array();
-        $data['slug'] = $slug;
-        $data['user_key'] = $user['id'];
-        $data['archived'] = 0;
-
-        // Insert world
-        $this->world_model->insert_world($data);
-
-        // Redirect to homepage
-        redirect(base_url() . 'w/' . $slug, 'refresh');
     }
 
     public function load_map_rooms()

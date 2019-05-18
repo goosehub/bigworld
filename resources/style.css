@@ -1,3 +1,35 @@
+/* Color Scheme */
+.blue-color { 
+    color: #B1DDF1;
+}
+.green-color { 
+    color: #4BC6B9;
+}
+.yellow-color { 
+    color: #F5EE9E;
+}
+.orange-color { 
+    color: #F49E4C;
+}
+.black-color { 
+    color: #020122;
+}
+.blue-background-color { 
+    background-color: #B1DDF1;
+}
+.green-background-color { 
+    background-color: #4BC6B9;
+}
+.yellow-background-color { 
+    background-color: #F5EE9E;
+}
+.orange-background-color { 
+    background-color: #F49E4C;
+}
+.black-background-color { 
+    background-color: #020122;
+}
+
 /* Global */
 html,
 body {
@@ -9,6 +41,34 @@ body {
 .btn {
     border-radius: 0;
     font-family: "Roboto", sans-serif;
+}
+
+/* Landing */
+.right-landing {
+    height: 100vh;
+    overflow-y: auto;
+}
+.left-landing {
+    height: 100vh;
+    overflow-y: auto;
+}
+.landing-site-title {
+    font-family: 'Baloo Bhai', cursive;
+}
+.landing-lead-text {
+    font-family: 'Baloo Bhai', cursive;
+}
+.landing_center_block {
+    display: none;
+}
+.landing_login_button, .landing_register_button {
+    width: 33%;
+    text-align: center;
+    margin: 0 auto;
+}
+.landing-world-button {
+    border-radius: 0.6em;
+    margin: 0.2em;
 }
 
 /* Map */

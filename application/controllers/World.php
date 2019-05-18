@@ -12,6 +12,50 @@ class World extends CI_Controller {
         $this->main_model->record_request();
     }
 
+    public function create_world()
+    {
+        $user = $this->user_model->get_this_user();
+        // If user not logged in, return with fail
+        if (!$user) {
+            echo 'not logged in';
+            return;
+        }
+
+        // Basic Validation
+        $this->load->library('form_validation');
+        // May consider using alpha_dash instead for more flexibility
+        $this->form_validation->set_rules('slug', 'Slug', 'trim|required|alpha_numeric|max_length[100]');
+        
+        // Fail Basic Validation
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('failed_form', 'create_world');
+            $this->session->set_flashdata('validation_errors', validation_errors());
+            redirect(base_url(), 'refresh');
+            return false;
+        }
+
+        $slug = $this->input->post('slug');
+
+        // Get World
+        $data['world'] = $this->world_model->get_world_by_slug($slug);
+        if ($data['world']) {
+            redirect(base_url() . 'w/' . $slug, 'refresh');
+            return;
+        }
+
+        // Set inputs
+        $data = array();
+        $data['slug'] = $slug;
+        $data['user_key'] = $user['id'];
+        $data['archived'] = 0;
+
+        // Insert world
+        $this->world_model->insert_world($data);
+
+        // Redirect to homepage
+        redirect(base_url() . 'w/' . $slug, 'refresh');
+    }
+
     public function favorite()
     {
         // Authentication
