@@ -8,17 +8,18 @@
         </a>
     </div>
 
-    <!-- World -->
-    <div class="worlds_menu_parent menu_element btn-group">
-        <button id="worlds_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    <!-- Favorite Worlds -->
+    <div class="favorite_worlds_menu_parent menu_element btn-group">
+        <button id="favorite_worlds_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             <!-- Filter -->
             <span class="caret"></span>
         </button>
-        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="worlds_button">
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="favorite_worlds_button">
             <li>
-                <button class="btn <?php echo $world_is_favorite ? 'btn-success' : 'btn-action'; ?> dropdown-toggle form-control" id="favorite_world_button">
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                <button class="btn dropdown-toggle form-control <?php echo $world_is_favorite ? 'active' : ''; ?>" id="favorite_world_button">
+                    <span id="favorite_world_remove_icon" class="text-danger glyphicon glyphicon-minus" aria-hidden="true" style="<?php echo $world_is_favorite ? '' : 'display: none;'; ?>"></span>
+                    <span id="favorite_world_add_icon" class="text-success glyphicon glyphicon-plus" aria-hidden="true" style="<?php echo $world_is_favorite ? 'display: none;' : ''; ?>"></span>
                     <?php echo $world['slug']; ?>
                 </button>
             </li>

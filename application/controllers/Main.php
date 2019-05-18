@@ -111,6 +111,9 @@ class Main extends CI_Controller {
     {
         // return $data['filters'][LAST_ACTIVITY_DEFAULT];
         $recent_rooms = $this->room_model->get_recent_rooms($world_id, DEFAULT_NUMBER_OF_ROOMS);
+        if (empty($recent_rooms)) {
+            return $this->get_filters()['all'];
+        }
         $time_needed_to_include = strtotime($recent_rooms[0]['last_message_time']);
         $minutes_ago = (time() - $time_needed_to_include) / 60;
         foreach (array_reverse($this->get_filters()) as $filter) {

@@ -154,11 +154,15 @@ function favorite_world() {
     data.world_id = world_id;
     ajax_post('world/favorite', data, function(response){
         // Activate favorite button
-        if ($('#favorite_world_button').hasClass('btn-success')) {
-            $('#favorite_world_button').removeClass('btn-success').addClass('btn-action');
+        if ($('#favorite_world_button').hasClass('active')) {
+            $('#favorite_world_button').removeClass('active');
+            $('#favorite_world_add_icon').show();
+            $('#favorite_world_remove_icon').hide();
         }
         else {
-            $('#favorite_world_button').removeClass('btn-action').addClass('btn-success');
+            $('#favorite_world_button').addClass('active');
+            $('#favorite_world_remove_icon').show();
+            $('#favorite_world_add_icon').hide();
         }
     });
 }
