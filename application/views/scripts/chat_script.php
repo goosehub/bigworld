@@ -70,24 +70,19 @@ if (window.location.hash) {
     load_room(room_id);
 }
 
-// Load owned room on click
-$('.owned_room_link').click(function(){
-    room_id = $(this).attr('room_id');
-    load_room(room_id);
-});
-
-// Load favorite room on click
+// Load favorite room
 $('#favorites_dropdown').on('click', '.favorite_room_link', function(){
     room_id = $(this).attr('room_id') ? $(this).attr('room_id') : $(this).parent().attr('room_id');
     load_room(room_id);
 });
 
-// Load owned room on click
+// Favorite room
 $('#favorite_room_button').click(function(){
     room_id = current_marker.room_id
     favorite_room(room_id);
 });
 
+// Favorite current world
 $('#favorite_world_button').click(function(){
     favorite_world();
 });
