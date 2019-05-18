@@ -77,8 +77,8 @@ $('.owned_room_link').click(function(){
 });
 
 // Load favorite room on click
-$('.favorite_room_link').click(function(){
-    room_id = $(this).attr('room_id');
+$('#favorites_dropdown').on('click', '.favorite_room_link', function(){
+    room_id = $(this).attr('room_id') ? $(this).attr('room_id') : $(this).parent().attr('room_id');
     load_room(room_id);
 });
 
@@ -95,7 +95,6 @@ $('#favorite_world_button').click(function(){
 function load_room(room_id) {
     // Get room
     ajax_get('room/get_room/' + room_id, function(room){
-
         // Ensure chat window is set up
         $('#message_input').show();
         $('#message_input').focus();
@@ -111,8 +110,10 @@ function load_room(room_id) {
         if (current_marker) {
             current_marker.setIcon(default_marker_img);
         }
-        markers[room_id].setIcon(current_marker_img);
-        current_marker = markers[room_id];
+        if (markers[room_id]) {
+            markers[room_id].setIcon(current_marker_img);
+            current_marker = markers[room_id];
+        }
 
         // Favorite button
         $('#favorite_room_button').removeClass('btn-success').removeClass('btn-default').show();
@@ -145,6 +146,7 @@ function favorite_room(room_id) {
         else {
             $('#favorite_room_button').removeClass('btn-default').addClass('btn-success');
         }
+        load_user();
     });
 }
 
@@ -175,7 +177,7 @@ function messages_load(room_key, inital_load) {
     if (inital_load) {
         $('#input_room_id').val(room_key);
         $('#input_world_id').val(world_id);
-        $("#message_content_parent").html('Loading');
+        $("#message_content_parent").html('');
         room_name = $('#room_name').html();
         $('title').html(room_name);
         last_message_id = 0;

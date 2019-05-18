@@ -62,8 +62,23 @@ setInterval(function(){
 function load_user() {
     var url = 'main/load_user/' + world_id;
     ajax_get(url, function(result){
-        console.log(result);
+        update_favorite_rooms(result.favorite_rooms);
     });
+}
+
+function update_favorite_rooms(favorite_rooms) {
+    $('.favorite_room_listing').remove();
+    let loop_length = favorite_rooms.length;
+    for (var i = 0; i < loop_length; i++) {
+        let favorite_room = favorite_rooms[i];
+        $('#favorites_dropdown').append(
+            '<li class="favorite_room_listing">' + 
+                '<a class="favorite_room_link text-center" room_id="' + favorite_room.room_key + '" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#' + favorite_room.room_key + '">' + 
+                    favorite_room.name + 
+                '</a>' + 
+            '</li>'
+        );
+    }
 }
 
 // 

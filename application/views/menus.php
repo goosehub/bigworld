@@ -62,12 +62,14 @@
                     <i class="fa fa-circle" aria-hidden="true"></i>
                 </div>
             </li>
+            <?php if (false) { ?> 
             <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
-            <li>
+            <li class="favorite_room_listing">
                 <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $favorite['id']; ?>">
                     <?php echo $favorite['name'] ?>
                 </a>
             </li>
+            <?php } ?>
             <?php } ?>
         </ul>
     </div>
