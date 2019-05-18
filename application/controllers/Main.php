@@ -56,7 +56,7 @@ class Main extends CI_Controller {
 
         if ($data['user']) {
             // Include owned rooms
-            $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id'], $data['world']['id']);
+            // $data['user']['rooms'] = $this->room_model->get_rooms_by_user_key($data['user']['id'], $data['world']['id']);
             
             // Include favorite_roomd rooms
             $data['user']['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['user']['id'], $data['world']['id']);
