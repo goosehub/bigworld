@@ -44,13 +44,22 @@ body {
 }
 
 /* Landing */
-.right-landing {
-    height: 100vh;
-    overflow-y: auto;
-}
 .left-landing {
     height: 100vh;
     overflow-y: auto;
+    /* https://pixabay.com/vectors/continents-world-map-earth-outline-28616/ */
+    background-image: url(img/earth-outline.png);
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-position: center;
+}
+.right-landing {
+    height: 100vh;
+}
+@media only screen and (min-device-width: 600px) {
+    .right-landing {
+        overflow-y: auto;
+    }
 }
 .landing-site-title {
     font-family: 'Baloo Bhai', cursive;
@@ -61,14 +70,15 @@ body {
 .landing_center_block {
     display: none;
 }
-.landing_login_button, .landing_register_button {
-    width: 33%;
-    text-align: center;
-    margin: 0 auto;
-}
 .landing-world-button {
     border-radius: 0.6em;
     margin: 0.2em;
+}
+.landing_login_button, .landing_register_button {
+    border-radius: 0.5em 0.5em 0 0;
+}
+.landing-world-button {
+    font-family: 'Fira Mono', monospace;
 }
 
 /* Map */

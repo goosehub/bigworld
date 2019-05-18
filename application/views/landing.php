@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid landing-container">
   <div class="row">
     <div class="col-md-6 left-landing blue-background-color">
       <h1 class="text-center landing-site-title black-color">
@@ -29,26 +29,32 @@
       </div>
       <br>
 
-      <!-- Login and Join -->
-      <?php if (!$user) { ?>
-      <div class="text-center">
-        <button class="landing_login_button menu_element btn btn-primary">
-          <i class="fa fa-sign-in" aria-hidden="true"></i>
-          Login
-        </button>
-        <button class="landing_register_button menu_element btn btn-action">
-          <i class="fa fa-user-plus" aria-hidden="true"></i>
-          Join
-        </button>
-      </div>
-      <?php } ?>
-
       <!-- Login Block -->
       <div class="row">
         <div class="col-sm-2">
         </div>
         <div class="col-sm-8">
-          <hr>
+
+          <!-- Login and Join -->
+          <?php if (!$user) { ?>
+          <div class="text-center">
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="landing_login_button form-control menu_element btn btn-default">
+                  <i class="fa fa-sign-in" aria-hidden="true"></i>
+                  Login
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button class="landing_register_button form-control menu_element btn btn-default">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>
+                  Join
+                </button>
+              </div>
+            </div>
+          </div>
+          <?php } ?>
+
           <?php if (!$user) { ?>
           <div id="login_block" class="landing_center_block well">
             <strong>
@@ -151,7 +157,16 @@
 
           <?php if ($user) { ?>
           <div class="well">
-            <h2>Create World</h2>
+            <h2 class="pull-left">Create World</h2>
+            <p class="pull-right">
+              <a class="logout_button" href="<?=base_url()?>user/logout">
+                <small>
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  Logout
+                </small>
+              </a>
+            </p>
+            <div class="clearfix"></div>
             <hr>
             <!-- Validation Errors -->
             <span class="text-danger">

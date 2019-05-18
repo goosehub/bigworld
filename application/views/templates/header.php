@@ -23,7 +23,7 @@
         <link href="<?=base_url()?>resources/font_awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto|Righteous|Open+Sans|Baloo+Bhai" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Roboto|Righteous|Open+Sans|Baloo+Bhai|Fira+Mono" rel="stylesheet">
 
         <!-- jQuery -->
         <script src="<?=base_url()?>resources/jquery/jquery-3.1.1.min.js"></script>
@@ -41,7 +41,7 @@
         <script>
         var user = <?php echo $user ? json_encode($user) : 'false'; ?>;
         var base_url = '<?=base_url()?>';
-        var world_id = <?php echo isset($world) ? $world['id'] : false; ?>
+        var world_id = <?php echo isset($world) ? $world['id'] : 'false'; ?>;
         </script>
 
         <!-- Local Script -->
@@ -58,7 +58,7 @@
         <link href="<?=base_url()?>resources/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css">
 
     </head>
-    <body>
+    <body class="black-background-color">
         <!-- Facebook share -->
         <!-- Shit turned off for now -->
         <div id="fb-root"></div>

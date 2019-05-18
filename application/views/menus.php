@@ -119,7 +119,7 @@
                 <i class="fa fa-bug" aria-hidden="true"></i>
                 Report Bugs
             </a></li>
-            <li><a class="logout_button btn btn-danger" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/user/logout">
+            <li><a class="logout_button btn btn-danger" href="<?=base_url()?>user/logout">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
                 Logout
             </a></li>
