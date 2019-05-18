@@ -12,58 +12,62 @@
     <div class="favorite_worlds_menu_parent menu_element btn-group">
         <button id="favorite_worlds_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            <!-- Filter -->
             <span class="caret"></span>
         </button>
         <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="favorite_worlds_button">
             <li>
-                <button class="btn dropdown-toggle form-control <?php echo $world_is_favorite ? 'active' : ''; ?>" id="favorite_world_button">
-                    <span id="favorite_world_remove_icon" class="text-danger glyphicon glyphicon-minus" aria-hidden="true" style="<?php echo $world_is_favorite ? '' : 'display: none;'; ?>"></span>
-                    <span id="favorite_world_add_icon" class="text-success glyphicon glyphicon-plus" aria-hidden="true" style="<?php echo $world_is_favorite ? 'display: none;' : ''; ?>"></span>
-                    <?php echo $world['slug']; ?>
-                </button>
+                <div class="world_link text-center">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    Starred Worlds
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                </div>
+            </li>
+            <li>
+                <a class="world_link text-center <?php echo $world_is_favorite ? 'active' : ''; ?>" id="favorite_world_button" href="javascript:void(0)">
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <span class="text-default">
+                        <?php echo $world['slug']; ?>
+                    </span>
+                    <small id="favorite_world_remove_icon" class="text-danger" aria-hidden="true" style="<?php echo $world_is_favorite ? '' : 'display: none;'; ?>">
+                        (Un-Star)
+                    </small>
+                    <small id="favorite_world_add_icon" class="text-success" aria-hidden="true" style="<?php echo $world_is_favorite ? 'display: none;' : ''; ?>">
+                        (Give Star)
+                    </small>
+                </a>
             </li>
             <?php foreach ($favorite_worlds as $favorite_world) { ?>
             <?php if ($favorite_world['world_key'] === $world['id']) { continue; } ?>
-            <li><a class="world_link text-center" href="<?=base_url()?>w/<?php echo $favorite_world['slug']; ?>">
-                <?php echo $favorite_world['slug']; ?>
-            </a></li>
+            <li>
+                <a class="world_link text-center" href="<?=base_url()?>w/<?php echo $favorite_world['slug']; ?>">
+                    <?php echo $favorite_world['slug']; ?>
+                </a>
+            </li>
             <?php } ?>
         </ul>
     </div>
 
-    <!-- Filter -->
-    <div class="filters_menu_parent menu_element btn-group">
-        <button id="filters_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <!-- Filter -->
-            <span class="caret"></span>
-        </button>
-        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="filters_button">
-            <?php foreach ($filters as $filter) { ?>
-            <li><a class="filter_link text-center" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/?last_activity=<?php echo $filter['slug']; ?>">
-                <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <?php } ?>
-                <?php echo deslug($filter['slug']) ?>
-            </a></li>
-            <?php } ?>
-        </ul>
-    </div>
-
-    <!-- Favorites -->
+    <!-- Favorite Rooms -->
     <?php if ($user && !empty($user['favorite_rooms'])) { ?>
     <div class="favorite_rooms_menu_parent menu_element btn-group">
         <button id="favorite_rooms_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-star" aria-hidden="true"></i>
-            <!-- Favorites -->
             <span class="caret"></span>
         </button>
         <ul id="favorites_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="favorite_rooms_button">
+            <li>
+                <div class="world_link text-center">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    Starred Places
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                </div>
+            </li>
             <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
-            <li><a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $favorite['id']; ?>">
-                <?php echo $favorite['name'] ?>
-            </a></li>
+            <li>
+                <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $favorite['id']; ?>">
+                    <?php echo $favorite['name'] ?>
+                </a>
+            </li>
             <?php } ?>
         </ul>
     </div>
@@ -77,19 +81,47 @@
         <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
             <!-- <i class="fa fa-square" aria-hidden="true"></i> -->
-            <!-- Owned Rooms -->
             <span class="caret"></span>
         </button>
         <ul id="owned_rooms_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="owned_rooms_button">
             <?php foreach ($user['rooms'] as $user_room) { ?>
-            <li><a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $user_room['id']; ?>">
-                <?php echo $user_room['name'] ?>
-            </a></li>
+            <li>
+                <a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $user_room['id']; ?>">
+                    <?php echo $user_room['name'] ?>
+                </a>
+            </li>
             <?php } ?>
         </ul>
     </div>
     <?php } ?>
     <?php } ?>
+
+    <!-- Filters -->
+    <div class="filters_menu_parent menu_element btn-group">
+        <button id="filters_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="caret"></span>
+        </button>
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="filters_button">
+            <li>
+                <div class="world_link text-center">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    Filter By Last Active
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                </div>
+            </li>
+            <?php foreach ($filters as $filter) { ?>
+            <li>
+                <a class="filter_link text-center" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/?last_activity=<?php echo $filter['slug']; ?>">
+                    <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <?php } ?>
+                    <?php echo deslug($filter['slug']) ?>
+                </a>
+            </li>
+            <?php } ?>
+        </ul>
+    </div>
 
     <!-- User Dropdown -->
     <?php if ($user) { ?>
@@ -102,7 +134,11 @@
             <span class="caret"></span>
         </button>
         <ul id="user_dropdown" class="dropdown_item dropdown-menu dropdown-menu-right" aria-labelledby="user_button">
-            <li><p class="text-center"><?php echo site_name(); ?></p></li>
+            <li><p class="text-center">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+                <?php echo site_name(); ?>
+                <i class="fa fa-circle" aria-hidden="true"></i>    
+            </p></li>
             <li><input type="text" class="jscolor color_input form-control" id="input_user_color" name="input_user_color" value="<?php echo $user['color']; ?>"></li>
             <li>
                 <form id="update_location_form" onsubmit="update_location(); return false;">
