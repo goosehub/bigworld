@@ -44,6 +44,19 @@ Class room_model extends CI_Model
         return $result;
     }
 
+    function get_recent_rooms($world_key, $limit)
+    {
+        $this->db->limit($limit);
+        $this->db->select('last_message_time');
+        $this->db->from('room');
+        $this->db->where('world_key', $world_key);
+        $this->db->where('archived', 0);
+        $this->db->order_by('last_message_time', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
     function get_room_by_id($room_id)
     {
         $this->db->select('*');

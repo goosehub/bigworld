@@ -63,10 +63,14 @@ $('.exit_center_block').click(function(){
 $('.login_button').click(function(){
     $('.center_block').hide();
     $('#login_block').show();
+    $('#login_input_username').focus();
+    $('.current_url').val(window.location.href);
 });
 $('.register_button').click(function(){
     $('.center_block').hide();
     $('#register_block').show();
+    $('#register_input_username').focus();
+    $('.current_url').val(window.location.href);
 });
 $('.landing_login_button').click(function(){
     if ($(this).hasClass('btn-primary')) {
@@ -90,11 +94,4 @@ $('.landing_register_button').click(function(){
     $('.landing_center_block').hide();
     $('#register_block').show();
 });
-$('.login_button').click(function(){
-    $('#login_input_username').focus();
-});
-$('.register_button').click(function(){
-    $('#register_input_username').focus();
-});
-
 </script>

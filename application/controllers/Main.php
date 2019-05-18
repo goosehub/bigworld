@@ -62,12 +62,13 @@ class Main extends CI_Controller {
             $data['user']['favorite_rooms'] = $this->room_model->get_favorite_rooms_by_user_key($data['user']['id'], $data['world']['id']);
         }
 
-        // Use last activity default first
-        $data['current_last_activity_filter'] = $data['filters'][LAST_ACTIVITY_DEFAULT];
-
         // Get last activity filter if exists
         if ($this->input->get('last_activity') && isset($data['filters'][$this->input->get('last_activity')])) {
             $data['current_last_activity_filter'] = $data['filters'][$this->input->get('last_activity')];
+        }
+        // Use last activity default first
+        else {
+            $data['current_last_activity_filter'] = $this->determine_default_activity($data['world']['id']);
         }
 
         // Get rooms by last activity
@@ -104,6 +105,20 @@ class Main extends CI_Controller {
         $this->load->view('scripts/chat_script', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    public function determine_default_activity($world_id)
+    {
+        // return $data['filters'][LAST_ACTIVITY_DEFAULT];
+        $recent_rooms = $this->room_model->get_recent_rooms($world_id, DEFAULT_NUMBER_OF_ROOMS);
+        $time_needed_to_include = strtotime($recent_rooms[0]['last_message_time']);
+        $minutes_ago = (time() - $time_needed_to_include) / 60;
+        foreach (array_reverse($this->get_filters()) as $filter) {
+            if ($filter['minutes_ago'] > $minutes_ago) {
+                return $filter;
+            }
+        }
+        return $this->filters()['all'];
     }
 
     public function world_is_favorite($data)
@@ -176,6 +191,10 @@ class Main extends CI_Controller {
         $filters['all'] = array(
             'slug' => 'all',
             'minutes_ago' => 5 * 365 * 24 * 60,
+        );
+        $filters['this_month'] = array(
+            'slug' => 'this_month',
+            'minutes_ago' => 4 * 7 * 24 * 60,
         );
         $filters['this_week'] = array(
             'slug' => 'this_week',

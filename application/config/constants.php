@@ -8,11 +8,13 @@ define('MAP_DEFAULT_LAT', 0);
 define('MAP_DEFAULT_LNG', 20);
 
 // Polling
-define('MAP_ROOM_POLLING_SECONDS', 1 * 60);
+define('MAP_ROOM_POLLING_SECONDS', 30);
+define('CHAT_LOAD_POLLING_SECONDS', 2);
 
 // Room Trim
 define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 365 * 24 * 60);
-define('LAST_ACTIVITY_DEFAULT', 'today');
+define('LAST_ACTIVITY_DEFAULT', 'all');
+define('DEFAULT_NUMBER_OF_ROOMS', 50);
 
 // Chat Constants
 define('MINUTES_BETWEEN_MESSAGES_TO_SHOW_DATE', 15);

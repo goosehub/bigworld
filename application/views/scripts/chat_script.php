@@ -7,8 +7,8 @@ var page_title = '';
 var missed_messages = 0;
 var users_array = new Array();
 var room_name = 'Big World';
-var load_interval = 3000;
-var system_user_id = <?php echo SYSTEM_USER_ID ?>;
+var load_interval = <?php echo CHAT_LOAD_POLLING_SECONDS; ?>;
+var system_user_id = <?php echo SYSTEM_USER_ID; ?>;
 
 $(document).on('click', '.message_pin', function(event) {
   pin_action(event);
