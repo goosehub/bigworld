@@ -11,6 +11,11 @@ class Main extends CI_Controller {
         $this->load->model('room_model', '', TRUE);
         $this->load->model('world_model', '', TRUE);
 
+        // Force ssl
+        if (!is_dev()) {
+            force_ssl();
+        }
+
         $this->main_model->record_request();
     }
 
