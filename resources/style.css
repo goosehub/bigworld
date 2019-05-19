@@ -352,8 +352,7 @@ body {
 #message_input_parent {
     position: fixed;
     z-index: 20;
-    width: 100%;
-    max-width: 100%;
+    width: 50vw;
     bottom: 0;
 }
 #message_input {
@@ -404,6 +403,9 @@ body {
     }
     .menu_username_text {
         display: none;
+    }
+    #message_input_parent {
+        width: 100vw;
     }
 }
 @media only screen and (max-device-width: 950px) {
