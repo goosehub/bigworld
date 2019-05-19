@@ -251,6 +251,7 @@ function messages_load(room_key, inital_load) {
                     html += '<span class="message_pin glyphicon glyphicon-pushpin" style="color: ' + message.color + ';"></span>';
                 }
                 html += '<span class="message_username" style="color: ' + message.color + ';">' + message.username + '</span>';
+                html += '<a href="<?=base_url()?>chat/report/' + message.id + '" target="_blank" class="report_link" title="Report this post"><small class="glyphicon glyphicon-flag"></small></a> ';
                 html += '<span class="message_message">' + message_message + '</span>';
                 html += '</div>';
             });

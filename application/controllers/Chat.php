@@ -100,4 +100,19 @@ class Chat extends CI_Controller {
         // Update room last new message
         $this->room_model->update_room_last_message_time($room_key);
     }
+
+    public function report($message_id)
+    {
+        $seconds_ago = 1 * 60 * 60;
+        $timestamp = date('Y-m-d H:i:s', time() - $seconds_ago);
+        $report_limit = 5;
+        $report_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'chat/report', $timestamp);
+        if ($report_requests > $report_limit) {
+            $this->load->view('templates/failed_report');
+            return;
+        }
+        $this->main_model->record_request();
+        $this->chat_model->increment_report_count($message_id);
+        $this->load->view('templates/post_report');
+    }
 }

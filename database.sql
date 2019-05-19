@@ -62,6 +62,7 @@ CREATE TABLE `message` (
   `color` varchar(8) NOT NULL,
   `ip` varchar(100) NOT NULL,
   `message` text NOT NULL,
+  `report_count` int(10) UNSIGNED NOT NULL,
   `timestamp` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

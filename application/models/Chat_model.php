@@ -66,5 +66,12 @@ Class chat_model extends CI_Model
         $result = $query->result_array();
         return isset($result[0]['recent_messages']) ? $result[0]['recent_messages'] : false;
     }
+
+    function increment_report_count($message_id)
+    {
+        $this->db->where('id', $message_id);
+        $this->db->set('report_count', 'report_count+1', FALSE);
+        $this->db->update('message');
+    }
 }
 ?>

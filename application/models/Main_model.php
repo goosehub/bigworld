@@ -46,7 +46,7 @@ Class main_model extends CI_Model
     {
         $this->db->select('COUNT(*) as count');
         $this->db->from('request');
-        $this->db->where('ip', $ip);
+        $this->db->where('user_key', $user_key);
         $this->db->like('route_url', $route_url);
         $this->db->where('created >', $timestamp);
         $query = $this->db->get();
