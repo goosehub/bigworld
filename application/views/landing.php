@@ -191,30 +191,32 @@
                     </div>
                     <?php } ?>
                     <hr>
-                    <span>
-                        <a class="btn btn-link" href="https://github.com/goosehub/bigworld" target="_blank">
-                            <i class="fa fa-github" aria-hidden="true"></i>
-                            GitHub
-                        </a>
-                    </span>
-                    <span>
-                        <a class="btn btn-link" href="https://gooseweb.io/" target="_blank">
-                            <i class="fa fa-code" aria-hidden="true"></i>
-                            GooseWeb
-                        </a>
-                    </span>
-                    <span>
-                        <a class="btn btn-link" href="https://www.reddit.com/r/bigworldio/" target="_blank">
-                            <i class="fa fa-reddit-alien" aria-hidden="true"></i>
-                            /r/bigworldio
-                        </a>
-                    </span>
-                    <span>
-                        <a class="report_bugs_button btn btn-link" href="javascript:;">
-                            <i class="fa fa-bug" aria-hidden="true"></i>
-                            Report Bugs
-                        </a>
-                    </span>
+                    <div class="landing_links_parent text-center">
+                        <span>
+                            <a class="btn btn-link landing_link" href="https://github.com/goosehub/bigworld" target="_blank">
+                                <i class="fa fa-github" aria-hidden="true"></i>
+                                GitHub
+                            </a>
+                        </span>
+                        <span>
+                            <a class="btn btn-link landing_link" href="https://gooseweb.io/" target="_blank">
+                                <i class="fa fa-code" aria-hidden="true"></i>
+                                GooseWeb
+                            </a>
+                        </span>
+                        <span>
+                            <a class="btn btn-link landing_link" href="https://www.reddit.com/r/bigworldio/" target="_blank">
+                                <i class="fa fa-reddit-alien" aria-hidden="true"></i>
+                                /r/bigworldio
+                            </a>
+                        </span>
+                        <span>
+                            <a class="report_bugs_button btn btn-link landing_link" href="javascript:;">
+                                <i class="fa fa-bug" aria-hidden="true"></i>
+                                Report Bugs
+                            </a>
+                        </span>
+                    </div>
                 </div>
                 <div class="col-sm-2">
                 </div>

@@ -46,10 +46,6 @@ class Room extends CI_Controller {
     {
         // Authentication
         $user = $this->user_model->get_this_user();
-        if (!$user) {
-            echo api_error_response('not_logged_in', 'You must be logged in to create a room');
-            return false;
-        }
 
         // Validate input
         $input = get_json_post(true);
@@ -92,7 +88,7 @@ class Room extends CI_Controller {
         $room['lng'] = $input->lng;
         $room['last_message_time'] = date('Y-m-d H:i:s');
         $room['created'] = date('Y-m-d H:i:s');
-        $room['user_key'] = $user['id'];
+        $room['user_key'] = isset($user['id']) ? $user['id'] : null;
         // Insert room
         $room['id'] = $this->room_model->insert_room($room);
 

@@ -95,7 +95,7 @@ CREATE TABLE `room` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL,
   `world_key` int(10) UNSIGNED NOT NULL,
-  `user_key` int(10) UNSIGNED NOT NULL,
+  `user_key` int(10) UNSIGNED NULL,
   `lng` float NOT NULL,
   `lat` float NOT NULL,
   `archived` bit(1) NOT NULL,

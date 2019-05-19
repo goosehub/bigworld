@@ -93,10 +93,6 @@ function initMap() {
 
     // Trigger event on click
     google.maps.event.addListener(map, 'click', function(event) {
-        if (!user) {
-            $('#register_block').fadeIn();
-            return false;
-        }
         open_create_room_block(event.latLng);
     });
 

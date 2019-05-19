@@ -8,6 +8,7 @@
     </div>
 
     <!-- Favorite Worlds -->
+    <?php if ($user) { ?>
     <div class="favorite_worlds_menu_parent menu_element btn-group">
         <button id="favorite_worlds_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
@@ -45,6 +46,7 @@
             <?php } ?>
         </ul>
     </div>
+    <?php } ?>
 
     <!-- Favorite Rooms -->
     <?php if ($user) { ?>
