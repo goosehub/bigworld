@@ -25,7 +25,7 @@ class Chat extends CI_Controller {
         }
 
         // Authentication
-        $data['user'] = $this->user_model->get_this_user();
+        // $data['user'] = $this->user_model->get_this_user();
 
         // Update user last load
         // $this->user_model->update_user_last_load($user['id']);

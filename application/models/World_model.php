@@ -49,6 +49,9 @@ Class world_model extends CI_Model
         $query = $this->db->get();
         $result = $query->result_array();
 
+        if (!isset($result[0])) {
+            return false;
+        }
 
         // Update world last_load
         $data = array(
@@ -58,7 +61,7 @@ Class world_model extends CI_Model
         $this->db->update('world', $data);
 
         // Return world
-        return isset($result[0]) ? $result[0] : false;
+        return $result[0];
     }
 
     function get_worlds_by_user_key($user_key)

@@ -48,7 +48,7 @@
     </div>
 
     <!-- Favorite Rooms -->
-    <?php if ($user && !empty($user['favorite_rooms'])) { ?>
+    <?php if ($user) { ?>
     <div class="favorite_rooms_menu_parent menu_element btn-group">
         <button id="favorite_rooms_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-star" aria-hidden="true"></i>

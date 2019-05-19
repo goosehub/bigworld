@@ -83,7 +83,6 @@ class Room extends CI_Controller {
             return false;
         }
 
-
         // Create room
         $room = array();
         $room['name'] = $input->room_name;
