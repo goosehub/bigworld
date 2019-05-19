@@ -11,17 +11,17 @@
                 <div class="col-sm-8">
                     <p class="lead black-color landing-lead-text">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        Meet people from around the world
-                    </p>
-                    <br>
-                    <p class="lead black-color landing-lead-text">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        Create your own world
-                    </p>
-                    <br>
-                    <p class="lead black-color landing-lead-text">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         Expore the earth
+                    </p>
+                    <br>
+                    <p class="lead black-color landing-lead-text">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        Create your own map
+                    </p>
+                    <br>
+                    <p class="lead black-color landing-lead-text">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        Talk with people from around the world
                     </p>
                 </div>
                 <div class="col-sm-2">
@@ -190,7 +190,8 @@
                         </form>
                     </div>
                     <?php } ?>
-                    <hr>
+                    <br>
+                    <br>
                     <div class="landing_links_parent text-center">
                         <span>
                             <a class="btn btn-link landing_link" href="https://github.com/goosehub/bigworld" target="_blank">
