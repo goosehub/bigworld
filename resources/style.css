@@ -128,6 +128,18 @@ body {
     color: #fff;
 }
 
+/* Search */
+#address_search_parent {
+    position: absolute;
+    top: 3.5em;
+    right: 55%;
+    opacity: 0.95;
+    z-index: 4;
+}
+#address_search_input {
+
+}
+
 /* Center Block */
 .center_block {
     display: none;
@@ -382,11 +394,22 @@ body {
         width: 100%;
         max-width: 100%;
     }
-    #menu_parent {
+    body #menu_parent, body #address_search_parent {
         right: 2%;
     }
     .menu_username_text {
         display: none;
+    }
+}
+@media only screen and (max-device-width: 1000px) {
+    #menu_parent, #address_search_parent {
+        right: 52%;
+    }
+    #menu_parent {
+        top: 4.5em;
+    }
+    #address_search_parent {
+        top: 7em;
     }
 }
 

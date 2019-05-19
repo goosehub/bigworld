@@ -2,15 +2,14 @@
 
     <!-- Homepage -->
     <div class="homepage_link_menu_parent menu_element btn-group">
-        <a class="btn btn-default text-primary" id="homepage_link" href="<?=base_url()?>">
-            <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
-            Big World
+        <a class="btn btn-sm btn-default text-primary" id="homepage_link" href="<?=base_url()?>">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
         </a>
     </div>
 
     <!-- Favorite Worlds -->
     <div class="favorite_worlds_menu_parent menu_element btn-group">
-        <button id="favorite_worlds_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button id="favorite_worlds_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
             <span class="caret"></span>
         </button>
@@ -50,7 +49,7 @@
     <!-- Favorite Rooms -->
     <?php if ($user) { ?>
     <div class="favorite_rooms_menu_parent menu_element btn-group">
-        <button id="favorite_rooms_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button id="favorite_rooms_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-star" aria-hidden="true"></i>
             <span class="caret"></span>
         </button>
@@ -77,7 +76,7 @@
 
     <!-- Filters -->
     <div class="filters_menu_parent menu_element btn-group">
-        <button id="filters_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button id="filters_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             <span class="caret"></span>
         </button>
@@ -105,7 +104,7 @@
     <!-- User Dropdown -->
     <?php if ($user) { ?>
     <div class="user_menu_parent menu_element btn-group">
-        <button id="user_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <button id="user_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
             <i class="fa fa-user" aria-hidden="true"></i>
             <span class="menu_username_text">
                 <?php echo $user['username']; ?>
@@ -164,11 +163,11 @@
 
     <!-- Login and Join -->
     <?php if (!$user) { ?>
-    <button class="login_button menu_element btn btn-primary">
+    <button class="login_button menu_element btn btn-sm btn-primary">
         <i class="fa fa-sign-in" aria-hidden="true"></i>
         Login
     </button>
-    <button class="register_button menu_element btn btn-action">
+    <button class="register_button menu_element btn btn-sm btn-action">
         <i class="fa fa-user-plus" aria-hidden="true"></i>
         Join
     </button>

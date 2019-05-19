@@ -36,6 +36,8 @@ var map_default_zoom = <?php echo MAP_DEFAULT_ZOOM; ?>;
 var map_default_lat = <?php echo MAP_DEFAULT_LAT; ?>;
 var map_default_lng = <?php echo MAP_DEFAULT_LNG; ?>;
 function initMap() {
+    geocoder = new google.maps.Geocoder();
+
     // var defaultMapType = google.maps.MapTypeId.TERRAIN
     var defaultMapType = google.maps.MapTypeId.HYBRID;
     // var defaultMapType = google.maps.MapTypeId.SATELLITE
@@ -138,6 +140,16 @@ function initMap() {
         });
         // Reload markers
         load_map_rooms();
+    });
+
+    $('#address_search_button').click(function(){
+        zoomInOnAddress($('#address_search_input').val());
+    });
+
+    $('#address_search_input').on('keypress',function(e) {
+        if (e.which == 13) {
+            zoomInOnAddress($('#address_search_input').val());
+        }
     });
 
     // Load map rooms on interval
@@ -258,6 +270,17 @@ function initMap() {
             // Load room
             load_room(result.id);
         });
+    }
+
+    function zoomInOnAddress(address) {
+        geocoder.geocode( { 'address' : address }, function( results, status ) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(18);
+            } else {
+                console.error('Geocode was not successful for the following reason: ' + status);
+            }
+        } );
     }
 
 }

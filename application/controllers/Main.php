@@ -104,6 +104,7 @@ class Main extends CI_Controller {
         $data['landing'] = false;
         $this->load->view('templates/header', $data);
         $this->load->view('menus', $data);
+        $this->load->view('search', $data);
         $this->load->view('blocks', $data);
         $this->load->view('room', $data);
         $this->load->view('login', $data);
