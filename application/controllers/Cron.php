@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Cron extends CI_Controller {
 
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->model('main_model', '', TRUE);
         $this->load->model('room_model', '', TRUE);

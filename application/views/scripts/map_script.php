@@ -13,11 +13,11 @@ loading();
 // Marker options
 // https://sites.google.com/site/gmapsdevelopment/
 var classic_marker_img = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi.png';
-var green_marker_img = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
-var blue_marker_img = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
-var red_marker_img = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
-var purple_marker_img = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
-var yellow_marker_img = 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
+var green_marker_img = 'https://maps.google.com/mapfiles/ms/icons/green-dot.png';
+var blue_marker_img = 'https://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+var red_marker_img = 'https://maps.google.com/mapfiles/ms/icons/red-dot.png';
+var purple_marker_img = 'https://maps.google.com/mapfiles/ms/icons/purple-dot.png';
+var yellow_marker_img = 'https://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 
 // Map room polling
 var map_room_polling_seconds = <?php echo MAP_ROOM_POLLING_SECONDS; ?>;

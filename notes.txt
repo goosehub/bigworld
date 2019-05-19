@@ -8,22 +8,19 @@ todo
 
 	high priority
 
+	no priority
+
 	low priority
 localize time
-performance testing
 re-enable social
-clear url button
 mutli rooming somehow
 fix vocaroo
 menu items when logged out
 handle http embedica
+user community moderation tools
 
 	bugs
 vocaroo
-active pin goes away on map reload
-strange chrome pixelated mirror in room bug
-inspect element popping up on element click
-overlay loading text looks strange
 pinning on mobile
 
 	wish list
@@ -55,7 +52,7 @@ Welcomes
 	<p>Welcome to Big World</p> <!-- English -->
 
 pin distance
-	at 4 decimal places, about yards yards apart
+	at 4 decimal places, about yards apart
 
 languages to support
 	english
@@ -70,6 +67,7 @@ languages to support
 	portuguese
 
 places with language to translate
+	landing
 	site welcome
 	room welcome
 	filters

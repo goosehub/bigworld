@@ -75,29 +75,6 @@
     </div>
     <?php } ?>
 
-    <!-- Owned Rooms Dropdown -->
-    <!-- Disabled -->
-    <?php if (false) { ?>
-    <?php if ($user && !empty($user['rooms'])) { ?>
-    <div class="owned_rooms_menu_parent menu_element btn-group">
-        <button id="owned_rooms_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <!-- <i class="fa fa-square" aria-hidden="true"></i> -->
-            <span class="caret"></span>
-        </button>
-        <ul id="owned_rooms_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="owned_rooms_button">
-            <?php foreach ($user['rooms'] as $user_room) { ?>
-            <li>
-                <a class="owned_room_link text-center" room_id="<?php echo $user_room['id']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $user_room['id']; ?>">
-                    <?php echo $user_room['name'] ?>
-                </a>
-            </li>
-            <?php } ?>
-        </ul>
-    </div>
-    <?php } ?>
-    <?php } ?>
-
     <!-- Filters -->
     <div class="filters_menu_parent menu_element btn-group">
         <button id="filters_button" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
