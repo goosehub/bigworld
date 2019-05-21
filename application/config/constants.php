@@ -6,6 +6,7 @@ define('MAP_DEFAULT_ZOOM', 2);
 // Map default is north centric
 define('MAP_DEFAULT_LAT', 0);
 define('MAP_DEFAULT_LNG', 20);
+define('MAP_DEFAULT_FOCUS_ZOOM', 15);
 
 // Polling
 define('MAP_ROOM_POLLING_SECONDS', 60);

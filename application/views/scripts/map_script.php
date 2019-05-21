@@ -33,6 +33,7 @@ var messages_load_interval_id;
 var current_marker = false;
 var markers = [];
 var map_default_zoom = <?php echo MAP_DEFAULT_ZOOM; ?>;
+var map_default_focus_zoom = <?php echo MAP_DEFAULT_FOCUS_ZOOM; ?>;
 var map_default_lat = <?php echo MAP_DEFAULT_LAT; ?>;
 var map_default_lng = <?php echo MAP_DEFAULT_LNG; ?>;
 function initMap() {
@@ -101,20 +102,12 @@ function initMap() {
         $('#zoom_in_button').hide();
         $('#zoom_out_button').show();
 
-        // Recreate map init
-        map = new google.maps.Map(document.getElementById('map'), {
-            // Room location
-            center: {
-                lat: current_marker.getPosition().lat(),
-                lng: current_marker.getPosition().lng()
-            },
-            // Zoom in just enough for slanted view
-            zoom: 15,
-            minZoom: 1,
-            mapTypeId: defaultMapType
+        // Center and zoom
+        map.setCenter({
+            lat: current_marker.getPosition().lat(),
+            lng: current_marker.getPosition().lng()
         });
-        // Reload markers
-        load_map_rooms();
+        map.setZoom(map_default_focus_zoom);
     });
 
     // Map zoom in and out
@@ -122,18 +115,13 @@ function initMap() {
         $('#zoom_out_button').hide();
         $('#zoom_in_button').show();
 
-        // Recreate map init
-        map = new google.maps.Map(document.getElementById('map'), {
-            // Room location
-            center: {
-                lat: map_default_lat,
-                lng: map_default_lng
-            },
-            // Zoom in just enough for slanted view
-            zoom: map_default_zoom,
-            minZoom: 1,
-            mapTypeId: defaultMapType
+        // Center and zoom
+        map.setCenter({
+            lat: map_default_lat,
+            lng: map_default_lng
         });
+        map.setZoom(map_default_zoom);
+
         // Reload markers
         load_map_rooms();
     });
@@ -272,7 +260,7 @@ function initMap() {
         geocoder.geocode( { 'address' : address }, function( results, status ) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
-                map.setZoom(15);
+                map.setZoom(map_default_focus_zoom);
             } else {
                 console.error('Geocode was not successful for the following reason: ' + status);
             }
