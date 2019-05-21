@@ -13,8 +13,17 @@ class World extends CI_Controller {
         $this->main_model->record_request();
     }
 
-    public function create_world()
+    public function create()
     {
+        // Limiting
+        $create_world_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'world/create', date('Y-m-d H:i:s', time() - REPORT_SPAM_LIMIT_LENGTH));
+        if ($create_world_requests >= REPORT_SPAM_LIMIT_AMOUNT) {
+            $this->session->set_flashdata('failed_form', 'create_world');
+            $this->session->set_flashdata('validation_errors', 'Sorry, but too many worlds have been created from this IP. Please take a break and try again later.');
+            redirect(base_url(), 'refresh');
+            return false;
+        }
+
         $user = $this->user_model->get_this_user();
         // If user not logged in, return with fail
         if (!$user) {

@@ -178,7 +178,7 @@
                         <span class="text-danger">
                             <?php if ($failed_form === 'create_world') { echo $validation_errors; } ?>
                         </span>
-                        <form class="form" id="create_world_form" action="<?=base_url()?>world/create_world" method="post">
+                        <form class="form" id="create_world_form" action="<?=base_url()?>world/create" method="post">
                             <div class="form-group">
                                 <label for="world_slug">
                                     World Slug
