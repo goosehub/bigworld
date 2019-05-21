@@ -106,7 +106,7 @@ class Chat extends CI_Controller {
     {
         // Limiting
         $report_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'chat/report', date('Y-m-d H:i:s', time() - REPORT_SPAM_LIMIT_LENGTH));
-        if ($report_requests >= REPORT_SPAM_LIMIT_AMOUNT) {
+        if ($report_requests > REPORT_SPAM_LIMIT_AMOUNT) {
             $this->load->view('errors/html/failed_report');
             return;
         }

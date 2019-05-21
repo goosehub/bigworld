@@ -45,8 +45,8 @@ class Room extends CI_Controller {
     public function create()
     {
         // Limiting
-        $create_room_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'room/create', date('Y-m-d H:i:s', time() - REPORT_SPAM_LIMIT_LENGTH));
-        if ($create_room_requests >= REPORT_SPAM_LIMIT_AMOUNT) {
+        $create_room_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'room/create', date('Y-m-d H:i:s', time() - CREATE_ROOM_SPAM_LIMIT_LENGTH));
+        if ($create_room_requests > CREATE_ROOM_SPAM_LIMIT_AMOUNT) {
             echo api_error_response('too_many_rooms', 'Sorry, but too many rooms have been created from this IP. Please take a break and try again later.');
             return false;
         }

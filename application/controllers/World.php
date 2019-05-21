@@ -16,8 +16,8 @@ class World extends CI_Controller {
     public function create()
     {
         // Limiting
-        $create_world_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'world/create', date('Y-m-d H:i:s', time() - REPORT_SPAM_LIMIT_LENGTH));
-        if ($create_world_requests >= REPORT_SPAM_LIMIT_AMOUNT) {
+        $create_world_requests = $this->main_model->count_requests_by_route($_SERVER['REMOTE_ADDR'], 'world/create', date('Y-m-d H:i:s', time() - CREATE_WORLD_SPAM_LIMIT_LENGTH));
+        if ($create_world_requests > CREATE_WORLD_SPAM_LIMIT_AMOUNT) {
             $this->session->set_flashdata('failed_form', 'create_world');
             $this->session->set_flashdata('validation_errors', 'Sorry, but too many worlds have been created from this IP. Please take a break and try again later.');
             redirect(base_url(), 'refresh');
