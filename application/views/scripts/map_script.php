@@ -69,7 +69,7 @@ function initMap() {
     marker = new google.maps.Marker({
         position: location,
         map: map,
-        title: '<?php echo $room['name'] ?>',
+        title: '<?php echo addcslashes($room['name'], "'"); ?>',
         room_id: <?php echo $room['id'] ?>,
         icon: favorite_room_keys.includes(<?php echo $room['id'] ?>) ? favorite_marker_img : default_marker_img
     });
@@ -109,7 +109,7 @@ function initMap() {
                 lng: current_marker.getPosition().lng()
             },
             // Zoom in just enough for slanted view
-            zoom: 18,
+            zoom: 15,
             minZoom: 1,
             mapTypeId: defaultMapType
         });
@@ -272,7 +272,7 @@ function initMap() {
         geocoder.geocode( { 'address' : address }, function( results, status ) {
             if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
-                map.setZoom(18);
+                map.setZoom(15);
             } else {
                 console.error('Geocode was not successful for the following reason: ' + status);
             }
