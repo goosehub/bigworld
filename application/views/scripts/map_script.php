@@ -142,7 +142,7 @@ function initMap() {
     }, map_room_polling_seconds * 1000);
 
     function load_map_rooms() {
-        var url = 'main/load_map_rooms?world_id=' + world_id + '?last_activity=' + current_last_activity_slug;
+        var url = 'main/load_map_rooms?world_id=' + world_id + '&last_activity=' + current_last_activity_slug;
         ajax_get(url, function(result){
             // Remove existing markers
             Object.keys(markers).forEach(function(key) {
