@@ -2,9 +2,22 @@
 
     <!-- Homepage -->
     <div class="homepage_link_menu_parent menu_element btn-group">
-        <a class="btn btn-sm btn-default text-primary" id="homepage_link" href="<?=base_url()?>">
+        <a class="btn btn-sm btn-default text-primary" id="homepage_link" title="Homepage" href="<?=base_url()?>">
             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
         </a>
+    </div>
+
+    <div class="share_menu_parent menu_element btn-group">
+        <button class="btn btn-sm btn-default dropdown-toggle" id="share_button" title="Share" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-share-square" aria-hidden="true"></i>
+        </button>
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="share_button">
+            <li>
+                <div class="world_link text-center">
+                    <p>Copied to clipboard</p>
+                </div>
+            </li>
+        </ul>
     </div>
 
     <!-- Favorite Worlds -->

@@ -1,3 +1,5 @@
+<input id="share_url_input" type="text" class="input" style="display: none;"/>
+
 <!-- Interface Script -->
 <script>
 
@@ -51,6 +53,18 @@ function update_location() {
     });
 }
 
+function getShareUrl() {
+    let current_lat = map.getCenter().lat().toFixed(4);
+    let current_lng = map.getCenter().lng().toFixed(4);
+    let current_zoom = map.getZoom();
+    let current_map_type = map.getMapTypeId();
+    return '<?=base_url()?>w/<?php echo $world['slug']; ?>'
+    + '?lat=' + current_lat 
+    + '&lng=' + current_lng 
+    + '&zoom=' + current_zoom 
+    + '&map_type=' + current_map_type;
+}
+
 $('.report_bugs_button').click(function(){
     $('#report_bugs_block').show();
 });
@@ -58,6 +72,15 @@ $('.report_bugs_button').click(function(){
 // Room close
 $('#room_exit').click(function(){
     $('#room_parent').fadeOut();
+});
+
+// Copy Share URL
+$('#share_button').click(function(){
+    let url = getShareUrl();
+    setClipboard(url);
+    setTimeout(function(){
+        $('.share_menu_parent').removeClass('open');
+    }, 1.5 * 1000);
 });
 
 <?php if (!$landing && $user) { ?>

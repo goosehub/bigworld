@@ -46,12 +46,12 @@ function initMap() {
     // Create map init
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: map_default_lat,
-            lng: map_default_lng
+            lat: getParameterByName('lat') ? parseFloat(getParameterByName('lat')) : map_default_lat,
+            lng: getParameterByName('lng') ? parseFloat(getParameterByName('lng')) : map_default_lng
         },
-        zoom: map_default_zoom,
+        zoom: getParameterByName('zoom') ? parseInt(getParameterByName('zoom')) : map_default_zoom,
         minZoom: 1,
-        mapTypeId: defaultMapType
+        mapTypeId: getParameterByName('map_type') ? getParameterByName('map_type') : defaultMapType
     });
 
     // Remove overlay when map tiles are loaded
