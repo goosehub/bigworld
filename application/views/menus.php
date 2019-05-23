@@ -76,10 +76,10 @@
                     <i class="fa fa-circle" aria-hidden="true"></i>
                 </div>
             </li>
-            <?php if (false) { ?> 
+            <?php if (false) { ?>
             <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
             <li class="favorite_room_listing">
-                <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#<?php echo $favorite['id']; ?>">
+                <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>">
                     <?php echo $favorite['name'] ?>
                 </a>
             </li>
@@ -105,7 +105,7 @@
             </li>
             <?php foreach ($filters as $filter) { ?>
             <li>
-                <a class="filter_link text-center" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/?last_activity=<?php echo $filter['slug']; ?>">
+                <a class="filter_link text-center" filter="<?php echo $filter['slug']; ?>">
                     <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <?php } ?>

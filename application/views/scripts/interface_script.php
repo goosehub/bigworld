@@ -53,16 +53,19 @@ function update_location() {
     });
 }
 
-function getShareUrl() {
+function getShareUrl(filter) {
     let current_lat = map.getCenter().lat().toFixed(4);
     let current_lng = map.getCenter().lng().toFixed(4);
     let current_zoom = map.getZoom();
     let current_map_type = map.getMapTypeId();
+    let current_filter = filter ? filter : current_last_activity_slug;
     return '<?=base_url()?>w/<?php echo $world['slug']; ?>'
     + '?lat=' + current_lat 
     + '&lng=' + current_lng 
     + '&zoom=' + current_zoom 
-    + '&map_type=' + current_map_type;
+    + '&map_type=' + current_map_type
+    + '&last_activity=' + current_filter
+    + window.location.hash;
 }
 
 $('.report_bugs_button').click(function(){
@@ -81,6 +84,12 @@ $('#share_button').click(function(){
     setTimeout(function(){
         $('.share_menu_parent').removeClass('open');
     }, 1.5 * 1000);
+});
+
+$('.filter_link').click(function(){
+    let filter = $(this).attr('filter');
+    let url = getShareUrl(filter);
+    window.location.href = url;
 });
 
 <?php if (!$landing && $user) { ?>
@@ -109,7 +118,7 @@ function update_favorite_rooms() {
         let favorite_room = favorite_rooms[i];
         $('#favorites_dropdown').append(
             '<li class="favorite_room_listing">' + 
-                '<a class="favorite_room_link text-center" room_id="' + favorite_room.room_key + '" href="<?=base_url()?>w/<?php echo $world['slug']; ?>/#' + favorite_room.room_key + '">' + 
+                '<a class="favorite_room_link text-center" room_id="' + favorite_room.room_key + '">' + 
                     favorite_room.name + 
                 '</a>' + 
             '</li>'
