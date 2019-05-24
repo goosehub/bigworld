@@ -284,7 +284,7 @@
                 <div class="landing-world-list-container">
                     <?php foreach ($worlds as $world) { ?>
                     <span class="landing-world-container">
-                        <a href="<?=base_url()?>w/<?php echo $world['slug']; ?>" class="btn btn-default landing-world-button">
+                        <a href="<?=base_url()?><?php echo $world['slug']; ?>" class="btn btn-default landing-world-button">
                             <?php echo $world['slug']; ?>
                         </a>
                     </span>
@@ -292,7 +292,7 @@
                     <?php if ($fake_worlds = false) { ?>
                     <?php for ($i = 0; $i < 1000; $i++) { ?>
                     <span class="landing-world-container">
-                        <a href="<?=base_url()?>w/foobar" class="btn btn-default landing-world-button">
+                        <a href="<?=base_url()?>foobar" class="btn btn-default landing-world-button">
                             <?php echo str_repeat(rand(0, 9999), rand(1, 3)); ?>
                         </a>
                     </span>

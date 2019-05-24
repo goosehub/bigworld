@@ -108,7 +108,7 @@
             <?php foreach ($favorite_worlds as $favorite_world) { ?>
             <?php if ($favorite_world['world_key'] === $world['id']) { continue; } ?>
             <li>
-                <a class="world_link text-center" href="<?=base_url()?>w/<?php echo $favorite_world['slug']; ?>">
+                <a class="world_link text-center" href="<?=base_url()?><?php echo $favorite_world['slug']; ?>">
                     <?php echo $favorite_world['slug']; ?>
                 </a>
             </li>

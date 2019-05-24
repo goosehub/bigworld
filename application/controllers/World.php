@@ -49,7 +49,7 @@ class World extends CI_Controller {
         // Get World
         $data['world'] = $this->world_model->get_world_by_slug($slug);
         if ($data['world']) {
-            redirect(base_url() . 'w/' . $slug, 'refresh');
+            redirect(base_url() . $slug, 'refresh');
             return;
         }
 
@@ -63,7 +63,7 @@ class World extends CI_Controller {
         $this->world_model->insert_world($data);
 
         // Redirect to homepage
-        redirect(base_url() . 'w/' . $slug, 'refresh');
+        redirect(base_url() . $slug, 'refresh');
     }
 
     public function favorite()

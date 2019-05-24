@@ -64,7 +64,7 @@ function getShareUrl(filter) {
     let current_zoom = map.getZoom();
     let current_map_type = map.getMapTypeId();
     let current_filter = filter ? filter : current_last_activity_slug;
-    return '<?=base_url()?>w/<?php echo $world['slug']; ?>'
+    return '<?=base_url()?><?php echo $world['slug']; ?>'
     + '?lat=' + current_lat 
     + '&lng=' + current_lng 
     + '&zoom=' + current_zoom 
