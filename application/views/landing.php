@@ -189,7 +189,6 @@
                             </a>
                         </p>
                         <div class="clearfix"></div>
-                        <hr>
                         <!-- Validation Errors -->
                         <span class="text-danger">
                             <?php if ($failed_form === 'create_world') { echo $validation_errors; } ?>
