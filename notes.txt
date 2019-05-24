@@ -13,9 +13,6 @@ todo
 	no priority
 mobile map scrolling sometimes triggers mobile browser refresh
 re-enable social
-fix vocaroo embed
-imgur embedica
-vocaroo fix
 add favorite room button to world dropdown
 user community moderation tools
 a/b homepage testing
