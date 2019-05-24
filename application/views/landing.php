@@ -39,16 +39,22 @@
                     <?php if (!$user) { ?>
                     <div class="text-center">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="landing_login_button_parent col-sm-4">
                                 <button class="landing_login_button form-control menu_element btn btn-default">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i>
                                     Login
                                 </button>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="landing_register_button_parent col-sm-4">
                                 <button class="landing_register_button form-control menu_element btn btn-default">
                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     Join
+                                </button>
+                            </div>
+                            <div class="landing_guest_button_parent col-sm-4">
+                                <button class="landing_guest_button form-control menu_element btn btn-default">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Guest
                                 </button>
                             </div>
                         </div>
@@ -161,6 +167,17 @@
                     </div>
                     <?php } ?>
 
+                    <?php if (!$user) { ?>
+                    <div id="guest_block" class="landing_center_block well">
+                        <p class="lead black-color text-info">
+                            Use "Discover Worlds"
+                            <span class="visible-xs visible-sm">below</span>
+                            <span class="hidden-xs hidden-sm">to the right</span>
+                            to get started.
+                        </p>
+                    </div>
+                    <?php } ?>
+
                     <?php if ($user) { ?>
                     <div class="well">
                         <h2 class="pull-left">Create World</h2>
@@ -230,40 +247,36 @@
                     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                     Discover Worlds
                 </h2>
-                <small class="text-info">
-                    Sort By:
-                </small>
-                <br>
                 <span class="landing-world-container">
-                    <a href="<?=base_url()?>?sort=activity" class="landing-sort-button btn <?php echo $sort === 'activity' ? 'btn-info disabled' : 'btn-default' ?>">
+                    <a href="<?=base_url()?>?sort=activity" class="landing-sort-button btn <?php echo $sort === 'activity' ? 'btn-primary disabled' : 'btn-default' ?>">
                         <?php if ($sort === 'activity') { ?>
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <?php } ?>
-                        Activity
+                        Sort By Activity
                     </a>
                 </span>
-                    <a href="<?=base_url()?>?sort=alphabetical" class="landing-sort-button btn <?php echo $sort === 'alphabetical' ? 'btn-info disabled' : 'btn-default' ?>">
+                    <a href="<?=base_url()?>?sort=alphabetical" class="landing-sort-button btn <?php echo $sort === 'alphabetical' ? 'btn-primary disabled' : 'btn-default' ?>">
                         <?php if ($sort === 'alphabetical') { ?>
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <?php } ?>
-                        Alphabetical
+                        Sort By Alphabet
                     </a>
                 </span>
                 </span>
-                    <a href="<?=base_url()?>?sort=size" class="landing-sort-button btn <?php echo $sort === 'size' ? 'btn-info disabled' : 'btn-default' ?>">
+                    <a href="<?=base_url()?>?sort=size" class="landing-sort-button btn <?php echo $sort === 'size' ? 'btn-primary disabled' : 'btn-default' ?>">
                         <?php if ($sort === 'size') { ?>
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <?php } ?>
-                        Size
+                        Sort By Size
                     </a>
                 </span>
                 </span>
                     <!-- Random is not disabled -->
-                    <a href="<?=base_url()?>?sort=random" class="landing-sort-button btn <?php echo $sort === 'random' ? 'btn-info' : 'btn-default' ?>">
+                    <a href="<?=base_url()?>?sort=random" class="landing-sort-button btn <?php echo $sort === 'random' ? 'btn-primary' : 'btn-default' ?>">
                         <?php if ($sort === 'random') { ?>
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <?php } ?>
-                        Random
+                        Sort By Random
                     </a>
                 </span>
                 <br>

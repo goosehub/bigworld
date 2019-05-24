@@ -172,4 +172,22 @@ $('.landing_register_button').click(function(){
         $('.landing_center_block').hide();
         $('#register_block').show();
 });
+$('.landing_guest_button').click(function(){
+        window.scrollTo(0,document.body.scrollHeight);
+        $('.landing_register_button, .landing_login_button').removeClass('btn-primary').addClass('btn-default');
+        $('.landing_center_block').hide();
+        if ($('.landing_guest_button').hasClass('btn-primary')) {
+            $('.landing_guest_button').addClass('btn-default').removeClass('btn-primary');
+            $('.landing_login_button').show();
+            $('.landing_register_button').show();
+            $('#guest_block').hide();
+            return;
+        }
+        $('.landing_guest_button').addClass('btn-primary').removeClass('btn-default');
+        $('.landing_login_button').hide();
+        $('.landing_register_button').hide();
+        $('#guest_block').show();
+});
+
+
 </script>
