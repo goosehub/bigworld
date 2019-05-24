@@ -9,8 +9,6 @@ todo
 	high priority
 
 	low priority
-post pics using site
-localize time
 
 	no priority
 mobile map scrolling sometimes triggers mobile browser refresh
@@ -26,6 +24,7 @@ language support
 localized date formatting
 show currently active users and anons in room
 show world wide count of total users currently on
+post pics using site directly
 
 	refactor
 don't reload on clicking filter

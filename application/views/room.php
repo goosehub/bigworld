@@ -26,6 +26,10 @@
             <i class="fa fa-search-minus" aria-hidden="true"></i>
         </div>
 
+        <a id="toggle_theme" class="btn btn-primary pull-right active" target="_blank" href="https://imgur.com/upload">
+            <i id="toggle_icon" class="fa fa-image" aria-hidden="true"></i>
+        </a>
+
     </div>
 
     <div id="message_outer_parent">
