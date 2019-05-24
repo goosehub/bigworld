@@ -75,7 +75,7 @@ body {
     border-radius: 0.6em;
     margin: 0.2em;
 }
-.landing_login_button, .landing_register_button {
+.landing_action_button {
     border-radius: 0.5em 0.5em 0 0;
 }
 .landing-world-button {

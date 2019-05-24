@@ -40,19 +40,19 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="landing_login_button_parent col-sm-4">
-                                <button class="landing_login_button form-control menu_element btn btn-default">
+                                <button class="landing_login_button landing_action_button form-control menu_element btn btn-default">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i>
                                     Login
                                 </button>
                             </div>
                             <div class="landing_register_button_parent col-sm-4">
-                                <button class="landing_register_button form-control menu_element btn btn-default">
+                                <button class="landing_register_button landing_action_button form-control menu_element btn btn-default">
                                     <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     Join
                                 </button>
                             </div>
                             <div class="landing_guest_button_parent col-sm-4">
-                                <button class="landing_guest_button form-control menu_element btn btn-default">
+                                <button class="landing_guest_button landing_action_button form-control menu_element btn btn-default">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Guest
                                 </button>

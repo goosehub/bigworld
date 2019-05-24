@@ -83,6 +83,11 @@ class Main extends CI_Controller {
         // Get rooms by last activity
         $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago'], $data['world']['id']);
 
+        // Calculate a center and zoom that makes sense per the pins
+        $data['calculated_lat'] = $data['calculated_lng'] = $data['calculated_zoom'] = false;
+        // Comment out to disable auto smart default center and zoom
+        $data = $this->get_calculated_center_and_zoom($data);
+
         // A/B testing
         $ab_array = array('', '');
         $data['ab_test'] = $ab_array[array_rand($ab_array)];
@@ -116,6 +121,70 @@ class Main extends CI_Controller {
         $this->load->view('scripts/chat_script', $data);
         $this->load->view('scripts/interface_script', $data);
         $this->load->view('templates/footer', $data);
+    }
+
+    public function get_calculated_center_and_zoom($data)
+    {
+        if (count($data['rooms']) >= MIN_ROOMS_FOR_SMART_ZOOM) {
+            $sum_lat = $sum_lng = 0;
+            $max_lat = $min_lat = $max_lng = $min_lng = false;
+            foreach ($data['rooms'] as $room) {
+                $room['lat'] = (float)$room['lat'];
+                $room['lng'] = (float)$room['lng'];
+                $sum_lat += $room['lat'];
+                $sum_lng += $room['lng'];
+                $max_lat = $room['lat'] > $max_lat || !$max_lat ? $room['lat'] : $max_lat;
+                $min_lat = $room['lat'] < $min_lat || !$min_lat ? $room['lat'] : $min_lat;
+                $max_lng = $room['lng'] > $max_lng || !$max_lng ? $room['lng'] : $max_lng;
+                $min_lng = $room['lng'] < $min_lng || !$min_lng ? $room['lng'] : $min_lng;
+            }
+            $data['calculated_lat'] = $sum_lat / count($data['rooms']);
+            $data['calculated_lng'] = $sum_lng / count($data['rooms']);
+            $data['calculated_zoom'] = $this->get_calculated_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng);
+        }
+        return $data;
+    }
+
+    public function get_calculated_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng)
+    {
+        $lat_diff = $max_lat - $min_lat;
+        $lng_diff = $max_lng - $min_lng;
+        // Will need this as I get more examples
+        if ($this->input->get('debug')) {
+            echo $lat_diff;
+            echo ' ';
+            echo $lng_diff;
+        }
+        if ($lat_diff < 0.1 && $lng_diff < 0.1) {
+            return 12;
+        }
+        if ($lat_diff < 0.5 && $lng_diff < 0.5) {
+            return 10;
+        }
+        if ($lat_diff < 1 && $lng_diff < 1) {
+            return 9;
+        }
+        if ($lat_diff < 3 && $lng_diff < 3) {
+            return 8;
+        }
+        if ($lat_diff < 5 && $lng_diff < 5) {
+            return 7;
+        }
+        if ($lat_diff < 10 && $lng_diff < 10) {
+            return 6;
+        }
+        if ($lat_diff < 15 && $lng_diff < 15) {
+            return 5;
+        }
+        if ($lat_diff < 20 && $lng_diff < 20) {
+            return 4;
+        }
+        if ($lat_diff < 25 && $lng_diff < 25) {
+            return 3;
+        }
+        else {
+            return false;
+        }
     }
 
     public function determine_default_activity($world_id)
