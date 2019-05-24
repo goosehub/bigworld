@@ -140,9 +140,6 @@ body {
     opacity: 0.95;
     z-index: 4;
 }
-#address_search_input {
-
-}
 
 /* Center Block */
 .center_block {
@@ -416,7 +413,7 @@ body {
         top: 3.8em;
     }
     #address_search_parent {
-        top: 6em;
+        top: 5.5em;
     }
 }
 

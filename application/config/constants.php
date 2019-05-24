@@ -6,6 +6,8 @@ define('MAP_DEFAULT_ZOOM', 2);
 // Map default is north centric
 define('MAP_DEFAULT_LAT', 0);
 define('MAP_DEFAULT_LNG', 20);
+define('MAP_MOBILE_DEFAULT_LAT', 25);
+define('MAP_MOBILE_DEFAULT_LNG', -95);
 define('MAP_DEFAULT_FOCUS_ZOOM', 15);
 
 // Polling

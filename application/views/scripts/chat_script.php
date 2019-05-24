@@ -30,6 +30,12 @@ $('#toggle_theme').click(function(event) {
 if (localStorage.getItem('theme') === 'light') {
     toggle_theme(true);
 }
+else if (localStorage.getItem('theme') === 'dark') {
+    toggle_theme(false);
+}
+else  {
+    toggle_theme(is_mobile);
+}
 
 // Keep dropdown open on altering color
 $('#input_user_color').click(function(event){

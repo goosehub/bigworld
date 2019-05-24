@@ -4,7 +4,7 @@
             <h1 class="text-center landing-site-title black-color">
                 <?php echo strtoupper(site_name()); ?>
             </h1>
-            <br>
+            <br class="hidden-xs hidden-sm">
             <div class="row">
                 <div class="col-sm-2">
                 </div>
@@ -13,12 +13,12 @@
                         <i class="fa fa-globe" aria-hidden="true"></i>
                         Expore the earth
                     </p>
-                    <br>
+                    <br class="hidden-xs hidden-sm">
                     <p class="lead black-color landing-lead-text">
                         <i class="fa fa-map" aria-hidden="true"></i>
                         Create your own map
                     </p>
-                    <br>
+                    <br class="hidden-xs hidden-sm">
                     <p class="lead black-color landing-lead-text">
                         <i class="fa fa-street-view" aria-hidden="true"></i>
                         Talk with people from around the world
@@ -27,7 +27,7 @@
                 <div class="col-sm-2">
                 </div>
             </div>
-            <br>
+            <br class="hidden-xs hidden-sm">
 
             <!-- Login Block -->
             <div class="row">
@@ -168,11 +168,10 @@
                     <?php } ?>
 
                     <?php if (!$user) { ?>
-                    <div id="guest_block" class="landing_center_block well">
+                    <div id="guest_block" class="landing_center_block well hidden-xs hidden-sm">
                         <p class="lead black-color text-info">
                             Use "Discover Worlds"
-                            <span class="visible-xs visible-sm">below</span>
-                            <span class="hidden-xs hidden-sm">to the right</span>
+                            to the right
                             to get started.
                         </p>
                     </div>
@@ -207,8 +206,8 @@
                         </form>
                     </div>
                     <?php } ?>
-                    <br>
-                    <br>
+                    <br class="hidden-xs hidden-sm">
+                    <br class="hidden-xs hidden-sm">
                     <div class="landing_links_parent text-center">
                         <span>
                             <a class="btn btn-link landing_link" href="https://github.com/goosehub/bigworld" target="_blank">
@@ -241,7 +240,7 @@
             </div>
         </div>
         <div class="col-md-6 no-float right-landing black-background-color">
-            <br>
+            <br class="hidden-xs hidden-sm">
             <div class="well">
                 <h2>
                     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
@@ -279,8 +278,8 @@
                         Sort By Random
                     </a>
                 </span>
-                <br>
-                <br>
+                <br class="hidden-xs hidden-sm">
+                <br class="hidden-xs hidden-sm">
                 <div class="landing-world-list-container">
                     <?php foreach ($worlds as $world) { ?>
                     <span class="landing-world-container">

@@ -173,7 +173,6 @@ $('.landing_register_button').click(function(){
         $('#register_block').show();
 });
 $('.landing_guest_button').click(function(){
-        window.scrollTo(0,document.body.scrollHeight);
         $('.landing_register_button, .landing_login_button').removeClass('btn-primary').addClass('btn-default');
         $('.landing_center_block').hide();
         if ($('.landing_guest_button').hasClass('btn-primary')) {
@@ -183,6 +182,10 @@ $('.landing_guest_button').click(function(){
             $('#guest_block').hide();
             return;
         }
+        $('html, body').animate({
+            scrollTop: document.body.scrollHeight,
+            easing: "easein"
+        }, 2 * 1000);
         $('.landing_guest_button').addClass('btn-primary').removeClass('btn-default');
         $('.landing_login_button').hide();
         $('.landing_register_button').hide();

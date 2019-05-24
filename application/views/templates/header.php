@@ -46,6 +46,7 @@
         var user = <?php echo $user ? json_encode($user) : 'false'; ?>;
         var base_url = '<?=base_url()?>';
         var world_id = <?php echo isset($world) ? $world['id'] : 'false'; ?>;
+        var is_mobile = $(window).width() <= 600 ? true : false;
         </script>
 
         <!-- Local Script -->
