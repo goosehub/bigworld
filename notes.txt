@@ -7,49 +7,35 @@ todo
 ==========================================================================================
 
 	high priority
-
-	no priority
+homepage sorting worlds
 
 	low priority
 localize time
 re-enable social
-mutli rooming somehow
-fix vocaroo
-menu items when logged out
-handle http embedica
+fix vocaroo embed
+post pics using site
+mobile map scrolling sometimes triggers mobile browser refresh
+
+	no priority
+imgur embedica
+vocaroo fix
+add favorite room button to world dropdown
 user community moderation tools
-
-	bugs
-vocaroo
-pinning on mobile
-
-	wish list
-language selection and support
+ab homepage testing
+don't reload on clicking filter
+mutli rooming somehow
+language support
 localized date formatting
-better error messaging
-color markers based on room, favorite, owned
-marker z-index
 show currently active users and anons in room
-show site wide count of total users currently on
-room owner can change room name
+show world wide count of total users currently on
 
 	refactor
 standardize input serialized vs json
-break up chat load method
-layout percents more layered into parents
+break up chat load method to be smaller
 
 ==========================================================================================
 notes
 ==========================================================================================
-
-Welcomes
-	<p>Bienvenido</p> <!-- Spanish -->
-	<p>herzlich willkommen</p> <!-- German -->
-	<p>ようこそ</p> <!-- Japannese -->
-	<p>Bienvenue</p> <!-- French -->
-	<p>欢迎</p> <!-- Chinnese -->
-	<p>أهلا بك</p> <!-- Arabic -->
-	<p>Welcome to Big World</p> <!-- English -->
 
 pin distance
 	at 4 decimal places, about yards apart
@@ -65,10 +51,3 @@ languages to support
 	hindi
 	arabic
 	portuguese
-
-places with language to translate
-	landing
-	site welcome
-	room welcome
-	filters
-	user menu

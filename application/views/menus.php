@@ -14,11 +14,67 @@
         <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="share_button">
             <li>
                 <div class="world_link text-center">
-                    <p>Copied to clipboard</p>
+                    <p>URL copied to clipboard</p>
                 </div>
             </li>
         </ul>
     </div>
+
+    <!-- Filters -->
+    <div class="filters_menu_parent menu_element btn-group">
+        <button id="filters_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <span class="caret"></span>
+        </button>
+        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="filters_button">
+            <li>
+                <div class="world_link text-center">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    Filter By Last Active
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                </div>
+            </li>
+            <?php foreach ($filters as $filter) { ?>
+            <li>
+                <a class="filter_link text-center" filter="<?php echo $filter['slug']; ?>">
+                    <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
+                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    <?php } ?>
+                    <?php echo deslug($filter['slug']) ?>
+                </a>
+            </li>
+            <?php } ?>
+        </ul>
+    </div>
+
+    <!-- Favorite Rooms -->
+    <?php if ($user) { ?>
+    <div class="favorite_rooms_menu_parent menu_element btn-group">
+        <button id="favorite_rooms_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <span class="caret"></span>
+        </button>
+        <ul id="favorites_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="favorite_rooms_button">
+            <li>
+                <div class="world_link text-center">
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                    Starred Places
+                    <i class="fa fa-circle" aria-hidden="true"></i>
+                </div>
+            </li>
+            <?php // Loaded by javascript instead ?>
+            <?php if (false) { ?>
+            <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
+            <li class="favorite_room_listing">
+                <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>">
+                    <?php echo $favorite['name'] ?>
+                </a>
+            </li>
+            <?php } ?>
+            <?php } ?>
+        </ul>
+    </div>
+    <?php } ?>
 
     <!-- Favorite Worlds -->
     <?php if ($user) { ?>
@@ -60,61 +116,6 @@
         </ul>
     </div>
     <?php } ?>
-
-    <!-- Favorite Rooms -->
-    <?php if ($user) { ?>
-    <div class="favorite_rooms_menu_parent menu_element btn-group">
-        <button id="favorite_rooms_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            <span class="caret"></span>
-        </button>
-        <ul id="favorites_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="favorite_rooms_button">
-            <li>
-                <div class="world_link text-center">
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                    Starred Places
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                </div>
-            </li>
-            <?php if (false) { ?>
-            <?php foreach ($user['favorite_rooms'] as $favorite) { ?>
-            <li class="favorite_room_listing">
-                <a class="favorite_room_link text-center" room_id="<?php echo $favorite['room_key']; ?>">
-                    <?php echo $favorite['name'] ?>
-                </a>
-            </li>
-            <?php } ?>
-            <?php } ?>
-        </ul>
-    </div>
-    <?php } ?>
-
-    <!-- Filters -->
-    <div class="filters_menu_parent menu_element btn-group">
-        <button id="filters_button" class="btn btn-sm btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            <span class="caret"></span>
-        </button>
-        <ul id="filter_dropdown" class="dropdown-menu dropdown-menu-right" aria-labelledby="filters_button">
-            <li>
-                <div class="world_link text-center">
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                    Filter By Last Active
-                    <i class="fa fa-circle" aria-hidden="true"></i>
-                </div>
-            </li>
-            <?php foreach ($filters as $filter) { ?>
-            <li>
-                <a class="filter_link text-center" filter="<?php echo $filter['slug']; ?>">
-                    <?php if ($current_last_activity_filter['slug'] === $filter['slug']) { ?>
-                    <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <?php } ?>
-                    <?php echo deslug($filter['slug']) ?>
-                </a>
-            </li>
-            <?php } ?>
-        </ul>
-    </div>
 
     <!-- User Dropdown -->
     <?php if ($user) { ?>
@@ -178,11 +179,11 @@
 
     <!-- Login and Join -->
     <?php if (!$user) { ?>
-    <button class="login_button menu_element btn btn-sm btn-primary">
+    <button class="login_button menu_element btn btn-sm btn-default">
         <i class="fa fa-sign-in" aria-hidden="true"></i>
         Login
     </button>
-    <button class="register_button menu_element btn btn-sm btn-action">
+    <button class="register_button menu_element btn btn-sm btn-default">
         <i class="fa fa-user-plus" aria-hidden="true"></i>
         Join
     </button>

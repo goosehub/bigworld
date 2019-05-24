@@ -8,13 +8,28 @@ Class world_model extends CI_Model
         $this->db->insert('world', $data);
     }
 
-    function get_all_worlds()
+    function get_all_worlds($sort = 'activity')
     {
-        $this->db->select('*');
+        $this->db->select('world.*');
         $this->db->from('world');
-        $this->db->where('archived', 0);
-        // $this->db->order_by('rand()');
-        $this->db->order_by('last_load', 'desc');
+        $this->db->where('world.archived', 0);
+        if ($sort === 'activity') {
+            $this->db->order_by('last_load', 'desc');
+        }
+        else if ($sort === 'alphabetical') {
+            $this->db->order_by('slug');
+        }
+        else if ($sort === 'size') {
+            $this->db->join('room', 'room.world_key = world.id', 'left');
+            $this->db->order_by('COUNT(room.id)', 'desc');
+            $this->db->group_by('world.id');
+        }
+        else if ($sort === 'random') {
+            $this->db->order_by('rand()');
+        }
+        // Turn on to limit worlds by last active
+        // $timespan = 365 * 24 * 60 * 60;
+        // $this->db->where('world.last_load >', date('Y-m-d H:i:s', time() - $timespan));
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;

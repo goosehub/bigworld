@@ -3,6 +3,10 @@
 <!-- Interface Script -->
 <script>
 
+$('.report_bugs_button').click(function(){
+    $('#report_bugs_block').show();
+});
+
 var user;
 var favorite_room_keys = new Array();
 <?php if ($user) { ?>
@@ -41,6 +45,7 @@ $('#input_user_location').click(function(event){
     event.stopPropagation();
 });
 
+<?php if (!$landing) { ?>
 function update_location() {
     user_location = $('#input_user_location').val();
     if (!user_location) {
@@ -68,22 +73,19 @@ function getShareUrl(filter) {
     + window.location.hash;
 }
 
-$('.report_bugs_button').click(function(){
-    $('#report_bugs_block').show();
-});
-
 // Room close
 $('#room_exit').click(function(){
     $('#room_parent').fadeOut();
 });
 
 // Copy Share URL
+let share_message_seconds = 3;
 $('#share_button').click(function(){
     let url = getShareUrl();
     setClipboard(url);
     setTimeout(function(){
         $('.share_menu_parent').removeClass('open');
-    }, 1.5 * 1000);
+    }, share_message_seconds * 1000);
 });
 
 $('.filter_link').click(function(){
@@ -91,6 +93,7 @@ $('.filter_link').click(function(){
     let url = getShareUrl(filter);
     window.location.href = url;
 });
+<?php } ?>
 
 <?php if (!$landing && $user) { ?>
 // Load favorite rooms on interval

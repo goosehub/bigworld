@@ -10,17 +10,17 @@
                 </div>
                 <div class="col-sm-8">
                     <p class="lead black-color landing-lead-text">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <i class="fa fa-globe" aria-hidden="true"></i>
                         Expore the earth
                     </p>
                     <br>
                     <p class="lead black-color landing-lead-text">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <i class="fa fa-map" aria-hidden="true"></i>
                         Create your own map
                     </p>
                     <br>
                     <p class="lead black-color landing-lead-text">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <i class="fa fa-street-view" aria-hidden="true"></i>
                         Talk with people from around the world
                     </p>
                 </div>
@@ -230,6 +230,44 @@
                     <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
                     Discover Worlds
                 </h2>
+                <small class="text-info">
+                    Sort By:
+                </small>
+                <br>
+                <span class="landing-world-container">
+                    <a href="<?=base_url()?>?sort=activity" class="landing-sort-button btn <?php echo $sort === 'activity' ? 'btn-info disabled' : 'btn-default' ?>">
+                        <?php if ($sort === 'activity') { ?>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <?php } ?>
+                        Activity
+                    </a>
+                </span>
+                    <a href="<?=base_url()?>?sort=alphabetical" class="landing-sort-button btn <?php echo $sort === 'alphabetical' ? 'btn-info disabled' : 'btn-default' ?>">
+                        <?php if ($sort === 'alphabetical') { ?>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <?php } ?>
+                        Alphabetical
+                    </a>
+                </span>
+                </span>
+                    <a href="<?=base_url()?>?sort=size" class="landing-sort-button btn <?php echo $sort === 'size' ? 'btn-info disabled' : 'btn-default' ?>">
+                        <?php if ($sort === 'size') { ?>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <?php } ?>
+                        Size
+                    </a>
+                </span>
+                </span>
+                    <!-- Random is not disabled -->
+                    <a href="<?=base_url()?>?sort=random" class="landing-sort-button btn <?php echo $sort === 'random' ? 'btn-info' : 'btn-default' ?>">
+                        <?php if ($sort === 'random') { ?>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <?php } ?>
+                        Random
+                    </a>
+                </span>
+                <br>
+                <br>
                 <div class="landing-world-list-container">
                     <?php foreach ($worlds as $world) { ?>
                     <span class="landing-world-container">

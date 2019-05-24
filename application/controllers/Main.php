@@ -24,8 +24,11 @@ class Main extends CI_Controller {
         // Authentication
         $data['user'] = $this->user_model->get_this_user();
 
+        // Decide sort
+        $data['sort'] = $this->input->get('sort') ? $this->input->get('sort') : 'activity';
+
         // Get Worlds
-        $data['worlds'] = $this->world_model->get_all_worlds();
+        $data['worlds'] = $this->world_model->get_all_worlds($data['sort']);
 
         // Load view
         $data = $this->registration_starting_details($data);
