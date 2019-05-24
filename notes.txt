@@ -7,22 +7,20 @@ todo
 ==========================================================================================
 
 	high priority
-homepage sorting worlds
 
 	low priority
-localize time
-re-enable social
-fix vocaroo embed
 post pics using site
-mobile map scrolling sometimes triggers mobile browser refresh
+localize time
 
 	no priority
+mobile map scrolling sometimes triggers mobile browser refresh
+re-enable social
+fix vocaroo embed
 imgur embedica
 vocaroo fix
 add favorite room button to world dropdown
 user community moderation tools
-ab homepage testing
-don't reload on clicking filter
+a/b homepage testing
 mutli rooming somehow
 language support
 localized date formatting
@@ -30,12 +28,16 @@ show currently active users and anons in room
 show world wide count of total users currently on
 
 	refactor
+don't reload on clicking filter
 standardize input serialized vs json
 break up chat load method to be smaller
 
 ==========================================================================================
 notes
 ==========================================================================================
+
+imgur embed upload
+	https://github.com/carry0987/Imgur-Upload
 
 pin distance
 	at 4 decimal places, about yards apart

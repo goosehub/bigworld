@@ -234,6 +234,9 @@ function messages_load(room_key, inital_load) {
                     missed_messages++;
                     $('title').html('(' + missed_messages + ') ' + room_name);
                 }
+                if (message.username === 'system_date') {
+                    message.message = systemDateFormat(message.message);
+                }
                 // System Messages
                 if (parseInt(message.user_key) === system_user_id) {
                     html += '<div class="system_message ' + message.username + '">' + message.message + '</div>';
@@ -368,6 +371,30 @@ function toggle_theme(light_theme) {
         $('#message_content_parent').removeClass('light');
         localStorage.setItem('theme', 'dark');
     }
+}
+
+// https://stackoverflow.com/a/6078873/3774582
+function systemDateFormat(unix_timestamp){
+    var a = new Date(unix_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    // var sec = a.getSeconds();
+    // var offset = a.getTimezoneOffset();
+
+    // https://stackoverflow.com/a/8888498/3774582
+    var am_pm = hour >= 12 ? 'PM' : 'AM';
+    hour = hour % 12;
+    hour = hour ? hour : 12; // the hour '0' should be '12'
+    var minutes = a.getMinutes();
+    minutes = minutes < 10 ? '0'+minutes : minutes;
+
+    // https://stackoverflow.com/a/34405528/3774582
+    var timezone_abbr = new Date().toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2];
+    var time = hour + ':' + minutes + ' ' + am_pm + ' ' + timezone_abbr + ' ' + date + ' ' + month + ' ' + year;
+    return time;
 }
 
 </script>
