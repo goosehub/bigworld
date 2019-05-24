@@ -36,19 +36,19 @@ var map_default_zoom = <?php echo MAP_DEFAULT_ZOOM; ?>;
 var map_default_focus_zoom = <?php echo MAP_DEFAULT_FOCUS_ZOOM; ?>;
 var map_default_lat = <?php echo MAP_DEFAULT_LAT; ?>;
 var map_default_lng = <?php echo MAP_DEFAULT_LNG; ?>;
-var calculated_lat = <?php echo $calculated_lat ? $calculated_lat : 'false'; ?>;
-var calculated_lng = <?php echo $calculated_lng ? $calculated_lng : 'false'; ?>;
-var calculated_zoom = <?php echo $calculated_zoom ? $calculated_zoom : 'false'; ?>;
+var smart_lat = <?php echo $smart_lat ? $smart_lat : 'false'; ?>;
+var smart_lng = <?php echo $smart_lng ? $smart_lng : 'false'; ?>;
+var smart_zoom = <?php echo $smart_zoom ? $smart_zoom : 'false'; ?>;
 if (is_mobile) {
     map_default_lat = <?php echo MAP_MOBILE_DEFAULT_LAT; ?>;
     map_default_lng = <?php echo MAP_MOBILE_DEFAULT_LNG; ?>;
 }
-if (calculated_lat && calculated_lng) {
-    map_default_lat = calculated_lat;
-    map_default_lng = calculated_lng;
+if (smart_lat && smart_lng) {
+    map_default_lat = smart_lat;
+    map_default_lng = smart_lng;
 }
-if (calculated_zoom) {
-    map_default_zoom = calculated_zoom;
+if (smart_zoom) {
+    map_default_zoom = smart_zoom;
 }
 function initMap() {
     geocoder = new google.maps.Geocoder();

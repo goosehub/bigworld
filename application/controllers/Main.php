@@ -84,9 +84,7 @@ class Main extends CI_Controller {
         $data['rooms'] = $this->room_model->get_all_rooms_by_last_activity($data['current_last_activity_filter']['minutes_ago'], $data['world']['id']);
 
         // Calculate a center and zoom that makes sense per the pins
-        $data['calculated_lat'] = $data['calculated_lng'] = $data['calculated_zoom'] = false;
-        // Comment out to disable auto smart default center and zoom
-        $data = $this->get_calculated_center_and_zoom($data);
+        $data = $this->get_smart_center_and_zoom($data);
 
         // A/B testing
         $ab_array = array('', '');
@@ -123,9 +121,16 @@ class Main extends CI_Controller {
         $this->load->view('templates/footer', $data);
     }
 
-    public function get_calculated_center_and_zoom($data)
+    public function get_smart_center_and_zoom($data)
     {
+        $data['smart_lat'] = $data['smart_lng'] = $data['smart_zoom'] = false;
+        // Don't bother if user is defining desired lat and lng
+        if ($this->input->get('lat') && $this->input->get('lng')) {
+            return $data;
+        }
+        // Don't do unless there's a minimum amount of rooms
         if (count($data['rooms']) >= MIN_ROOMS_FOR_SMART_ZOOM) {
+            // Gather some data we will use
             $sum_lat = $sum_lng = 0;
             $max_lat = $min_lat = $max_lng = $min_lng = false;
             foreach ($data['rooms'] as $room) {
@@ -138,14 +143,18 @@ class Main extends CI_Controller {
                 $max_lng = $room['lng'] > $max_lng || !$max_lng ? $room['lng'] : $max_lng;
                 $min_lng = $room['lng'] < $min_lng || !$min_lng ? $room['lng'] : $min_lng;
             }
-            $data['calculated_lat'] = $sum_lat / count($data['rooms']);
-            $data['calculated_lng'] = $sum_lng / count($data['rooms']);
-            $data['calculated_zoom'] = $this->get_calculated_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng);
+            // Guess on the zoom
+            $data['smart_zoom'] = $this->get_smart_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng);
+            // Get the average center
+            if ($data['smart_zoom']) {
+                $data['smart_lat'] = $sum_lat / count($data['rooms']);
+                $data['smart_lng'] = $sum_lng / count($data['rooms']);
+            }
         }
         return $data;
     }
 
-    public function get_calculated_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng)
+    public function get_smart_zoom($data, $max_lat, $min_lat, $max_lng, $min_lng)
     {
         $lat_diff = $max_lat - $min_lat;
         $lng_diff = $max_lng - $min_lng;
@@ -157,6 +166,9 @@ class Main extends CI_Controller {
         }
         if ($lat_diff < 0.1 && $lng_diff < 0.1) {
             return 12;
+        }
+        if ($lat_diff < 0.3 && $lng_diff < 0.3) {
+            return 11;
         }
         if ($lat_diff < 0.5 && $lng_diff < 0.5) {
             return 10;
