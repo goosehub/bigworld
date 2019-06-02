@@ -38,8 +38,8 @@
         <script src="<?=base_url()?>resources/embedica/embedica.js"></script>
 
         <!-- Define as share image -->
-        <link rel="image_src" href="https://landgrab.xyz/resources/img/logo_full_large_text.png" / >
-        <meta property='og:image' content='https://landgrab.xyz/resources/img/logo_full_large_text.png'/>
+        <link rel="image_src" href="/resources/img/logo_full_large_text.png"/>
+        <meta property='og:image' content="/resources/img/logo_full_large_text.png"/>
 
         <!-- Make data available to script -->
         <script>

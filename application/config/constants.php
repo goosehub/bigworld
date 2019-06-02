@@ -1,20 +1,23 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Map settings
+// Map
 define('MAP_DEFAULT_ZOOM', 2);
 // Map default is north centric
 define('MAP_DEFAULT_LAT', 0);
 define('MAP_DEFAULT_LNG', 20);
 define('MAP_MOBILE_DEFAULT_LAT', 25);
 define('MAP_MOBILE_DEFAULT_LNG', -95);
-define('MAP_DEFAULT_FOCUS_ZOOM', 16);
+define('MAP_DEFAULT_FOCUS_ZOOM', 17);
 define('MIN_ROOMS_FOR_SMART_ZOOM', 3);
 
 // Polling
 define('MAP_ROOM_POLLING_SECONDS', 60);
 define('CHAT_LOAD_POLLING_SECONDS', 2);
 define('USER_LOAD_POLLING_SECONDS', 60);
+
+// Worlds
+define('WORLD_DEFAULT_SORT', 'activity');
 
 // Room Trim
 define('ROOM_TRIM_MINUTES_SINCE_LAST_MESSAGE', 365 * 24 * 60);

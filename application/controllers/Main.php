@@ -25,7 +25,7 @@ class Main extends CI_Controller {
         $data['user'] = $this->user_model->get_this_user();
 
         // Decide sort
-        $data['sort'] = $this->input->get('sort') ? $this->input->get('sort') : 'activity';
+        $data['sort'] = $this->input->get('sort') ? $this->input->get('sort') : WORLD_DEFAULT_SORT;
 
         // Get Worlds
         $data['worlds'] = $this->world_model->get_all_worlds($data['sort']);
@@ -164,13 +164,16 @@ class Main extends CI_Controller {
             echo ' ';
             echo $lng_diff;
         }
+        if ($lat_diff < 0.05 && $lng_diff < 0.05) {
+            return 13;
+        }
         if ($lat_diff < 0.1 && $lng_diff < 0.1) {
             return 12;
         }
-        if ($lat_diff < 0.3 && $lng_diff < 0.3) {
+        if ($lat_diff < 0.4 && $lng_diff < 0.4) {
             return 11;
         }
-        if ($lat_diff < 0.5 && $lng_diff < 0.5) {
+        if ($lat_diff < 0.7 && $lng_diff < 0.7) {
             return 10;
         }
         if ($lat_diff < 1 && $lng_diff < 1) {

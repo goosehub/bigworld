@@ -253,14 +253,7 @@
                         Sort By Activity
                     </a>
                 </span>
-                    <a href="<?=base_url()?>?sort=alphabetical" class="landing-sort-button btn <?php echo $sort === 'alphabetical' ? 'btn-primary disabled' : 'btn-default' ?>">
-                        <?php if ($sort === 'alphabetical') { ?>
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <?php } ?>
-                        Sort By Alphabet
-                    </a>
-                </span>
-                </span>
+                <span>
                     <a href="<?=base_url()?>?sort=size" class="landing-sort-button btn <?php echo $sort === 'size' ? 'btn-primary disabled' : 'btn-default' ?>">
                         <?php if ($sort === 'size') { ?>
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
@@ -268,7 +261,15 @@
                         Sort By Size
                     </a>
                 </span>
+                <span>
+                    <a href="<?=base_url()?>?sort=alphabetical" class="landing-sort-button btn <?php echo $sort === 'alphabetical' ? 'btn-primary disabled' : 'btn-default' ?>">
+                        <?php if ($sort === 'alphabetical') { ?>
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <?php } ?>
+                        Sort By Alphabet
+                    </a>
                 </span>
+                <span>
                     <!-- Random is not disabled -->
                     <a href="<?=base_url()?>?sort=random" class="landing-sort-button btn <?php echo $sort === 'random' ? 'btn-primary' : 'btn-default' ?>">
                         <?php if ($sort === 'random') { ?>
