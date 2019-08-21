@@ -366,6 +366,10 @@ body {
     opacity: 0.5;
     font-size: 0.75em;
 }
+.pm_link {
+    color: #666666;
+    font-size: 0.75em;
+}
 
 /* Change layout for mobile, map on top */
 #room_exit {

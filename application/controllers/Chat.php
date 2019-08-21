@@ -15,6 +15,7 @@ class Chat extends CI_Controller {
     public function load()
     {
         // Set parameters
+        $user_key = $this->input->post('user_key');
         $room_key = $this->input->post('room_key');
         $inital_load = $this->input->post('inital_load') === 'true' ? true : false;
         $last_message_id = $this->input->post('last_message_id');
@@ -40,6 +41,12 @@ class Chat extends CI_Controller {
         }
         else {
             $data['messages'] = $this->chat_model->load_message_by_last_message_id($room_key, $last_message_id);
+        }
+
+        $data['unread_pm_rooms'] = $this->chat_model->load_unread_pm_rooms($this->input->post('user_key'));
+
+        if (!empty($data['messages'])) {
+            $this->chat_model->mark_pm_room_as_read($room_key, $user_key);
         }
 
         // htmlspecialchars is used inside api_response
@@ -97,6 +104,8 @@ class Chat extends CI_Controller {
 
         // Insert message
         $this->chat_model->new_message($user['id'], $user['username'], $user['color'], $ip, $message, $room_key, $world_key);
+
+        $this->chat_model->mark_pm_room_as_unread($room_key, $user['id']);
 
         // Update room last new message
         $this->room_model->update_room_last_message_time($room_key);

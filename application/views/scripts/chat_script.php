@@ -93,6 +93,16 @@ $('#favorite_world_button').click(function(){
     favorite_world();
 });
 
+function load_pm(receiving_user_key, receiving_username, sending_username) {
+    data = {};
+    data.receiving_user_key = receiving_user_key;
+    data.sending_username = sending_username;
+    data.receiving_username = receiving_username;
+    ajax_post('room/create_pm_room', data, function(room){
+        load_room(room.id);
+    });
+};
+
 function load_room(room_id) {
     // Get room
     ajax_get('room/get_room/' + room_id, function(room){
@@ -103,7 +113,8 @@ function load_room(room_id) {
 
         // Set up room
         window.location.hash = room_id;
-        $('#room_name').html(room.name);
+        let room_name = parse_room_name(room.name);
+        $('#room_name').html(room_name);
         $('#zoom_out_button').hide();
         $('#zoom_in_button').show();
 
@@ -135,6 +146,10 @@ function load_room(room_id) {
             messages_load(room_id, false);
         }, load_interval * 1000);
     });
+}
+
+function update_room_name() {
+
 }
 
 function favorite_room(room_id) {
@@ -173,6 +188,15 @@ function favorite_world() {
     });
 }
 
+function parse_room_name(room_name) {
+    if (!room_name.includes('|')) {
+        return room_name
+    }
+    let names = room_name.split('|');
+    let pm_from = names[0] === user.username ? names[1] : names[0];
+    return pm_from;
+}
+
 // Message Load
 function messages_load(room_key, inital_load) {
     if (!load_messages) {
@@ -193,6 +217,7 @@ function messages_load(room_key, inital_load) {
         url: "<?=base_url()?>chat/load",
         type: "POST",
         data: {
+            user_key: user.id,
             room_key: room_key,
             world_key: world_id,
             inital_load: inital_load,
@@ -228,6 +253,28 @@ function messages_load(room_key, inital_load) {
                 last_message_id = 0;
                 return true;
             }
+
+            // Unread pm rooms
+            unread_pm_rooms_html = '';
+            $.each(messages.unread_pm_rooms, function(i, pm_room) {
+                // Don't include current room
+                if (pm_room.id === room_id) {
+                    return;
+                }
+                let pm_from = parse_room_name(pm_room.name);
+                unread_pm_rooms_html += '<li class="unread_pm_room_listing">';
+                unread_pm_rooms_html += '<a class="unread_pm_room_link text-center" href="#' + pm_room.id + '" onclick="load_room(' + pm_room.id + ')">';
+                unread_pm_rooms_html += pm_from;
+                unread_pm_rooms_html += '</a></li>';
+            });
+            if (unread_pm_rooms_html) {
+                $('.unread_pm_rooms_menu_parent').show();
+                $('#unread_pm_rooms').html(unread_pm_rooms_html);
+            }
+            else {
+                $('.unread_pm_rooms_menu_parent').hide();
+            }
+
             $.each(messages.messages, function(i, message) {
                 // Skip if we already have this message, although we really shouldn't
                 if (parseInt(message.id) <= parseInt(last_message_id)) {
@@ -256,6 +303,7 @@ function messages_load(room_key, inital_load) {
                 // build message html
                 html += '<div class="message_parent">';
                 html += '<span class="message_face glyphicon glyphicon-user" title="' + message.timestamp + ' ET" style="color: ' + message.color + ';"></span>';
+                html += '<a href="#" class="pm_link" style="color: ' + message.color + ';" onclick="load_pm(' + message.user_key + ', \'' + message.username + '\', \'' + user.username + '\')" title="Private Message"><small class="glyphicon glyphicon-envelope"></small></a> ';
                 if (use_pin(message_message)) {
                     html += '<span class="message_pin glyphicon glyphicon-pushpin" style="color: ' + message.color + ';"></span>';
                 }

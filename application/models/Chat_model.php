@@ -26,6 +26,55 @@ Class chat_model extends CI_Model
         return $result;
     }
 
+    function load_unread_pm_rooms($user_key)
+    {
+        $user_key = (int)$user_key;
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where('(user_key = ' . $user_key . ' AND user_unread = 1) OR (receiving_user_key = ' . $user_key . ' AND receiving_user_unread = 1) AND is_pm = 1', NULL, FALSE);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
+    function mark_pm_room_as_read($room_key, $user_key)
+    {
+        $room_key = (int)$room_key; 
+        $user_key = (int)$user_key;
+        $data = array(
+            'user_unread' => 0,
+            'receiving_user_unread' => 0,
+        );
+        $this->db->where('( (user_key = ' . $user_key . ' AND user_unread = 1) OR (receiving_user_key = ' . $user_key . ' AND receiving_user_unread = 1) ) AND is_pm = 1 AND id = ' . $room_key, NULL, FALSE);
+        $this->db->update('room', $data);
+    }
+
+    function mark_pm_room_as_unread($room_key, $user_key)
+    {
+        $room_key = (int)$room_key; 
+        $user_key = (int)$user_key;
+
+        $data = array(
+            'receiving_user_unread' => 1,
+        );
+        // $this->db->where('(user_key = ' . $user_key . ' AND user_unread = 0) AND is_pm = 1 AND id = ' . $room_key, NULL, FALSE);
+        $this->db->where('user_key', $user_key);
+        $this->db->where('user_unread', 0);
+        $this->db->where('is_pm', 1);
+        $this->db->where('id', $room_key);
+        $this->db->update('room', $data);
+
+        $data = array(
+            'user_unread' => 1,
+        );
+        // $this->db->where('(receiving_user_key = ' . $user_key . ' AND receiving_user_unread = 0) AND is_pm = 1 AND id = ' . $room_key, NULL, FALSE);
+        $this->db->where('receiving_user_key', $user_key);
+        $this->db->where('receiving_user_unread', 0);
+        $this->db->where('is_pm', 1);
+        $this->db->where('id', $room_key);
+        $this->db->update('room', $data);
+    }
+
     function get_last_message_in_room($room_key)
     {
         $this->db->select('*');

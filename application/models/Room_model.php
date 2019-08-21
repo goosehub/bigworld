@@ -26,6 +26,7 @@ Class room_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('room');
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
@@ -37,6 +38,7 @@ Class room_model extends CI_Model
         $this->db->select('*');
         $this->db->from('room');
         $this->db->where('world_key', $world_key);
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $this->db->where('last_message_time >', date('Y-m-d H:i:s', time() - $last_activity_in_minutes * 60));
         $query = $this->db->get();
@@ -50,6 +52,7 @@ Class room_model extends CI_Model
         $this->db->select('last_message_time');
         $this->db->from('room');
         $this->db->where('world_key', $world_key);
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $this->db->order_by('last_message_time', 'asc');
         $query = $this->db->get();
@@ -80,6 +83,7 @@ Class room_model extends CI_Model
         $this->db->where('CAST(lat AS DECIMAL(12,4)) =', 'CAST(' . $lat . ' AS DECIMAL(12,4))', false);
         $this->db->where('CAST(lng AS DECIMAL(12,4)) =', 'CAST(' . $lng . ' AS DECIMAL(12,4))', false);
         $this->db->where('world_key', $world_key);
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
@@ -92,10 +96,23 @@ Class room_model extends CI_Model
         $this->db->from('room');
         $this->db->where('user_key', $user_key);
         $this->db->where('world_key', $world_key);
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
+    }
+
+    function get_pm_room_by_user_keys($user_key, $receiving_user_key)
+    {
+        $user_keys = array($user_key, $receiving_user_key);
+        $this->db->select('*');
+        $this->db->from('room');
+        $this->db->where_in('user_key', $user_keys);
+        $this->db->where_in('receiving_user_key', $user_keys);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return isset($result[0]) ? $result[0] : false;
     }
 
     function update_room_last_message_time($room_id)
@@ -155,6 +172,7 @@ Class room_model extends CI_Model
         );
         $delete_time = time() - ($room_trim_minutes_since_last_message * 60);
         $this->db->where('last_message_time < ', date('Y-m-d H:i:s', $delete_time));
+        $this->db->where('is_pm', 0);
         $this->db->where('archived', 0);
         $this->db->update('room', $data);
     }

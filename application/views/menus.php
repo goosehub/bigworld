@@ -1,5 +1,17 @@
 <div id="menu_parent">
 
+    <!-- Unread messages -->
+    <?php if ($user) { ?>
+    <div class="unread_pm_rooms_menu_parent menu_element btn-group" style="display: none;">
+        <button id="unread_pm_rooms_button" class="btn btn-sm btn-action dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <span class="caret"></span>
+        </button>
+        <ul id="unread_pm_rooms" class="dropdown-menu dropdown-menu-right" aria-labelledby="unread_pm_rooms_button">
+        </ul>
+    </div>
+    <?php } ?>
+
     <!-- Homepage -->
     <div class="homepage_link_menu_parent menu_element btn-group">
         <a class="btn btn-sm btn-default text-primary" id="homepage_link" title="Homepage" href="<?=base_url()?>">

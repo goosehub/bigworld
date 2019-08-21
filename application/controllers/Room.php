@@ -103,6 +103,53 @@ class Room extends CI_Controller {
         echo api_response($room);
     }
 
+    public function create_pm_room()
+    {
+        // Authentication
+        $user = $this->user_model->get_this_user();
+
+        // Validate input
+        $input = get_json_post(true);
+
+        if (!isset($input->receiving_user_key)) {
+            echo api_error_response('receiving_user_key_missing', 'Receiving User is a required parameter and was not provided.');
+            return false;
+        }
+        if (!isset($input->sending_username)) {
+            echo api_error_response('sending_username_missing', 'Receiving User is a required parameter and was not provided.');
+            return false;
+        }
+        if (!isset($input->receiving_username)) {
+            echo api_error_response('receiving_username_missing', 'Receiving User is a required parameter and was not provided.');
+            return false;
+        }
+
+        $room = $this->room_model->get_pm_room_by_user_keys($user['id'], $input->receiving_user_key);
+        if ($room) {
+            echo api_response($room);
+            return;
+        }
+
+        // Create room
+        $room = array();
+        $room['name'] = $input->sending_username . '|' . $input->receiving_username;
+        $room['world_key'] = 1;
+        $room['lat'] = number_format(0, 4);
+        $room['lng'] = number_format(0, 4);
+        $room['last_message_time'] = date('Y-m-d H:i:s');
+        $room['created'] = date('Y-m-d H:i:s');
+        $room['is_pm'] = 1;
+        $room['user_key'] = isset($user['id']) ? $user['id'] : null;
+        $room['user_unread'] = 0;
+        $room['receiving_user_unread'] = 1;
+        $room['receiving_user_key'] = $input->receiving_user_key;
+        // Insert room
+        $room['id'] = $this->room_model->insert_room($room);
+
+        // Respond
+        echo api_response($room);
+    }
+
     public function favorite()
     {
         // Authentication
