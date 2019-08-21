@@ -303,7 +303,9 @@ function messages_load(room_key, inital_load) {
                 // build message html
                 html += '<div class="message_parent">';
                 html += '<span class="message_face glyphicon glyphicon-user" title="' + message.timestamp + ' ET" style="color: ' + message.color + ';"></span>';
+                <?php if ($user) { ?>
                 html += '<a href="#" class="pm_link" style="color: ' + message.color + ';" onclick="load_pm(' + message.user_key + ', \'' + message.username + '\', \'' + user.username + '\')" title="Private Message"><small class="glyphicon glyphicon-envelope"></small></a> ';
+                <?php } ?>
                 if (use_pin(message_message)) {
                     html += '<span class="message_pin glyphicon glyphicon-pushpin" style="color: ' + message.color + ';"></span>';
                 }
